@@ -7,7 +7,7 @@
 type uint32_t = number
 
 /** Mulberry32 PRNG */
-class Mulberry32 {
+export class Mulberry32 {
     state: uint32_t
 
     constructor(seed: uint32_t) {

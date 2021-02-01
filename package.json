@@ -1,6 +1,6 @@
 {
   "name": "natlib",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Natural Motion Library for Game Development",
   "main": "out/natlib.js",
   "directories": {

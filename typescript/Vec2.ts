@@ -5,13 +5,13 @@
 /// <reference path="natlib.d.ts" />
 
 /** 2D vector data structure */
-interface IVec2 {
+export interface IVec2 {
     x: number
     y: number
 }
 
 /** 2D vector class */
-class NVec2 implements IVec2 {
+export class Vec2 implements IVec2 {
     x: number
     y: number
 
