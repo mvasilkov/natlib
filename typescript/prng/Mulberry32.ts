@@ -21,4 +21,9 @@ export class Mulberry32 {
         z ^= z + Math.imul(z ^ (z >>> 7), z | 61)
         return (z ^ (z >>> 14)) >>> 0
     }
+
+    /** Return a pseudorandom number in the range [0, 1). */
+    random(): number {
+        return this.randomUint32() / (2 ** 32)
+    }
 }
