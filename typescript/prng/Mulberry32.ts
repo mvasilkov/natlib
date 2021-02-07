@@ -4,10 +4,20 @@
 'use strict'
 /// <reference path="../natlib.d.ts" />
 
-type uint32_t = number
+export type uint32_t = number
 
-/** Mulberry32 PRNG */
-export class Mulberry32 {
+/** PRNG (floating point) interface */
+export interface PRNG {
+    random(): number
+}
+
+/** PRNG (32-bit integer) interface */
+export interface PRNG32 {
+    randomUint32(): uint32_t
+}
+
+/** Mulberry32 PRNG class */
+export class Mulberry32 implements PRNG32, PRNG {
     state: uint32_t
 
     constructor(seed: uint32_t) {
