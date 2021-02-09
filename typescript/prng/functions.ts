@@ -17,3 +17,19 @@ export function randomUint32LessThan(r: PRNG32, n: uint32_t): uint32_t {
         if (a < discard) return a % n
     }
 }
+
+/** Fisher–Yates shuffle, aka Knuth shuffle. */
+export function shuffle<T>(r: PRNG32, array: T[]): T[] {
+    let n = array.length
+
+    while (n) {
+        const a = randomUint32LessThan(r, n)
+        --n
+
+        const t = array[n]!
+        array[n] = array[a]!
+        array[a] = t
+    }
+
+    return array
+}
