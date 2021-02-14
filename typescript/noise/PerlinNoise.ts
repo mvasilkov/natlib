@@ -4,7 +4,7 @@
 'use strict'
 /// <reference path="../natlib.d.ts" />
 
-/** Gradient function */
+/** Perlin noise gradient function */
 function grad(n: number, x: number, y: number, z: number): number {
     switch (n & 15) {
         case 0: return x + y

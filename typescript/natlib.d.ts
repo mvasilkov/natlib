@@ -3,5 +3,7 @@
 
 /// <reference path="noise/PerlinNoise.ts" />
 
+/// <reference path="canvas/CanvasHandle.ts" />
+
 /// <reference path="interpolation.ts" />
 /// <reference path="Vec2.ts" />
