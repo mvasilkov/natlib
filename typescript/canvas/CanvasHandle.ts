@@ -5,7 +5,7 @@
 /// <reference path="../natlib.d.ts" />
 
 /** Canvas handle class */
-class CanvasHandle {
+export class CanvasHandle {
     canvas: HTMLCanvasElement
     con: CanvasRenderingContext2D
 

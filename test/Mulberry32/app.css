@@ -1,0 +1,9 @@
+body {
+    font-family: -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif;
+}
+
+canvas {
+    background-color: #303030;
+    height: 512px;
+    width: 512px;
+}

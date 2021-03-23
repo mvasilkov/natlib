@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2017",
     "module": "ES2020",
-    "declaration": false,
+    "declaration": true,
     "outDir": "./out",
     "rootDir": "./typescript",
     "strict": true,
