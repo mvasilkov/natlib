@@ -8,14 +8,21 @@ const noiseCanvas = document.getElementById('noise')
 const distCanvas = document.getElementById('dist')
 const shuffleCanvas = document.getElementById('shuffle')
 
-const noise = new CanvasHandle(noiseCanvas, 512, 512)
-const dist = new CanvasHandle(distCanvas, 512, 512)
-const _shuffle = new CanvasHandle(shuffleCanvas, 512, 512)
+const noiseCon = new CanvasHandle(noiseCanvas, 512, 512).con
+const distCon = new CanvasHandle(distCanvas, 512, 512).con
+const shuffleCon = new CanvasHandle(shuffleCanvas, 512, 512).con
 
 runButton.addEventListener('click', function () {
+    clear()
     noiseAndDist()
     fisherYates()
 })
+
+function clear() {
+    noiseCon.clearRect(0, 0, 512, 512)
+    distCon.clearRect(0, 0, 512, 512)
+    shuffleCon.clearRect(0, 0, 512, 512)
+}
 
 function noiseAndDist() {
     const r = new Mulberry32(seedInput.value)
@@ -40,15 +47,15 @@ function noiseAndDist() {
         for (let x = 0; x < 512; ++x) {
             const b = bytes.next().value
 
-            noise.con.fillStyle = `rgb(${b},${b},${b})`
-            noise.con.fillRect(x, y, 1, 1)
+            noiseCon.fillStyle = `rgb(${b},${b},${b})`
+            noiseCon.fillRect(x, y, 1, 1)
         }
     }
 
-    dist.con.fillStyle = 'rgb(255,255,255)'
+    distCon.fillStyle = 'rgb(255,255,255)'
 
     for (let x = 0; x < 512; ++x) {
-        dist.con.fillRect(x, 512 - d[x], 1, d[x])
+        distCon.fillRect(x, 512 - d[x], 1, d[x])
     }
 }
 
@@ -78,10 +85,10 @@ function fisherYates() {
         ++results[indices['' + shuffle(r, [1, 2, 3, 4])]]
     }
 
-    _shuffle.con.fillStyle = 'rgb(255,255,255)'
+    shuffleCon.fillStyle = 'rgb(255,255,255)'
 
     for (let n = 0; n < pcount; ++n) {
-        _shuffle.con.fillRect(n * width + 0.5, 512 - results[n],
+        shuffleCon.fillRect(n * width + 0.5, 512 - results[n],
             width - 1, results[n])
     }
 }
