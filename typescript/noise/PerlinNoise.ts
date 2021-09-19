@@ -4,6 +4,8 @@
 'use strict'
 /// <reference path="../natlib.d.ts" />
 
+import type { PRNG32 } from '../prng/Mulberry32'
+
 /** Perlin noise gradient function */
 function grad(n: number, x: number, y: number, z: number): number {
     switch (n & 15) {
@@ -28,4 +30,8 @@ function grad(n: number, x: number, y: number, z: number): number {
     // Unreachable code
     return 0
     // End unreachable code
+}
+
+/** Build a random permutation table. */
+function buildPermutationTable(r: PRNG32): Uint8Array {
 }
