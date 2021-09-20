@@ -2,7 +2,6 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 /** 2D vector data structure */
 export interface IVec2 {

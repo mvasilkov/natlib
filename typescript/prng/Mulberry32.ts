@@ -2,7 +2,6 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="../natlib.d.ts" />
 
 import type { uint32_t } from '../stdint.h'
 

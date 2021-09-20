@@ -2,7 +2,7 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="./natlib.d.ts" />
 
+// Types that are used for documentation.
 export type uint8_t = number
 export type uint32_t = number

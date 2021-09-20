@@ -2,7 +2,6 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 /** Linear interpolation */
 export function lerp(a: number, b: number, t: number): number {

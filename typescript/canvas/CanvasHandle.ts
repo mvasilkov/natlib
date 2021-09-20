@@ -2,7 +2,6 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="../natlib.d.ts" />
 
 /** Canvas handle class */
 export class CanvasHandle {
