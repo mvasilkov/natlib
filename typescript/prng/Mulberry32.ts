@@ -4,7 +4,7 @@
 'use strict'
 /// <reference path="../natlib.d.ts" />
 
-export type uint32_t = number
+import type { uint32_t } from '../stdint.h'
 
 /** PRNG (floating point) interface */
 export interface PRNG {

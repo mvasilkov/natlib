@@ -4,10 +4,12 @@
 'use strict'
 /// <reference path="../natlib.d.ts" />
 
+import type { uint8_t } from '../stdint.h'
 import type { PRNG32 } from '../prng/Mulberry32'
+import { shuffle } from '../prng/functions.js'
 
 /** Perlin noise gradient function */
-function grad(n: number, x: number, y: number, z: number): number {
+function grad(n: uint8_t, x: number, y: number, z: number): number {
     switch (n & 15) {
         case 0: return x + y
         case 2: return x - y
@@ -33,5 +35,8 @@ function grad(n: number, x: number, y: number, z: number): number {
 }
 
 /** Build a random permutation table. */
-function buildPermutationTable(r: PRNG32): Uint8Array {
+function buildPermutationTable(r: PRNG32): uint8_t[] {
+    const a = Array.from({ length: 256 }, (_, n) => n)
+
+    return shuffle(r, a).concat(a)
 }

@@ -4,7 +4,8 @@
 'use strict'
 /// <reference path="../natlib.d.ts" />
 
-import type { uint32_t, PRNG32 } from './Mulberry32'
+import type { uint32_t } from '../stdint.h'
+import type { PRNG32 } from './Mulberry32'
 
 const UINT32_MAX = 2 ** 32 - 1
 
