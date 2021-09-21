@@ -5,12 +5,16 @@
 
 /** Canvas handle class */
 export class CanvasHandle {
-    canvas: HTMLCanvasElement
-    con: CanvasRenderingContext2D
+    readonly canvas: HTMLCanvasElement
+    readonly con: CanvasRenderingContext2D
+    readonly height: number
+    readonly width: number
 
     constructor(canvas: HTMLCanvasElement, width: number, height: number) {
         this.canvas = canvas
         this.con = canvas.getContext('2d')!
+        this.height = height
+        this.width = width
 
         if (devicePixelRatio > 1.4) {
             canvas.height = 2 * height
