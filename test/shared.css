@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+:root {
+    --black: #222323;
+    --white: #f0f6f0;
+}
+
+body, button, input {
+    font-family: -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    margin: 1vw;
+}
+
+canvas {
+    background-color: var(--black);
+    border: 1px solid var(--black);
+    display: block;
+    height: 512px;
+    width: 512px;
+}
+
+input[type='radio'] {
+    margin-left: 0;
+}
