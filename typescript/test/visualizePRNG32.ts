@@ -78,6 +78,7 @@ export function fisherYates(rn: rn_t, seed: uint32_t,
     const results: number[] = Array(pcount).fill(0)
     const r = new classMap[rn](seed)
     const width = shuffleCanvas.width / pcount
+    const padding = 1 / (pcount - 1)
 
     for (let n = 0; n < 0.5 * shuffleCanvas.height * pcount; ++n) {
         ++results[indices['' + shuffle(r, [1, 2, 3, 4])]!]
@@ -88,7 +89,7 @@ export function fisherYates(rn: rn_t, seed: uint32_t,
     shuffleCanvas.con.fillStyle = 'rgb(255,255,255)'
 
     for (let n = 0; n < pcount; ++n) {
-        shuffleCanvas.con.fillRect(n * width + 0.5, shuffleCanvas.height - results[n]!,
-            width - 1, results[n]!)
+        shuffleCanvas.con.fillRect(n * (width + padding),
+            shuffleCanvas.height - results[n]!, width - 1, results[n]!)
     }
 }
