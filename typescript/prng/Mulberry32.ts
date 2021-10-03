@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import type { uint32_t } from '../stdint.h'
+import type { uint32_t } from '../prelude'
 
 /** PRNG (floating point) interface */
 export interface PRNG {

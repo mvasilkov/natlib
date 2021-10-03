@@ -15,6 +15,7 @@ typescript
 │   └── PerlinNoise.ts          # Perlin noise class
 ├── canvas
 │   └── CanvasHandle.ts         # Canvas handle class
+├── prelude.ts                  # Standard types
 ├── interpolation.ts            # Interpolation functions
 └── Vec2.ts                     # 2D vector class
 ```

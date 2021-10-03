@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import type { uint8_t } from '../stdint.h'
+import type { uint8_t } from '../prelude'
 import type { PRNG32 } from '../prng/Mulberry32'
 import { shuffle } from '../prng/functions.js'
 

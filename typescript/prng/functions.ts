@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import type { uint32_t } from '../stdint.h'
+import type { uint32_t } from '../prelude'
 import type { PRNG32 } from './Mulberry32'
 
 const UINT32_MAX = 2 ** 32 - 1

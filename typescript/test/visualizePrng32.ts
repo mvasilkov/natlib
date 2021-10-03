@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import type { uint32_t } from '../stdint.h'
+import type { uint32_t } from '../prelude'
 import type { CanvasHandle } from '../canvas/CanvasHandle'
 import { Mulberry32 } from '../prng/Mulberry32.js'
 import { shuffle } from '../prng/functions.js'

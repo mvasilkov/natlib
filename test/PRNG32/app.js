@@ -5,7 +5,7 @@
 'use strict'
 
 import { CanvasHandle } from '../natlib/canvas/CanvasHandle.js'
-import { noiseAndDist, fisherYates } from '../natlib/test/visualizePRNG32.js'
+import { noiseAndDist, fisherYates } from '../natlib/test/visualizePrng32.js'
 
 const seedInput = document.getElementById('seed')
 const startButton = document.getElementById('start')
