@@ -71,4 +71,9 @@ export class Vec2 implements IVec2 {
     dot(other: IVec2): number {
         return this.x * other.x + this.y * other.y
     }
+
+    /** Get the squared distance between this vector and the other vector. */
+    distanceSquared(other: IVec2): number {
+        return (this.x - other.x) ** 2 + (this.y - other.y) ** 2
+    }
 }
