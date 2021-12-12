@@ -22,4 +22,16 @@ export class Vec3 implements IVec3 {
         this.y = y
         this.z = z
     }
+
+    /** Add the other vector to this vector. */
+    add(other: IVec3) {
+        this.x += other.x
+        this.y += other.y
+        this.z += other.z
+    }
+
+    /** Get the dot product of this vector and the other vector. */
+    dot(other: IVec3): number {
+        return this.x * other.x + this.y * other.y + this.z * other.z
+    }
 }
