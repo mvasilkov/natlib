@@ -6,8 +6,7 @@
 
 import type { uint32_t } from '../prelude'
 import type { PRNG32 } from './Mulberry32'
-
-import { UINT32_MAX } from '../prelude'
+import { UINT32_MAX } from '../prelude.js'
 
 /** Return a pseudorandom uint32 in the range [0, n). */
 export function randomUint32LessThan(r: PRNG32, n: uint32_t): uint32_t {
