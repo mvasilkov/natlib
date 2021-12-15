@@ -47,6 +47,11 @@ export function noiseAndDist(rn: rn_t, seed: uint32_t,
         }
     }
 
+    /* More samples for distribution */
+    for (let n = 0; n < noiseCanvas.height * noiseCanvas.width; ++n) {
+        bytes.next()
+    }
+
     distCanvas.con.clearRect(0, 0, distCanvas.width, distCanvas.height)
 
     distCanvas.con.fillStyle = 'rgb(255,255,255)'
