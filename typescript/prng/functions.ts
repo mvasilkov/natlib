@@ -33,3 +33,9 @@ export function shuffle<T>(r: PRNG32, array: T[]): T[] {
 
     return array
 }
+
+/** Return a pseudorandom number in the range [-1, 1]. */
+export function randomClosedUnitBall(r: PRNG32): number {
+    const a = r.randomUint32()
+    return (2 * a - UINT32_MAX) / UINT32_MAX
+}
