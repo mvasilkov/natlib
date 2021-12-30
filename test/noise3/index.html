@@ -2,11 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>PRNG32</title>
+        <title>3D Noise</title>
         <link rel="stylesheet" href="../shared.css">
     </head>
     <body>
-        <h1>PRNG32</h1>
+        <h1>3D Noise</h1>
+
+        <input id="PerlinNoise" type="radio" name="nofun" value="PerlinNoise" checked>
+        <label for="PerlinNoise">Perlin noise</label>
+        <br>
+
+        <label for="scale">Scale:</label>
+        <input id="scale" type="number" value="64">
+        <br>
 
         <input id="Mulberry32" type="radio" name="prng" value="Mulberry32" checked>
         <label for="Mulberry32">Mulberry32</label>
@@ -18,14 +26,8 @@
 
         <button id="start" type="button">Start</button>
 
-        <h2>White noise</h2>
+        <h2>3D Noise</h2>
         <canvas id="noise"></canvas>
-
-        <h2>Distribution</h2>
-        <canvas id="dist"></canvas>
-
-        <h2>Fisher–Yates shuffle</h2>
-        <canvas id="shuffle"></canvas>
 
         <script type="module" src="./app.js"></script>
     </body>
