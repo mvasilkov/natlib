@@ -5,7 +5,7 @@
 'use strict'
 
 import { CanvasHandle } from '../natlib/canvas/CanvasHandle.js'
-import { paintNoise3 } from '../natlib/test/visualizeNoise3.js'
+import { visualizeNoise3 } from '../natlib/test/visualizeNoise3.js'
 
 const scaleInput = document.getElementById('scale')
 const seedInput = document.getElementById('seed')
@@ -19,5 +19,5 @@ startButton.addEventListener('click', function () {
     const prng = document.querySelector('input[name="prng"]:checked').value
     const seed = +seedInput.value
 
-    paintNoise3(noiseFunction, scale, prng, seed, noiseCanvas)
+    visualizeNoise3(noiseFunction, scale, prng, seed, noiseCanvas)
 })

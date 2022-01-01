@@ -9,25 +9,25 @@ import type { CanvasHandle } from '../canvas/CanvasHandle'
 import { Mulberry32 } from '../prng/Mulberry32.js'
 import { buildPermutationTable, PerlinNoise } from '../noise/PerlinNoise.js'
 
-const classMapR = {
+const prngClassMap = {
     Mulberry32,
 }
 
-type rn_t = keyof typeof classMapR
+type PrngId = keyof typeof prngClassMap
 
-const classMapN = {
+const noiseClassMap = {
     PerlinNoise,
 }
 
-type nn_t = keyof typeof classMapN
+type NoiseId = keyof typeof noiseClassMap
 
-export function paintNoise3(nn: nn_t, scale: number,
-    rn: rn_t, seed: uint32_t, canvas: CanvasHandle) {
+export function visualizeNoise3(noiseId: NoiseId, scale: number,
+    prngId: PrngId, seed: uint32_t, canvas: CanvasHandle) {
 
-    const r = new classMapR[rn](seed)
+    const r = new prngClassMap[prngId](seed)
     const p = buildPermutationTable(r)
 
-    const n = new classMapN[nn](p)
+    const n = new noiseClassMap[noiseId](p)
 
     for (let y = 0; y < canvas.height; ++y) {
         for (let x = 0; x < canvas.width; ++x) {

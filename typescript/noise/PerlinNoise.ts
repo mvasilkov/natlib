@@ -42,8 +42,13 @@ export function buildPermutationTable(r: PRNG32): uint8_t[] {
     return shuffle(r, a).concat(a)
 }
 
+/** 3D noise interface */
+export interface INoise3 {
+    noise3(x: number, y: number, z: number): number
+}
+
 /** Perlin noise class */
-export class PerlinNoise {
+export class PerlinNoise implements INoise3 {
     readonly p: readonly uint8_t[]
 
     constructor(p: readonly uint8_t[]) {

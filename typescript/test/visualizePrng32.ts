@@ -9,16 +9,16 @@ import type { CanvasHandle } from '../canvas/CanvasHandle'
 import { Mulberry32 } from '../prng/Mulberry32.js'
 import { shuffle } from '../prng/functions.js'
 
-const classMap = {
+const prngClassMap = {
     Mulberry32,
 }
 
-type rn_t = keyof typeof classMap
+type PrngId = keyof typeof prngClassMap
 
-export function noiseAndDist(rn: rn_t, seed: uint32_t,
+export function noiseAndDist(prngId: PrngId, seed: uint32_t,
     noiseCanvas: CanvasHandle, distCanvas: CanvasHandle) {
 
-    const r = new classMap[rn](seed)
+    const r = new prngClassMap[prngId](seed)
     const d = Array(distCanvas.width).fill(0)
 
     function* getBytes() {
@@ -61,7 +61,7 @@ export function noiseAndDist(rn: rn_t, seed: uint32_t,
     }
 }
 
-export function fisherYates(rn: rn_t, seed: uint32_t,
+export function fisherYates(prngId: PrngId, seed: uint32_t,
     shuffleCanvas: CanvasHandle) {
 
     const indices: { [p: string]: number } = Object.create(null)
@@ -82,7 +82,7 @@ export function fisherYates(rn: rn_t, seed: uint32_t,
 
     const pcount = Object.keys(indices).length
     const results: number[] = Array(pcount).fill(0)
-    const r = new classMap[rn](seed)
+    const r = new prngClassMap[prngId](seed)
     const width = shuffleCanvas.width / pcount
     const padding = 1 / (pcount - 1)
 
