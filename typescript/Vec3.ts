@@ -23,6 +23,13 @@ export class Vec3 implements IVec3 {
         this.z = z
     }
 
+    /** Set the components of this vector. */
+    set(x: number, y: number, z: number) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
+
     /** Add the other vector to this vector. */
     add(other: IVec3) {
         this.x += other.x
