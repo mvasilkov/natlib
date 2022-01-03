@@ -37,6 +37,13 @@ export class Vec3 implements IVec3 {
         this.z += other.z
     }
 
+    /** Multiply this vector by a scalar. */
+    scale(n: number) {
+        this.x *= n
+        this.y *= n
+        this.z *= n
+    }
+
     /** Get the dot product of this vector and the other vector. */
     dot(other: IVec3): number {
         return this.x * other.x + this.y * other.y + this.z * other.z
