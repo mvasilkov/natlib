@@ -7,17 +7,22 @@ Natural Motion Library for Game Development
 ## Codemap
 
 ```
-typescript
-├── prng
-│   ├── Mulberry32.ts           # Mulberry32 PRNG class
-│   └── functions.ts            # PRNG helper functions
-├── noise
-│   └── PerlinNoise.ts          # Perlin noise class
-├── canvas
-│   └── CanvasHandle.ts         # Canvas handle class
-├── prelude.ts                  # Standard types
-├── interpolation.ts            # Interpolation functions
-└── Vec2.ts                     # 2D vector class
+.
+├── examples
+└── typescript
+    ├── Vec2.ts                     # 2D vector class
+    ├── Vec3.ts                     # 3D vector class
+    ├── canvas
+    │   └── CanvasHandle.ts         # Canvas handle class
+    ├── interpolation.ts            # Interpolation functions
+    ├── noise
+    │   └── PerlinNoise.ts          # Perlin noise class
+    ├── prelude.ts                  # Standard types
+    ├── prng
+    │   ├── Mulberry32.ts           # Mulberry32 PRNG class
+    │   ├── functions.ts            # PRNG helper functions
+    │   └── sampling.ts             # Pseudorandom sampling functions
+    └── verlet
 ```
 
 ## License
