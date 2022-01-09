@@ -4,12 +4,20 @@
  */
 'use strict'
 
-import type { uint32_t } from '../prelude'
-import type { PRNG32 } from './Mulberry32'
-import { UINT32_MAX } from '../prelude.js'
+import { uint32_t, UINT32_MAX } from '../prelude.js'
+
+/** PRNG (floating point) interface */
+export interface IPrng {
+    random(): number
+}
+
+/** PRNG (32-bit integer) interface */
+export interface IPrng32 {
+    randomUint32(): uint32_t
+}
 
 /** Return a pseudorandom uint32 in the range [0, n). */
-export function randomUint32LessThan(r: PRNG32, n: uint32_t): uint32_t {
+export function randomUint32LessThan(r: IPrng32, n: uint32_t): uint32_t {
     const discard = UINT32_MAX - (UINT32_MAX % n)
 
     while (true) {
@@ -19,7 +27,7 @@ export function randomUint32LessThan(r: PRNG32, n: uint32_t): uint32_t {
 }
 
 /** Fisher–Yates shuffle, aka Knuth shuffle. */
-export function shuffle<T>(r: PRNG32, array: T[]): T[] {
+export function shuffle<T>(r: IPrng32, array: T[]): T[] {
     let n = array.length
 
     while (n) {
@@ -35,7 +43,7 @@ export function shuffle<T>(r: PRNG32, array: T[]): T[] {
 }
 
 /** Return a pseudorandom number in the range [-1, 1]. */
-export function randomClosedUnitBall(r: PRNG32): number {
+export function randomClosedUnitBall(r: IPrng32): number {
     const a = r.randomUint32()
     return (2 * a - UINT32_MAX) / UINT32_MAX
 }

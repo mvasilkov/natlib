@@ -20,7 +20,7 @@ Natural Motion Library for Game Development
     ├── prelude.ts                  # Standard types
     ├── prng
     │   ├── Mulberry32.ts           # Mulberry32 PRNG class
-    │   ├── functions.ts            # PRNG helper functions
+    │   ├── prng.ts                 # PRNG interfaces and functions
     │   └── sampling.ts             # Pseudorandom sampling functions
     └── verlet
 ```

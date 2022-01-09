@@ -4,12 +4,11 @@
  */
 'use strict'
 
-import type { PRNG32 } from './Mulberry32'
-import { randomClosedUnitBall } from './functions.js'
+import { IPrng32, randomClosedUnitBall } from './prng.js'
 import { Vec3 } from '../Vec3.js'
 
 /** Get a point on the unit sphere. */
-export function uniformSampleSphere(r: PRNG32, result: Vec3): Vec3 {
+export function uniformSampleSphere(r: IPrng32, result: Vec3): Vec3 {
     // Algorithm by George Marsaglia (1972).
     let u: number, v: number, n: number
 
@@ -28,7 +27,7 @@ export function uniformSampleSphere(r: PRNG32, result: Vec3): Vec3 {
 }
 
 /** Get a point on the unit hemisphere. */
-export function uniformSampleHemisphere(normal: Vec3, r: PRNG32, result: Vec3): Vec3 {
+export function uniformSampleHemisphere(normal: Vec3, r: IPrng32, result: Vec3): Vec3 {
     if (uniformSampleSphere(r, result).dot(normal) < 0) {
         // If the point is in the wrong hemisphere, flip it.
         result.scale(-1)
