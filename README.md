@@ -16,7 +16,8 @@ Natural Motion Library for Game Development
     │   └── CanvasHandle.ts         # Canvas handle class
     ├── interpolation.ts            # Interpolation functions
     ├── noise
-    │   └── PerlinNoise.ts          # Perlin noise class
+    │   ├── PerlinNoise.ts          # Perlin noise class
+    │   └── noise.ts                # Noise interfaces and functions
     ├── prelude.ts                  # Standard types
     ├── prng
     │   ├── Mulberry32.ts           # Mulberry32 PRNG class

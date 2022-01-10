@@ -5,9 +5,8 @@
 'use strict'
 
 import type { uint8_t } from '../prelude'
-import type { PRNG32 } from '../prng/Mulberry32'
+import type { INoise3 } from './noise'
 import { lerp, smootherstep } from '../interpolation.js'
-import { shuffle } from '../prng/functions.js'
 
 /** Perlin noise gradient function */
 function grad(n: uint8_t, x: number, y: number, z: number): number {
@@ -35,20 +34,9 @@ function grad(n: uint8_t, x: number, y: number, z: number): number {
     // End unreachable code
 }
 
-/** Build a random permutation table. */
-export function buildPermutationTable(r: PRNG32): uint8_t[] {
-    const a = Array.from({ length: 256 }, (_, n) => n)
-
-    return shuffle(r, a).concat(a)
-}
-
-/** 3D noise interface */
-export interface INoise3 {
-    noise3(x: number, y: number, z: number): number
-}
-
 /** Perlin noise class */
 export class PerlinNoise implements INoise3 {
+    /** Permutation table */
     readonly p: readonly uint8_t[]
 
     constructor(p: readonly uint8_t[]) {
@@ -57,48 +45,48 @@ export class PerlinNoise implements INoise3 {
 
     /** 3D Perlin noise */
     noise3(x: number, y: number, z: number): number {
-        let X = Math.floor(x)
-        let Y = Math.floor(y)
-        let Z = Math.floor(z)
+        let x0 = Math.floor(x)
+        let y0 = Math.floor(y)
+        let z0 = Math.floor(z)
 
-        x -= X
-        y -= Y
-        z -= Z
+        x -= x0
+        y -= y0
+        z -= z0
 
-        X &= 255
-        Y &= 255
-        Z &= 255
+        x0 &= 255
+        y0 &= 255
+        z0 &= 255
 
         const u = smootherstep(x)
         const v = smootherstep(y)
         const w = smootherstep(z)
 
-        const A = this.p[X]! + Y
-        const AA = this.p[A]! + Z
-        const AB = this.p[A + 1]! + Z
-        const B = this.p[X + 1]! + Y
-        const BA = this.p[B]! + Z
-        const BB = this.p[B + 1]! + Z
+        const a = this.p[x0]! + y0
+        const aa = this.p[a]! + z0
+        const ab = this.p[a + 1]! + z0
+        const b = this.p[x0 + 1]! + y0
+        const ba = this.p[b]! + z0
+        const bb = this.p[b + 1]! + z0
 
         return lerp(
             lerp(
                 lerp(
-                    grad(this.p[AA]!, x, y, z),
-                    grad(this.p[BA]!, x - 1, y, z),
+                    grad(this.p[aa]!, x, y, z),
+                    grad(this.p[ba]!, x - 1, y, z),
                     u),
                 lerp(
-                    grad(this.p[AB]!, x, y - 1, z),
-                    grad(this.p[BB]!, x - 1, y - 1, z),
+                    grad(this.p[ab]!, x, y - 1, z),
+                    grad(this.p[bb]!, x - 1, y - 1, z),
                     u),
                 v),
             lerp(
                 lerp(
-                    grad(this.p[AA + 1]!, x, y, z - 1),
-                    grad(this.p[BA + 1]!, x - 1, y, z - 1),
+                    grad(this.p[aa + 1]!, x, y, z - 1),
+                    grad(this.p[ba + 1]!, x - 1, y, z - 1),
                     u),
                 lerp(
-                    grad(this.p[AB + 1]!, x, y - 1, z - 1),
-                    grad(this.p[BB + 1]!, x - 1, y - 1, z - 1),
+                    grad(this.p[ab + 1]!, x, y - 1, z - 1),
+                    grad(this.p[bb + 1]!, x - 1, y - 1, z - 1),
                     u),
                 v),
             w)
