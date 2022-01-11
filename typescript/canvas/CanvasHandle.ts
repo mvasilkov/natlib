@@ -17,7 +17,8 @@ export class CanvasHandle {
         this.height = height
         this.width = width
 
-        if (devicePixelRatio > 1.4) {
+        if (devicePixelRatio > 1) {
+            // High DPI
             canvas.height = 2 * height
             canvas.width = 2 * width
 

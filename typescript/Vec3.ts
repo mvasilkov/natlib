@@ -31,7 +31,7 @@ export class Vec3 implements IVec3 {
     }
 
     /** Add the other vector to this vector. */
-    add(other: IVec3) {
+    add(other: Readonly<IVec3>) {
         this.x += other.x
         this.y += other.y
         this.z += other.z
@@ -45,7 +45,7 @@ export class Vec3 implements IVec3 {
     }
 
     /** Get the dot product of this vector and the other vector. */
-    dot(other: IVec3): number {
+    dot(other: Readonly<IVec3>): number {
         return this.x * other.x + this.y * other.y + this.z * other.z
     }
 }

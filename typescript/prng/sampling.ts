@@ -27,7 +27,7 @@ export function uniformSampleSphere(r: IPrng32, result: Vec3): Vec3 {
 }
 
 /** Get a point on the unit hemisphere. */
-export function uniformSampleHemisphere(normal: Vec3, r: IPrng32, result: Vec3): Vec3 {
+export function uniformSampleHemisphere(normal: Readonly<Vec3>, r: IPrng32, result: Vec3): Vec3 {
     if (uniformSampleSphere(r, result).dot(normal) < 0) {
         // If the point is in the wrong hemisphere, flip it.
         result.scale(-1)

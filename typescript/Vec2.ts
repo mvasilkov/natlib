@@ -27,7 +27,7 @@ export class Vec2 implements IVec2 {
     }
 
     /** Copy the components of the other vector to this vector. */
-    copy(other: IVec2) {
+    copy(other: Readonly<IVec2>) {
         this.x = other.x
         this.y = other.y
     }
@@ -38,19 +38,19 @@ export class Vec2 implements IVec2 {
     }
 
     /** Add the other vector to this vector. */
-    add(other: IVec2) {
+    add(other: Readonly<IVec2>) {
         this.x += other.x
         this.y += other.y
     }
 
     /** Subtract the other vector from this vector. */
-    subtract(other: IVec2) {
+    subtract(other: Readonly<IVec2>) {
         this.x -= other.x
         this.y -= other.y
     }
 
     /** Set this vector to `a` − `b`. */
-    setSubtract(a: IVec2, b: IVec2) {
+    setSubtract(a: Readonly<IVec2>, b: Readonly<IVec2>) {
         this.x = a.x - b.x
         this.y = a.y - b.y
     }
@@ -62,18 +62,18 @@ export class Vec2 implements IVec2 {
     }
 
     /** Set this vector to a scalar multiple of the other vector. */
-    setMultiplyScalar(other: IVec2, n: number) {
+    setMultiplyScalar(other: Readonly<IVec2>, n: number) {
         this.x = other.x * n
         this.y = other.y * n
     }
 
     /** Get the dot product of this vector and the other vector. */
-    dot(other: IVec2): number {
+    dot(other: Readonly<IVec2>): number {
         return this.x * other.x + this.y * other.y
     }
 
     /** Get the squared distance between this vector and the other vector. */
-    distanceSquared(other: IVec2): number {
+    distanceSquared(other: Readonly<IVec2>): number {
         return (this.x - other.x) ** 2 + (this.y - other.y) ** 2
     }
 }
