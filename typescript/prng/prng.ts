@@ -18,6 +18,7 @@ export interface IPrng32 {
 
 /** Return a pseudorandom uint32 in the range [0, n). */
 export function randomUint32LessThan(r: IPrng32, n: uint32_t): uint32_t {
+    // Rejection sampling
     const discard = UINT32_MAX - (UINT32_MAX % n)
 
     while (true) {

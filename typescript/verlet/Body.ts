@@ -4,27 +4,19 @@
  */
 'use strict'
 
-import type { Body } from './Body'
 import type { Constraint } from './Constraint'
+import type { Scene } from './Scene'
 import type { Vertex } from './Vertex'
 
-/** Scene class (Verlet integration) */
-export class Scene {
+/** Physical body class (Verlet integration) */
+export class Body {
+    scene: Scene
     vertices: Vertex[]
     constraints: Constraint[]
-    bodies: Body[]
 
-    constructor() {
+    constructor(scene: Scene) {
+        this.scene = scene
         this.vertices = []
         this.constraints = []
-        this.bodies = []
-    }
-
-    /** Verlet integration loop */
-    integrate() {
-    }
-
-    /** Solve constraints and collisions. */
-    solve() {
     }
 }
