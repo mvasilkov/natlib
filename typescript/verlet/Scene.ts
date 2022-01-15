@@ -22,6 +22,9 @@ export class Scene {
 
     /** Verlet integration loop */
     integrate() {
+        for (const v of this.vertices) {
+            v.integrate()
+        }
     }
 
     /** Solve constraints and collisions. */

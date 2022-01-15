@@ -8,9 +8,9 @@ import type { Body } from './Body'
 
 /** Constraint class (Verlet integration) */
 export class Constraint {
-    parent: Body
+    body: Body
 
-    constructor(parent: Body) {
-        this.parent = parent
+    constructor(body: Body) {
+        this.body = body
     }
 }
