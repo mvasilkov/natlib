@@ -23,4 +23,8 @@ export class Body {
         this.constraints = []
         this.positions = []
     }
+
+    /** Compute the bounding box. */
+    boundingBox() {
+    }
 }

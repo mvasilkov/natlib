@@ -13,4 +13,8 @@ export class Constraint {
     constructor(body: Body) {
         this.body = body
     }
+
+    /** Solve the constraint. */
+    solve() {
+    }
 }
