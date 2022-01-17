@@ -61,32 +61,34 @@ export class PerlinNoise implements INoise3 {
         const v = smootherstep(y)
         const w = smootherstep(z)
 
-        const a = this.p[x0]! + y0
-        const aa = this.p[a]! + z0
-        const ab = this.p[a + 1]! + z0
-        const b = this.p[x0 + 1]! + y0
-        const ba = this.p[b]! + z0
-        const bb = this.p[b + 1]! + z0
+        const p = this.p
+
+        const a = p[x0]! + y0
+        const aa = p[a]! + z0
+        const ab = p[a + 1]! + z0
+        const b = p[x0 + 1]! + y0
+        const ba = p[b]! + z0
+        const bb = p[b + 1]! + z0
 
         return lerp(
             lerp(
                 lerp(
-                    grad(this.p[aa]!, x, y, z),
-                    grad(this.p[ba]!, x - 1, y, z),
+                    grad(p[aa]!, x, y, z),
+                    grad(p[ba]!, x - 1, y, z),
                     u),
                 lerp(
-                    grad(this.p[ab]!, x, y - 1, z),
-                    grad(this.p[bb]!, x - 1, y - 1, z),
+                    grad(p[ab]!, x, y - 1, z),
+                    grad(p[bb]!, x - 1, y - 1, z),
                     u),
                 v),
             lerp(
                 lerp(
-                    grad(this.p[aa + 1]!, x, y, z - 1),
-                    grad(this.p[ba + 1]!, x - 1, y, z - 1),
+                    grad(p[aa + 1]!, x, y, z - 1),
+                    grad(p[ba + 1]!, x - 1, y, z - 1),
                     u),
                 lerp(
-                    grad(this.p[ab + 1]!, x, y - 1, z - 1),
-                    grad(this.p[bb + 1]!, x - 1, y - 1, z - 1),
+                    grad(p[ab + 1]!, x, y - 1, z - 1),
+                    grad(p[bb + 1]!, x - 1, y - 1, z - 1),
                     u),
                 v),
             w)
