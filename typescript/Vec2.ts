@@ -67,6 +67,15 @@ export class Vec2 implements IVec2 {
         this.y = other.y * n
     }
 
+    /** Convert this vector to a unit vector. */
+    normalize() {
+        const len = this.length()
+        if (len !== 0) {
+            this.x /= len
+            this.y /= len
+        }
+    }
+
     /** Get the dot product of this vector and the other vector. */
     dot(other: Readonly<IVec2>): number {
         return this.x * other.x + this.y * other.y
@@ -75,5 +84,11 @@ export class Vec2 implements IVec2 {
     /** Get the squared distance between this vector and the other vector. */
     distanceSquared(other: Readonly<IVec2>): number {
         return (this.x - other.x) ** 2 + (this.y - other.y) ** 2
+    }
+
+    /** Set this vector to a perpendicular to the vector `ab`. */
+    setPerpendicular(a: Readonly<IVec2>, b: Readonly<IVec2>) {
+        this.x = a.y - b.y
+        this.y = b.x - a.x
     }
 }
