@@ -4,8 +4,8 @@
  */
 'use strict'
 
-import type { Body } from './Body'
 import { Vec2 } from '../Vec2.js'
+import type { Body } from './Body'
 
 /** Vertex class (Verlet integration) */
 export class Vertex {

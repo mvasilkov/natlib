@@ -4,9 +4,9 @@
  */
 'use strict'
 
+import { lerp, smootherstep } from '../interpolation.js'
 import type { uint8_t } from '../prelude'
 import type { INoise3 } from './noise'
-import { lerp, smootherstep } from '../interpolation.js'
 
 /** Perlin noise gradient function */
 function grad(n: uint8_t, x: number, y: number, z: number): number {

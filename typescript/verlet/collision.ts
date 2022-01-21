@@ -4,13 +4,13 @@
  */
 'use strict'
 
+import { register0 } from '../runtime.js'
 import type { Body } from './Body'
 import type { Constraint } from './Constraint'
-import { register0 } from '../runtime'
 
 /** Projected distance function */
 export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number {
-    // Find a normal to the edge.
+    // Find a unit vector normal to the edge.
     register0.setPerpendicular(edge.p0, edge.p1)
     register0.normalize()
 

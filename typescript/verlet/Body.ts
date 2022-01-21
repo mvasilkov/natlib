@@ -4,10 +4,10 @@
  */
 'use strict'
 
+import { Vec2 } from '../Vec2.js'
 import type { Constraint } from './Constraint'
 import type { Scene } from './Scene'
 import type { Vertex } from './Vertex'
-import { Vec2 } from '../Vec2.js'
 
 /** Physical body class (Verlet integration) */
 export class Body {
@@ -54,7 +54,7 @@ export class Body {
         this.halfExtents.set((xMax - xMin) * 0.5, (yMax - yMin) * 0.5)
     }
 
-    /** Project the body onto a vector. */
+    /** Project the body onto a unit vector. */
     projectOnto(a: Readonly<Vec2>) {
         let pMin: number, pMax: number
         let product = this.positions[0]!.dot(a)

@@ -4,8 +4,8 @@
  */
 'use strict'
 
-import { IPrng32, randomClosedUnitBall } from './prng.js'
 import { Vec3 } from '../Vec3.js'
+import { IPrng32, randomClosedUnitBall } from './prng.js'
 
 /** Get a point on the unit sphere. */
 export function uniformSampleSphere(r: IPrng32, result: Vec3): Vec3 {
