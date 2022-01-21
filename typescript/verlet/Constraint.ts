@@ -4,14 +4,26 @@
  */
 'use strict'
 
+import type { Vec2 } from '../Vec2.js'
 import type { Body } from './Body'
+import type { Vertex } from './Vertex'
 
 /** Constraint class (Verlet integration) */
 export class Constraint {
     body: Body
+    v0: Vertex
+    v1: Vertex
+    /** Position of v0 */
+    p0: Vec2
+    /** Position of v1 */
+    p1: Vec2
 
-    constructor(body: Body) {
+    constructor(body: Body, v0: Vertex, v1: Vertex) {
         this.body = body
+        this.v0 = v0
+        this.v1 = v1
+        this.p0 = v0.position
+        this.p1 = v1.position
     }
 
     /** Solve the constraint. */
