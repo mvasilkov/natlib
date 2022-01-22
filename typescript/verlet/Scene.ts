@@ -13,11 +13,13 @@ export class Scene {
     vertices: Vertex[]
     constraints: Constraint[]
     bodies: Body[]
+    iterationCount: number
 
     constructor() {
         this.vertices = []
         this.constraints = []
         this.bodies = []
+        this.iterationCount = 10
     }
 
     /** Verlet integration loop */
@@ -29,5 +31,16 @@ export class Scene {
 
     /** Solve constraints and collisions. */
     solve() {
+        for (let n = 0; n < this.iterationCount; ++n) {
+            // Solve constraints.
+            for (const c of this.constraints) {
+                c.solve()
+            }
+
+            // Recalculate bounding boxes.
+            for (const b of this.bodies) {
+                b.boundingBox()
+            }
+        }
     }
 }
