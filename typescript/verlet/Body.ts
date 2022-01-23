@@ -18,21 +18,31 @@ export class Body {
     positions: Vec2[]
     /** Edges are constraints that define the object's boundary. */
     edges: Constraint[]
-    // Values returned by boundingBox().
+
+    mass: number
+    groundFriction: number
+
+    // Values returned by boundingBox()
     center: Vec2
     halfExtents: Vec2
-    // Values returned by projectOnto().
+
+    // Values returned by projectOnto()
     projectionMin: number
     projectionMax: number
 
-    constructor(scene: Scene) {
+    constructor(scene: Scene, mass = 1, groundFriction = 0) {
         this.scene = scene
         this.vertices = []
         this.constraints = []
         this.positions = []
         this.edges = []
+
+        this.mass = mass
+        this.groundFriction = groundFriction
+
         this.center = new Vec2
         this.halfExtents = new Vec2
+
         this.projectionMin = 0
         this.projectionMax = 0
     }

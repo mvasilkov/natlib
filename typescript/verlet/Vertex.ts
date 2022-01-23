@@ -13,10 +13,16 @@ export class Vertex {
     position: Vec2
     oldPosition: Vec2
 
-    constructor(body: Body, x: number, y: number) {
+    gravity: number
+    viscosity: number
+
+    constructor(body: Body, x: number, y: number, gravity = 0, viscosity = 1) {
         this.body = body
         this.position = new Vec2(x, y)
         this.oldPosition = new Vec2(x, y)
+
+        this.gravity = gravity
+        this.viscosity = viscosity
 
         body.vertices.push(this)
         body.positions.push(this.position)

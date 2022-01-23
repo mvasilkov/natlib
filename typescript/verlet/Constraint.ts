@@ -17,15 +17,19 @@ export class Constraint {
     p0: Vec2
     /** Position of v1 */
     p1: Vec2
-    edge: boolean
 
-    constructor(body: Body, v0: Vertex, v1: Vertex, edge: boolean) {
+    edge: boolean
+    stiffness: number
+
+    constructor(body: Body, v0: Vertex, v1: Vertex, edge: boolean, stiffness = 1) {
         this.body = body
         this.v0 = v0
         this.v1 = v1
         this.p0 = v0.position
         this.p1 = v1.position
+
         this.edge = edge
+        this.stiffness = stiffness
     }
 
     /** Solve the constraint. */
