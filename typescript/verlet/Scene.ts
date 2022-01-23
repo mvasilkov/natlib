@@ -13,19 +13,23 @@ export class Scene {
     vertices: Vertex[]
     constraints: Constraint[]
     bodies: Body[]
+    height: number
+    width: number
     iterationCount: number
 
-    constructor() {
+    constructor(width: number, height: number) {
         this.vertices = []
         this.constraints = []
         this.bodies = []
+        this.height = height
+        this.width = width
         this.iterationCount = 10
     }
 
     /** Verlet integration loop */
     integrate() {
         for (const v of this.vertices) {
-            v.integrate()
+            v.integrate(this.width, this.height)
         }
     }
 

@@ -16,8 +16,12 @@ export class Body {
     constraints: Constraint[]
     /** Positions of vertices */
     positions: Vec2[]
+    /** Edges are constraints that define the object's boundary. */
+    edges: Constraint[]
+    // Values returned by boundingBox().
     center: Vec2
     halfExtents: Vec2
+    // Values returned by projectOnto().
     projectionMin: number
     projectionMax: number
 
@@ -26,6 +30,7 @@ export class Body {
         this.vertices = []
         this.constraints = []
         this.positions = []
+        this.edges = []
         this.center = new Vec2
         this.halfExtents = new Vec2
         this.projectionMin = 0

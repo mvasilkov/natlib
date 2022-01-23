@@ -24,6 +24,6 @@ export class Vertex {
     }
 
     /** Verlet integration */
-    integrate() {
+    integrate(sceneWidth: number, sceneHeight: number) {
     }
 }
