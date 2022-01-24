@@ -4,6 +4,14 @@ Natural Motion Library for Game Development
 
 ## Motivation
 
+I love the idea of having a lightweight, highly modular foundation for small games.
+
+The development of natlib is guided by the following principles:
+
+* Make a library, not a framework.
+* Find the right balance between size, performance and readability.
+* Prefer loose coupling to prevent the Banana Monkey Jungle problem.
+
 ## Codemap
 
 ```
