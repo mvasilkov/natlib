@@ -18,6 +18,7 @@ export class Constraint {
     /** Position of v1 */
     p1: Vec2
 
+    lengthSquared: number
     edge: boolean
     stiffness: number
 
@@ -28,11 +29,22 @@ export class Constraint {
         this.p0 = v0.position
         this.p1 = v1.position
 
+        this.lengthSquared = this.p0.distanceSquared(this.p1)
         this.edge = edge
         this.stiffness = stiffness
     }
 
     /** Solve the constraint. */
     solve() {
+    }
+}
+
+/** Exact constraint class (Verlet integration) */
+export class ExactConstraint extends Constraint {
+    length: number
+
+    constructor(body: Body, v0: Vertex, v1: Vertex, edge: boolean, stiffness = 1) {
+        super(body, v0, v1, edge, stiffness)
+        this.length = this.lengthSquared ** 0.5
     }
 }
