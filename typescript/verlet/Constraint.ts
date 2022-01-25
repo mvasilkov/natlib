@@ -48,27 +48,3 @@ export class Constraint {
         this.p1.subtract(register0)
     }
 }
-
-/** Exact constraint class (Verlet integration) */
-export class ExactConstraint extends Constraint {
-    length: number
-
-    constructor(body: Body, v0: Vertex, v1: Vertex, edge: boolean, stiffness = 1) {
-        super(body, v0, v1, edge, stiffness)
-        this.length = this.lengthSquared ** 0.5
-    }
-
-    /** Solve the constraint. */
-    solve() {
-        // Algorithm by Thomas Jakobsen (2001).
-        register0.setSubtract(this.p1, this.p0)
-
-        const len = register0.length()
-        if (len === 0) return
-
-        register0.scale(0.5 * (len - this.length) / len * this.stiffness)
-
-        this.p0.add(register0)
-        this.p1.subtract(register0)
-    }
-}
