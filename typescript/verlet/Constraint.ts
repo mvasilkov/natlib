@@ -4,7 +4,8 @@
  */
 'use strict'
 
-import type { Vec2 } from '../Vec2.js'
+import { register0 } from '../runtime.js'
+import type { Vec2 } from '../Vec2'
 import type { Body } from './Body'
 import type { Vertex } from './Vertex'
 
@@ -36,6 +37,15 @@ export class Constraint {
 
     /** Solve the constraint. */
     solve() {
+        // Algorithm by Thomas Jakobsen (2001).
+        register0.setSubtract(this.p0, this.p1)
+
+        // Approximate the square root function.
+        register0.scale(
+            (this.lengthSquared / (register0.dot(register0) + this.lengthSquared) - 0.5) * this.stiffness)
+
+        this.p0.add(register0)
+        this.p1.subtract(register0)
     }
 }
 
@@ -46,5 +56,19 @@ export class ExactConstraint extends Constraint {
     constructor(body: Body, v0: Vertex, v1: Vertex, edge: boolean, stiffness = 1) {
         super(body, v0, v1, edge, stiffness)
         this.length = this.lengthSquared ** 0.5
+    }
+
+    /** Solve the constraint. */
+    solve() {
+        // Algorithm by Thomas Jakobsen (2001).
+        register0.setSubtract(this.p1, this.p0)
+
+        const len = register0.length()
+        if (len === 0) return
+
+        register0.scale(0.5 * (len - this.length) / len * this.stiffness)
+
+        this.p0.add(register0)
+        this.p1.subtract(register0)
     }
 }
