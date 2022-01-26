@@ -33,6 +33,10 @@ export class Constraint {
         this.lengthSquared = this.p0.distanceSquared(this.p1)
         this.edge = edge
         this.stiffness = stiffness
+
+        body.constraints.push(this)
+        if (edge) body.edges.push(this)
+        body.scene.constraints.push(this)
     }
 
     /** Solve the constraint. */
