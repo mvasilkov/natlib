@@ -12,7 +12,7 @@ type BodyCons = new (...args: any[]) => Body
 /** Enable a body to be painted on canvas. */
 export function BodyPaintMixin<T extends BodyCons>(Base: T) {
     return class BodyPaint extends Base implements IPaint {
-        /** Generic paint function */
+        /** Paint the body. */
         paint(con: CanvasRenderingContext2D, t: number) {
         }
     }

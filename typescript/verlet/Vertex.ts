@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import { lerp } from '../interpolation.js'
 import { Vec2 } from '../Vec2.js'
 import type { Body } from './Body'
 
@@ -12,6 +13,7 @@ export class Vertex {
     body: Body
     position: Vec2
     oldPosition: Vec2
+    interpolated: Vec2
 
     gravity: number
     viscosity: number
@@ -20,6 +22,7 @@ export class Vertex {
         this.body = body
         this.position = new Vec2(x, y)
         this.oldPosition = new Vec2(x, y)
+        this.interpolated = new Vec2(x, y)
 
         this.gravity = gravity
         this.viscosity = viscosity
@@ -31,5 +34,12 @@ export class Vertex {
 
     /** Verlet integration */
     integrate(sceneWidth: number, sceneHeight: number) {
+    }
+
+    /** Interpolate the position of the vertex. */
+    interpolate(t: number) {
+        this.interpolated.set(
+            lerp(this.oldPosition.x, this.position.x, t),
+            lerp(this.oldPosition.y, this.position.y, t))
     }
 }
