@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { Vec3 } from '../Vec3.js'
+import type { Vec3 } from '../Vec3'
 import { IPrng32, randomClosedUnitBall } from './prng.js'
 
 /** Get a point on the unit sphere. */

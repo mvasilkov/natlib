@@ -34,6 +34,8 @@ The development of natlib is guided by the following principles:
     └── verlet
 ```
 
+## Acknowledgements
+
 ## License
 
 Except where otherwise noted, the natlib source code is licensed under the MIT License.
