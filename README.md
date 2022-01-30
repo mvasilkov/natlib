@@ -20,18 +20,15 @@ The development of natlib is guided by the following principles:
 └── typescript
     ├── Vec2.ts                     # 2D vector class
     ├── Vec3.ts                     # 3D vector class
-    ├── canvas
-    │   └── CanvasHandle.ts         # Canvas handle class
+    ├── canvas                      # Utilities related to canvas
     ├── interpolation.ts            # Interpolation functions
     ├── noise
-    │   ├── PerlinNoise.ts          # Perlin noise class
-    │   └── noise.ts                # Noise interfaces and functions
-    ├── prelude.ts                  # Standard types
+    │   └── PerlinNoise.ts          # Perlin noise class
     ├── prng
     │   ├── Mulberry32.ts           # Mulberry32 PRNG class
-    │   ├── prng.ts                 # PRNG interfaces and functions
     │   └── sampling.ts             # Pseudorandom sampling functions
-    └── verlet
+    └── verlet                      # Verlet integration
+        └── collision.ts            # SAT collision detection
 ```
 
 ## Acknowledgements
