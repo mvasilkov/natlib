@@ -43,8 +43,7 @@ export class Body {
         this.center = new Vec2
         this.halfExtents = new Vec2
 
-        this.projectionMin = 0
-        this.projectionMax = 0
+        this.projectionMin = this.projectionMax = 0
     }
 
     /** Compute the bounding box. */
