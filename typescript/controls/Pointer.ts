@@ -52,8 +52,8 @@ export class Pointer implements IVec2 {
             this.held = false
         })
 
-        target.addEventListener('mouseleave', event => {
-            event.preventDefault()
+        target.addEventListener('mouseleave', _event => {
+            // Default action is None, so no event.preventDefault()
 
             this.held = false
         })
@@ -78,8 +78,8 @@ export class Pointer implements IVec2 {
             this.held = false
         })
 
-        target.addEventListener('touchcancel', event => {
-            event.preventDefault()
+        target.addEventListener('touchcancel', _event => {
+            // Default action is None, so no event.preventDefault()
 
             this.held = false
         })
