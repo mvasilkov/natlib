@@ -33,6 +33,13 @@ The development of natlib is guided by the following principles:
 
 ## Acknowledgements
 
+The Verlet integration code is based on:
+
+* Works by Gerard Ferrandez
+* "A Verlet based approach for 2D game physics" by Benedikt Bitterli (2009)
+
+The algorithm for solving constraints is from "Advanced Character Physics" by Thomas Jakobsen (2001).
+
 ## License
 
 Except where otherwise noted, the natlib source code is licensed under the MIT License.

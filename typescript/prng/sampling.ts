@@ -9,7 +9,7 @@ import { IPrng32, randomClosedUnitBall } from './prng.js'
 
 /** Get a point on the unit sphere. */
 export function uniformSampleSphere(r: IPrng32, result: Vec3): Vec3 {
-    // Algorithm by George Marsaglia (1972).
+    // Algorithm by George Marsaglia (1972)
     let u: number, v: number, n: number
 
     do {

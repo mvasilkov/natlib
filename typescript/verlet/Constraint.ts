@@ -43,7 +43,7 @@ export class Constraint {
 
     /** Solve the constraint. */
     solve() {
-        // Algorithm by Thomas Jakobsen (2001).
+        // Algorithm by Thomas Jakobsen (2001)
         register0.setSubtract(this.p0, this.p1)
 
         // Approximate the square root function.
