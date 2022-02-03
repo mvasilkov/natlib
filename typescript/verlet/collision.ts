@@ -23,3 +23,11 @@ export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number 
         b1.projectionMin - b0.projectionMax :
         b0.projectionMin - b1.projectionMax
 }
+
+/** Collision detection function using the Separating Axis Theorem (SAT) */
+export function findCollision(b0: Body, b1: Body): boolean {
+}
+
+/** Resolve last collision found by findCollision(). */
+export function resolveCollision() {
+}
