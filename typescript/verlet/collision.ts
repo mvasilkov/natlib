@@ -34,7 +34,9 @@ let collisionVertex: Vertex
 
 /** Collision detection function using the Separating Axis Theorem (SAT) */
 export function findCollision(b0: Body, b1: Body): boolean {
-    if (b0.edges.length === 0 || b1.edges.length === 0) return false
+    const length0 = b0.edges.length
+    const length1 = b1.edges.length
+    if (length0 === 0 || length1 === 0) return false
 
     // AABB overlap test
     if (Math.abs(b1.center.x - b0.center.x) >= b0.halfExtents.x + b1.halfExtents.x ||
@@ -47,12 +49,25 @@ export function findCollision(b0: Body, b1: Body): boolean {
     if (collisionDistance >= 0) return false
     collisionLine.copy(register0)
 
-    // Loop over b0.edges, excluding b0.edges[0].
-    for (let n = b0.edges.length; --n > 0;) {
-        const edge = b0.edges[n]!
+    // Loop over `b1.edges` then `b0.edges`, excluding `b0.edges[0]`.
+    for (let n = length0 + length1; --n > 0;) {
+        const edge = n < length0 ? b0.edges[n]! : b1.edges[n - length0]!
+        const distance = projectedDistance(b0, b1, edge)
+
+        if (distance >= 0) return false
+        if (distance > collisionDistance) {
+            collisionDistance = distance
+            collisionLine.copy(register0)
+            collisionEdge = edge
+        }
     }
 
-    for (const edge of b1.edges) {
+    // There is no separating axis, so the bodies are colliding.
+    // Ensure collision edge in `b1` and collision vertex in `b0`.
+    if (collisionEdge.body !== b1) {
+        const t = b0
+        b0 = b1
+        b1 = t
     }
 }
 
