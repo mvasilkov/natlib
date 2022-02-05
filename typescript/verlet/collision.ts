@@ -26,7 +26,7 @@ export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number 
         b0.projectionMin - b1.projectionMax
 }
 
-// Values returned by findCollision()
+// Properties of last collision
 const collisionLine = new Vec2
 let collisionDistance: number
 let collisionEdge: Constraint
@@ -62,12 +62,19 @@ export function findCollision(b0: Body, b1: Body): boolean {
         }
     }
 
-    // There is no separating axis, so the bodies are colliding.
-    // Ensure collision edge in `b1` and collision vertex in `b0`.
+    // === If there is no separating axis, then the bodies are colliding. ===
+
+    // Put collision edge in `b1` and collision vertex in `b0`.
     if (collisionEdge.body !== b1) {
         const t = b0
         b0 = b1
         b1 = t
+    }
+
+    // Make sure that the collision line is pointing from `b0` to `b1`.
+    register0.setSubtract(b1.center, b0.center)
+    if (collisionLine.dot(register0) < 0) {
+        collisionLine.scale(-1)
     }
 }
 

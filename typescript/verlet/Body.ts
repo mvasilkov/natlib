@@ -71,12 +71,11 @@ export class Body {
     /** Project the body onto a unit vector. */
     projectOnto(a: Readonly<Vec2>) {
         let pMin: number, pMax: number
-        let product = this.positions[0]!.dot(a)
-        pMin = pMax = product
+        pMin = pMax = this.positions[0]!.dot(a)
 
         // Loop over positions, excluding positions[0].
         for (let n = this.positions.length; --n > 0;) {
-            product = this.positions[n]!.dot(a)
+            const product = this.positions[n]!.dot(a)
 
             if (product < pMin) pMin = product
             else if (product > pMax) pMax = product
@@ -84,5 +83,23 @@ export class Body {
 
         this.projectionMin = pMin
         this.projectionMax = pMax
+    }
+
+    /** Support function */
+    farthestPointInDirection(direction: Readonly<Vec2>): Vertex {
+        let v = this.vertices[0]!
+        let p = v.position.dot(direction)
+
+        // Loop over positions, excluding positions[0].
+        for (let n = this.positions.length; --n > 0;) {
+            const product = this.positions[n]!.dot(direction)
+
+            if (product > p) {
+                p = product
+                v = this.vertices[n]!
+            }
+        }
+
+        return v
     }
 }
