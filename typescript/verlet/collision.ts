@@ -8,7 +8,6 @@ import { register0 } from '../runtime.js'
 import { Vec2 } from '../Vec2.js'
 import type { Body } from './Body'
 import type { Constraint } from './Constraint'
-import type { Vertex } from './Vertex'
 
 /** Projected distance function */
 export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number {
@@ -30,7 +29,6 @@ export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number 
 const collisionLine = new Vec2
 let collisionDistance: number
 let collisionEdge: Constraint
-let collisionVertex: Vertex
 
 /** Collision detection function using the Separating Axis Theorem (SAT) */
 export function findCollision(b0: Body, b1: Body): boolean {
@@ -45,7 +43,7 @@ export function findCollision(b0: Body, b1: Body): boolean {
         return false
 
     collisionDistance = projectedDistance(b0, b1, collisionEdge = b0.edges[0]!)
-    // If the projections don't overlap, there is no collision.
+    // If the intervals don't overlap, there is no collision.
     if (collisionDistance >= 0) return false
     collisionLine.copy(register0)
 
@@ -62,8 +60,12 @@ export function findCollision(b0: Body, b1: Body): boolean {
         }
     }
 
-    // === If there is no separating axis, then the bodies are colliding. ===
+    // If there is no separating axis, then the bodies are colliding.
+    return true
+}
 
+/** Resolve last collision found by findCollision(). */
+export function resolveCollision(b0: Body, b1: Body) {
     // Put collision edge in `b1` and collision vertex in `b0`.
     if (collisionEdge.body !== b1) {
         const t = b0
@@ -77,9 +79,6 @@ export function findCollision(b0: Body, b1: Body): boolean {
         collisionLine.scale(-1)
     }
 
-    return true
-}
-
-/** Resolve last collision found by findCollision(). */
-export function resolveCollision() {
+    // Find the collision vertex.
+    const collisionVertex = b0.farthestPointInDirection(collisionLine)
 }
