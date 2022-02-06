@@ -17,13 +17,13 @@ export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number 
     register0.normalize()
 
     // Project the bodies onto the normal.
-    b0.projectOnto(register0)
-    b1.projectOnto(register0)
+    b0.projectInterval(register0)
+    b1.projectInterval(register0)
 
-    // Return the distance between the projections.
-    return b0.projectionMin < b1.projectionMin ?
-        b1.projectionMin - b0.projectionMax :
-        b0.projectionMin - b1.projectionMax
+    // Return the distance between the intervals.
+    return b0.intervalLeft < b1.intervalLeft ?
+        b1.intervalLeft - b0.intervalRight :
+        b0.intervalLeft - b1.intervalRight
 }
 
 // Properties of last collision
@@ -76,6 +76,8 @@ export function findCollision(b0: Body, b1: Body): boolean {
     if (collisionLine.dot(register0) < 0) {
         collisionLine.scale(-1)
     }
+
+    return true
 }
 
 /** Resolve last collision found by findCollision(). */

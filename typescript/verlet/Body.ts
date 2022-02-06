@@ -22,13 +22,13 @@ export class Body {
     mass: number
     groundFriction: number
 
-    // Values returned by boundingBox()
+    // Values updated by boundingBox()
     center: Vec2
     halfExtents: Vec2
 
-    // Values returned by projectOnto()
-    projectionMin: number
-    projectionMax: number
+    // Values updated by projectInterval()
+    intervalLeft: number
+    intervalRight: number
 
     constructor(scene: Scene, mass = 1, groundFriction = 0) {
         this.scene = scene
@@ -43,63 +43,63 @@ export class Body {
         this.center = new Vec2
         this.halfExtents = new Vec2
 
-        this.projectionMin = this.projectionMax = 0
+        this.intervalLeft = this.intervalRight = 0
     }
 
     /** Compute the bounding box. */
     boundingBox() {
-        let xMin: number, xMax: number, yMin: number, yMax: number
+        let left: number, right: number, bottom: number, top: number
         let p = this.positions[0]!
-        xMin = xMax = p.x
-        yMin = yMax = p.y
+        left = right = p.x
+        bottom = top = p.y
 
         // Loop over positions, excluding positions[0].
         for (let n = this.positions.length; --n > 0;) {
             p = this.positions[n]!
 
-            if (p.x < xMin) xMin = p.x
-            else if (p.x > xMax) xMax = p.x
+            if (p.x < left) left = p.x
+            else if (p.x > right) right = p.x
 
-            if (p.y < yMin) yMin = p.y
-            else if (p.y > yMax) yMax = p.y
+            if (p.y < bottom) bottom = p.y
+            else if (p.y > top) top = p.y
         }
 
-        this.center.set((xMin + xMax) * 0.5, (yMin + yMax) * 0.5)
-        this.halfExtents.set((xMax - xMin) * 0.5, (yMax - yMin) * 0.5)
+        this.center.set(0.5 * (left + right), 0.5 * (bottom + top))
+        this.halfExtents.set(0.5 * (right - left), 0.5 * (top - bottom))
     }
 
     /** Project the body onto a unit vector. */
-    projectOnto(a: Readonly<Vec2>) {
-        let pMin: number, pMax: number
-        pMin = pMax = this.positions[0]!.dot(a)
+    projectInterval(direction: Readonly<Vec2>) {
+        let left: number, right: number
+        left = right = this.positions[0]!.dot(direction)
 
         // Loop over positions, excluding positions[0].
         for (let n = this.positions.length; --n > 0;) {
-            const product = this.positions[n]!.dot(a)
+            const distanceInDirection = this.positions[n]!.dot(direction)
 
-            if (product < pMin) pMin = product
-            else if (product > pMax) pMax = product
+            if (distanceInDirection < left) left = distanceInDirection
+            else if (distanceInDirection > right) right = distanceInDirection
         }
 
-        this.projectionMin = pMin
-        this.projectionMax = pMax
+        this.intervalLeft = left
+        this.intervalRight = right
     }
 
     /** Support function */
     farthestPointInDirection(direction: Readonly<Vec2>): Vertex {
-        let v = this.vertices[0]!
-        let p = v.position.dot(direction)
+        let farthestPoint = this.vertices[0]!
+        let farthestDistance = farthestPoint.position.dot(direction)
 
         // Loop over positions, excluding positions[0].
         for (let n = this.positions.length; --n > 0;) {
-            const product = this.positions[n]!.dot(direction)
+            const distanceInDirection = this.positions[n]!.dot(direction)
 
-            if (product > p) {
-                p = product
-                v = this.vertices[n]!
+            if (distanceInDirection > farthestDistance) {
+                farthestDistance = distanceInDirection
+                farthestPoint = this.vertices[n]!
             }
         }
 
-        return v
+        return farthestPoint
     }
 }
