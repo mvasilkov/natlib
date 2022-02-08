@@ -5,9 +5,17 @@
 'use strict'
 
 import { Body } from '../Body.js'
-import type { Scene } from '../Scene'
+import { Scene } from '../Scene.js'
 
-class PointerBody extends Body {
+export class PointerBody extends Body {
+    r: number
+
+    constructor(r: number) {
+        const detached = new Scene(0, 0)
+        super(detached)
+
+        this.r = r
+    }
 }
 
 type SceneCons = new (...args: any[]) => Scene
