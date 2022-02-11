@@ -4,10 +4,10 @@
  */
 'use strict'
 
-import { register0 } from '../runtime.js'
-import { Vec2 } from '../Vec2.js'
-import type { Body } from './Body'
-import type { Constraint } from './Constraint'
+import { register0 } from '../../runtime.js'
+import { Vec2 } from '../../Vec2.js'
+import type { Body } from '../Body'
+import type { Constraint } from '../Constraint'
 
 /** Projected distance function */
 export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number {
