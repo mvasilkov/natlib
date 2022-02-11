@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { register0 } from '../../runtime.js'
+import { register0, register1 } from '../../runtime.js'
 import { Vec2 } from '../../Vec2.js'
 import type { Body } from '../Body'
 import type { Constraint } from '../Constraint'
@@ -65,7 +65,7 @@ export function findCollision(b0: Body, b1: Body): boolean {
 }
 
 /** Resolve last collision found by findCollision(). */
-export function resolveCollision(b0: Body, b1: Body) {
+export function resolveCollision(b0: Body, b1: Body, friction: number) {
     // Put collision edge in `b1` and collision vertex in `b0`.
     if (collisionEdge.body !== b1) {
         const t = b0
@@ -81,4 +81,25 @@ export function resolveCollision(b0: Body, b1: Body) {
 
     // Find the collision vertex.
     const collisionVertex = b0.farthestPointInDirection(collisionLine)
+
+    const pos = collisionVertex.position
+    const pos0 = collisionEdge.p0
+    const pos1 = collisionEdge.p1
+
+    // Response vector
+    register0.setMultiplyScalar(collisionLine, collisionDistance)
+
+    // Find the ratio in which the collision vertex divides the collision edge.
+    register1.setSubtract(pos1, pos0)
+
+    const t = register1.x === 0 && register1.y === 0 ? 0.5 :
+        Math.abs(register1.x) > Math.abs(register1.y) ?
+            (pos.x - register0.x - pos0.x) / register1.x :
+            (pos.y - register0.y - pos0.y) / register1.y
+
+    if (friction !== 0) {
+        const old = collisionVertex.oldPosition
+        const old0 = collisionEdge.v0.oldPosition
+        const old1 = collisionEdge.v1.oldPosition
+    }
 }
