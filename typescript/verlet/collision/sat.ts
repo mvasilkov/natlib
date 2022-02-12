@@ -120,5 +120,26 @@ export function resolveCollision(b0: Body, b1: Body, friction: number) {
         const old = collisionVertex.oldPosition
         const old0 = collisionEdge.v0.oldPosition
         const old1 = collisionEdge.v1.oldPosition
+
+        // Relative velocity
+        register0.set(
+            pos.x - old.x - 0.5 * (pos0.x - old0.x + pos1.x - old1.x),
+            pos.y - old.y - 0.5 * (pos0.y - old0.y + pos1.y - old1.y)
+        )
+
+        // Relative velocity along the tangent
+        register1.set(-collisionLine.y, collisionLine.x)
+        register0.setMultiplyScalar(register1, register0.dot(register1))
+
+        // Apply friction.
+        register0.scale(friction)
+
+        old.x += register0.x * w1
+        old.y += register0.y * w1
+
+        old0.x -= register0.x * k0
+        old0.y -= register0.y * k0
+        old1.x -= register0.x * k1
+        old1.y -= register0.y * k1
     }
 }
