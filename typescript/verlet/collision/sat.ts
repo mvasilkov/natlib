@@ -97,6 +97,25 @@ export function resolveCollision(b0: Body, b1: Body, friction: number) {
             (pos.x - register0.x - pos0.x) / register1.x :
             (pos.y - register0.y - pos0.y) / register1.y
 
+    // Mass fractions
+    const totalMass = b0.mass + b1.mass
+    const w0 = b0.mass / totalMass
+    const w1 = b1.mass / totalMass
+
+    // Scaling factors
+    const k = 0.5 * w0 / (t ** 2 + (1 - t) ** 2)
+    const k0 = (1 - t) * k
+    const k1 = t * k
+
+    // Apply the collision response.
+    pos.x += register0.x * w1
+    pos.y += register0.y * w1
+
+    pos0.x -= register0.x * k0
+    pos0.y -= register0.y * k0
+    pos1.x -= register0.x * k1
+    pos1.y -= register0.y * k1
+
     if (friction !== 0) {
         const old = collisionVertex.oldPosition
         const old0 = collisionEdge.v0.oldPosition
