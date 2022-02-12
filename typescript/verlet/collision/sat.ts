@@ -103,7 +103,7 @@ export function resolveCollision(b0: Body, b1: Body, friction: number) {
     const w1 = b1.mass / totalMass
 
     // Scaling factors
-    const k = 0.5 * w0 / (t ** 2 + (1 - t) ** 2)
+    const k = w0 / (t ** 2 + (1 - t) ** 2)
     const k0 = (1 - t) * k
     const k1 = t * k
 
