@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { Vec2 } from '../Vec2.js'
+import { IVec2, Vec2 } from '../Vec2.js'
 import type { Constraint } from './Constraint'
 import type { Scene } from './Scene'
 import type { Vertex } from './Vertex'
@@ -69,7 +69,7 @@ export class Body {
     }
 
     /** Project the body onto a unit vector. */
-    projectInterval(direction: Readonly<Vec2>) {
+    projectInterval(direction: Readonly<IVec2>) {
         let left: number, right: number
         left = right = this.positions[0]!.dot(direction)
 
@@ -86,7 +86,7 @@ export class Body {
     }
 
     /** Support function */
-    farthestPointInDirection(direction: Readonly<Vec2>): Vertex {
+    farthestPointInDirection(direction: Readonly<IVec2>): Vertex {
         let farthestPoint = this.vertices[0]!
         let farthestDistance = farthestPoint.position.dot(direction)
 

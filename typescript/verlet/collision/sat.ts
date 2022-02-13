@@ -129,11 +129,9 @@ export function resolveCollision(b0: Body, b1: Body, friction: number) {
 
         // Relative velocity along the tangent
         register1.set(-collisionLine.y, collisionLine.x)
-        register0.setMultiplyScalar(register1, register0.dot(register1))
+        register0.setMultiplyScalar(register1, register0.dot(register1) * friction)
 
         // Apply friction.
-        register0.scale(friction)
-
         old.x += register0.x * w1
         old.y += register0.y * w1
 
