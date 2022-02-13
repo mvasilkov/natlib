@@ -10,15 +10,18 @@ import { Constraint } from '../Constraint.js'
 import { Scene } from '../Scene.js'
 import { Vertex } from '../Vertex.js'
 
+/** Pointer body class for collision detection */
 export class PointerBody extends Body {
     readonly r: number
 
     constructor(r: number) {
-        const detached = new Scene(0, 0)
+        // Not part of any scene, as it cannot resolve collisions.
+        const detached = new Scene(r, r)
         super(detached)
 
         this.r = r
 
+        // At least one constraint is required for the SAT function to work.
         const a = new Vertex(this, 0, 0)
         const b = new Vertex(this, r, 0)
         new Constraint(this, a, b, true)
@@ -35,6 +38,7 @@ export class PointerBody extends Body {
         this.intervalRight = distanceInDirection + this.r
     }
 
+    /** Set the pointer position. */
     setPosition(position: Readonly<IVec2>) {
         this.positions[0]!.copy(position)
         this.positions[1]!.set(position.x + this.r, position.y)
