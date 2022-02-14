@@ -25,10 +25,10 @@ export function projectedDistance(b0: Body, b1: Body, edge: Constraint): number 
         b0.intervalLeft - b1.intervalRight
 }
 
-// Properties of last collision
-const collisionLine = new Vec2
-let collisionDistance: number
-let collisionEdge: Constraint
+// Contact properties
+const contactLine = new Vec2
+let contactDistance: number
+let contactEdge: Constraint
 
 /** Collision detection function using the Separating Axis Theorem (SAT) */
 export function findCollision(b0: Body, b1: Body): boolean {
@@ -42,10 +42,10 @@ export function findCollision(b0: Body, b1: Body): boolean {
         // AABBs don't overlap
         return false
 
-    collisionDistance = projectedDistance(b0, b1, collisionEdge = b0.edges[0]!)
+    contactDistance = projectedDistance(b0, b1, contactEdge = b0.edges[0]!)
     // If the intervals don't overlap, there is no collision.
-    if (collisionDistance >= 0) return false
-    collisionLine.copy(register0)
+    if (contactDistance >= 0) return false
+    contactLine.copy(register0)
 
     // Loop over `b1.edges` then `b0.edges`, excluding `b0.edges[0]`.
     for (let n = length0 + length1; --n > 0;) {
@@ -53,10 +53,10 @@ export function findCollision(b0: Body, b1: Body): boolean {
         const distance = projectedDistance(b0, b1, edge)
 
         if (distance >= 0) return false
-        if (distance > collisionDistance) {
-            collisionDistance = distance
-            collisionLine.copy(register0)
-            collisionEdge = edge
+        if (distance > contactDistance) {
+            contactDistance = distance
+            contactLine.copy(register0)
+            contactEdge = edge
         }
     }
 
@@ -66,30 +66,30 @@ export function findCollision(b0: Body, b1: Body): boolean {
 
 /** Resolve last collision found by findCollision(). */
 export function resolveCollision(b0: Body, b1: Body, friction: number) {
-    // Put collision edge in `b1` and collision vertex in `b0`.
-    if (collisionEdge.body !== b1) {
+    // Put contact edge in `b1` and contact vertex in `b0`.
+    if (contactEdge.body !== b1) {
         const t = b0
         b0 = b1
         b1 = t
     }
 
-    // Make sure that the collision line is pointing from `b0` to `b1`.
+    // Make sure that the contact line is pointing from `b0` to `b1`.
     register0.setSubtract(b1.center, b0.center)
-    if (collisionLine.dot(register0) < 0) {
-        collisionLine.scale(-1)
+    if (contactLine.dot(register0) < 0) {
+        contactLine.scale(-1)
     }
 
-    // Find the collision vertex.
-    const collisionVertex = b0.farthestPointInDirection(collisionLine)
+    // Find the contact vertex.
+    const contactVertex = b0.farthestPointInDirection(contactLine)
 
-    const pos = collisionVertex.position
-    const pos0 = collisionEdge.p0
-    const pos1 = collisionEdge.p1
+    const pos = contactVertex.position
+    const pos0 = contactEdge.p0
+    const pos1 = contactEdge.p1
 
     // Response vector
-    register0.setMultiplyScalar(collisionLine, collisionDistance)
+    register0.setMultiplyScalar(contactLine, contactDistance)
 
-    // Find the ratio in which the collision vertex divides the collision edge.
+    // Find the ratio in which the contact vertex divides the contact edge.
     register1.setSubtract(pos1, pos0)
 
     const t = register1.x === 0 && register1.y === 0 ? 0.5 :
@@ -117,9 +117,9 @@ export function resolveCollision(b0: Body, b1: Body, friction: number) {
     pos1.y -= register0.y * k1
 
     if (friction !== 0) {
-        const old = collisionVertex.oldPosition
-        const old0 = collisionEdge.v0.oldPosition
-        const old1 = collisionEdge.v1.oldPosition
+        const old = contactVertex.oldPosition
+        const old0 = contactEdge.v0.oldPosition
+        const old1 = contactEdge.v1.oldPosition
 
         // Relative velocity
         register0.set(
@@ -128,7 +128,7 @@ export function resolveCollision(b0: Body, b1: Body, friction: number) {
         )
 
         // Relative velocity along the tangent
-        register1.set(-collisionLine.y, collisionLine.x)
+        register1.set(-contactLine.y, contactLine.x)
         register0.setMultiplyScalar(register1, register0.dot(register1) * friction)
 
         // Apply friction.

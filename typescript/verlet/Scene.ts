@@ -43,7 +43,7 @@ export class Scene {
                 c.solve()
             }
 
-            // Recalculate bounding boxes.
+            // Update bounding boxes.
             for (const b of this.bodies) {
                 b.boundingBox()
             }
