@@ -65,7 +65,7 @@ export function findCollision(b0: Body, b1: Body): boolean {
 }
 
 /** Resolve last collision found by findCollision(). */
-export function resolveCollision(b0: Body, b1: Body, friction: number) {
+export function resolveCollision(b0: Body, b1: Body, friction = 0) {
     // Put contact edge in `b1` and contact vertex in `b0`.
     if (contactEdge.body !== b1) {
         const t = b0
