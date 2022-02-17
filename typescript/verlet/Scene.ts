@@ -19,7 +19,7 @@ export class Scene {
     width: number
     iterationCount: number
 
-    constructor(width: number, height: number, iterationCount = 10) {
+    constructor(width: number, height: number, iterationCount = 9) {
         this.vertices = []
         this.constraints = []
         this.bodies = []

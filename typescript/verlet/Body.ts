@@ -44,6 +44,8 @@ export class Body {
         this.halfExtents = new Vec2
 
         this.intervalLeft = this.intervalRight = 0
+
+        scene.bodies.push(this)
     }
 
     /** Compute the bounding box. */
