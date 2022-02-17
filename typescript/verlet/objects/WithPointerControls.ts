@@ -8,7 +8,7 @@ import type { Scene } from '../Scene'
 
 type SceneCons = new (...args: any[]) => Scene
 
-export function ScenePointerMixin<T extends SceneCons>(Base: T) {
+export function WithPointerControls<T extends SceneCons>(Base: T) {
     return class ScenePointer extends Base {
     }
 }

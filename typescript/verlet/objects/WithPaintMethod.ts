@@ -10,7 +10,7 @@ import type { Body } from '../Body'
 type BodyCons = new (...args: any[]) => Body
 
 /** Enable a body to be painted on canvas. Used for debugging. */
-export function BodyPaintMixin<T extends BodyCons>(Base: T, color = '#29adff', colorEdges = '#ff004d') {
+export function WithPaintMethod<T extends BodyCons>(Base: T, color = '#29adff', colorEdges = '#ff004d') {
     return class BodyPaint extends Base implements IPaint {
         /** Paint the body. */
         paint(con: CanvasRenderingContext2D, t: number) {
