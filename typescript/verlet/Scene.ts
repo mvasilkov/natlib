@@ -46,7 +46,7 @@ export class Scene {
 
             // Update bounding boxes.
             for (const b of this.bodies) {
-                b.boundingBox()
+                b.updateBoundingBox()
             }
 
             // Resolve collisions.

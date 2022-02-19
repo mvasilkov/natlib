@@ -22,11 +22,11 @@ export class Body {
     mass: number
     groundFriction: number
 
-    // Values updated by boundingBox()
+    // Values set by updateBoundingBox()
     center: Vec2
     halfExtents: Vec2
 
-    // Values updated by projectInterval()
+    // Values set by projectInterval()
     intervalLeft: number
     intervalRight: number
 
@@ -48,8 +48,8 @@ export class Body {
         scene.bodies.push(this)
     }
 
-    /** Compute the bounding box. */
-    boundingBox() {
+    /** Update the bounding box (AABB). */
+    updateBoundingBox() {
         let left: number, right: number, bottom: number, top: number
         let p = this.positions[0]!
         left = right = p.x
