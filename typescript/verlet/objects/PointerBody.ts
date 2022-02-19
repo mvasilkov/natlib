@@ -31,7 +31,7 @@ export class PointerBody extends Body {
     }
 
     /** Project the body onto a unit vector. */
-    projectInterval(direction: Readonly<IVec2>) {
+    override projectInterval(direction: Readonly<IVec2>) {
         const distanceInDirection = this.center.dot(direction)
 
         this.intervalLeft = distanceInDirection - this.r

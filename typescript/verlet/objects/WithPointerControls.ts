@@ -31,7 +31,7 @@ export function WithPointerControls<T extends SceneCons>(Base: T, stiffness = 1)
         }
 
         /** Set the position of the controlled vertex. */
-        integrate() {
+        override integrate() {
             if (this.controlledVertex !== undefined) {
                 register0.setSubtract(this.pointer, this.controlledVertex.position)
                 register0.scale(stiffness)
@@ -42,7 +42,7 @@ export function WithPointerControls<T extends SceneCons>(Base: T, stiffness = 1)
         }
 
         /** Set the controlled vertex. */
-        solve() {
+        override solve() {
             super.solve()
 
             if (this.pointer.held) {
