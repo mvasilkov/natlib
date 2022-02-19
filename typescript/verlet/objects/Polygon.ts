@@ -9,6 +9,7 @@ import { Constraint } from '../Constraint.js'
 import type { Scene } from '../Scene'
 import { Vertex } from '../Vertex.js'
 
+/** Convex regular n-gon class (Verlet integration) */
 export class Polygon extends Body {
     constructor(scene: Scene, x: number, y: number, r: number, nVertices = 9, stiffness = 1, mass = 1, groundFriction = 0) {
         super(scene, mass, groundFriction)
