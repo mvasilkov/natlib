@@ -7,22 +7,21 @@
 /** Callback function type */
 type LoopCallback = (t: number) => void
 
-export function startMainloop(update: LoopCallback, render: LoopCallback, T = 0.02) {
+/** Main loop using a fixed step of `T` milliseconds. */
+export function startMainloop(update: LoopCallback, render: LoopCallback, T = 20) {
     let before: number
     let t = 0
 
-    requestAnimationFrame(init)
-
-    function init(now: number) {
+    requestAnimationFrame(function (now: number) {
         requestAnimationFrame(loop)
 
         before = now
-    }
+    })
 
     function loop(now: number) {
         requestAnimationFrame(loop)
 
-        t += (now - before) * 0.001
+        t += now - before
         before = now
 
         let n = 2
