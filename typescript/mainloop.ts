@@ -24,7 +24,8 @@ export function startMainloop(update: LoopCallback, render: LoopCallback, T = 20
         t += now - before
         before = now
 
-        let n = 2
+        // Most updates per render
+        let n = 4
 
         while (t > 0) {
             t -= T
