@@ -29,22 +29,19 @@ export class Scene {
         this.iterationCount = iterationCount
     }
 
-    /** Verlet integration loop */
-    integrate() {
+    /** Update the scene. */
+    update() {
+        // Verlet integration loop
         for (const v of this.vertices) {
             v.integrate(this.width, this.height)
         }
-    }
 
-    /** Solve constraints and collisions. */
-    solve() {
+        // Solve constraints and collisions.
         for (let n = 0; n < this.iterationCount; ++n) {
-            // Solve constraints.
             for (const c of this.constraints) {
                 c.solve()
             }
 
-            // Update bounding boxes.
             for (const b of this.bodies) {
                 b.updateBoundingBox()
             }

@@ -30,21 +30,18 @@ export function WithPointerControls<T extends SceneCons>(Base: T, stiffness = 1)
             this.pb = new PointerBody(r)
         }
 
-        /** Set the position of the controlled vertex. */
-        override integrate() {
+        /** Update the scene. */
+        override update() {
+            // Set the position of the controlled vertex.
             if (this.controlledVertex !== undefined) {
                 register0.setSubtract(this.pointer, this.controlledVertex.position)
                 register0.scale(stiffness)
                 this.controlledVertex.position.add(register0)
             }
 
-            super.integrate()
-        }
+            super.update()
 
-        /** Set the controlled vertex. */
-        override solve() {
-            super.solve()
-
+            // Set the controlled vertex.
             if (this.pointer.held) {
                 if (this.controlledVertex !== undefined) return
 
