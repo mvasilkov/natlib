@@ -18,8 +18,9 @@ export class Scene {
     height: number
     width: number
     iterationCount: number
+    friction: number
 
-    constructor(width: number, height: number, iterationCount = 9) {
+    constructor(width: number, height: number, iterationCount = 9, friction = 0) {
         this.vertices = []
         this.constraints = []
         this.bodies = []
@@ -27,6 +28,7 @@ export class Scene {
         this.height = height
         this.width = width
         this.iterationCount = iterationCount
+        this.friction = friction
     }
 
     /** Update the scene. */
@@ -54,7 +56,7 @@ export class Scene {
                     const b1 = this.bodies[j]!
 
                     if (findCollision(b0, b1)) {
-                        resolveCollision(b0, b1)
+                        resolveCollision(b0, b1, this.friction)
                     }
                 }
             }
