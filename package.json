@@ -2,7 +2,17 @@
   "name": "natlib",
   "version": "0.0.2",
   "description": "Natural Motion Library for Game Development",
+  "files": [
+    "examples",
+    "out",
+    "typescript"
+  ],
   "main": "out/natlib.js",
+  "exports": {
+    ".": "./out/natlib.js",
+    "./": "./out/"
+  },
+  "type": "module",
   "directories": {
     "example": "examples"
   },

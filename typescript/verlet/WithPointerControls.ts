@@ -4,13 +4,13 @@
  */
 'use strict'
 
-import { findCollision } from '../../collision/sat.js'
-import type { Pointer } from '../../controls/Pointer'
-import { register0 } from '../../runtime.js'
-import type { Scene } from '../Scene'
-import type { Vertex } from '../Vertex'
-import { getClosestVertex } from './helpers.js'
-import { PointerBody } from './PointerBody.js'
+import { findCollision } from '../collision/sat.js'
+import type { Pointer } from '../controls/Pointer'
+import { register0 } from '../runtime.js'
+import { getClosestVertex } from './Body.js'
+import { PointerBody } from './objects/PointerBody.js'
+import type { Scene } from './Scene'
+import type { Vertex } from './Vertex'
 
 type SceneCons = new (...args: any[]) => Scene
 

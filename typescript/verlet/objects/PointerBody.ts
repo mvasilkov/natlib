@@ -38,6 +38,11 @@ export class PointerBody extends Body {
         this.intervalRight = distanceInDirection + this.r
     }
 
+    /** Support function */
+    override farthestPointInDirection(): never {
+        throw Error('Pointer body cannot resolve collisions.')
+    }
+
     /** Set the pointer position. */
     setPosition(position: Readonly<IVec2>) {
         this.positions[0]!.copy(position)

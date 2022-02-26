@@ -4,8 +4,8 @@
  */
 'use strict'
 
-import type { IPaint } from '../../canvas/canvas'
-import type { Body } from '../Body'
+import type { IPaint } from '../canvas/canvas'
+import type { Body } from './Body'
 
 type BodyCons = new (...args: any[]) => Body
 
