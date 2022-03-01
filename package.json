@@ -1,11 +1,12 @@
 {
   "name": "natlib",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Natural Motion Library for Game Development",
   "files": [
     "examples",
     "out",
-    "typescript"
+    "typescript",
+    "tsconfig.json"
   ],
   "main": "out/natlib.js",
   "exports": {
