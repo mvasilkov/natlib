@@ -5,8 +5,11 @@ from pathlib import Path
 import re
 from shutil import copy2, copytree, rmtree
 from subprocess import check_call, check_output
+import sys
 
 OUR_ROOT = Path(__file__).resolve().parents[1]
+
+USE_SHELL = sys.platform == 'win32'
 
 JSON_OPTIONS = {
     'ensure_ascii': False,
@@ -17,7 +20,11 @@ JSON_OPTIONS = {
 
 def tsc_check_available():
     try:
-        result = check_output(['tsc', '--version'], encoding='utf-8')
+        result = check_output(
+            ['tsc', '--version'],
+            shell=USE_SHELL,
+            encoding='utf-8',
+        )
     except FileNotFoundError:
         raise RuntimeError('Cannot run tsc')
 
@@ -52,7 +59,7 @@ def clean():
 
 def build():
     try:
-        check_call(['tsc', '--project', OUR_ROOT])
+        check_call(['tsc', '--project', OUR_ROOT], shell=USE_SHELL)
     except FileNotFoundError:
         raise RuntimeError('Cannot run tsc')
 
