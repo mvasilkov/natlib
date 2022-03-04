@@ -104,21 +104,6 @@ export class Body {
 
         return farthestPoint
     }
-
-    /** Detach the body from the scene. */
-    detach() {
-        let n: number
-        let list: any[]
-
-        n = (list = this.scene.vertices).findIndex(v => v.body === this)
-        if (n !== -1) list.splice(n, this.vertices.length)
-
-        n = (list = this.scene.constraints).findIndex(c => c.body === this)
-        if (n !== -1) list.splice(n, this.constraints.length)
-
-        n = (list = this.scene.bodies).findIndex(b => b === this)
-        if (n !== -1) list.splice(n, 1)
-    }
 }
 
 /** Find a vertex closest to the reference point.
@@ -138,4 +123,20 @@ export function getClosestVertex(b: Body, reference: Readonly<IVec2>): Vertex {
     }
 
     return closestVertex
+}
+
+/** Detach the body from its containing scene.
+ * Standalone function to enable tree shaking. */
+export function detachBody(b: Body) {
+    let n: number
+    let list: any[]
+
+    n = (list = b.scene.vertices).findIndex(v => v.body === b)
+    if (n !== -1) list.splice(n, b.vertices.length)
+
+    n = (list = b.scene.constraints).findIndex(c => c.body === b)
+    if (n !== -1) list.splice(n, b.constraints.length)
+
+    n = (list = b.scene.bodies).findIndex(_b => _b === b)
+    if (n !== -1) list.splice(n, 1)
 }

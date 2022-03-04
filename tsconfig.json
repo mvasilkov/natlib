@@ -18,5 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "newLine": "LF",
     "composite": true
-  }
+  },
+  "include": [
+    "./typescript/**/*.ts"
+  ]
 }
