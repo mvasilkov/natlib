@@ -3,3 +3,4 @@ _natlib/
 tsconfig.tsbuildinfo
 node_modules/
 yarn.lock
+examples/**/*.js

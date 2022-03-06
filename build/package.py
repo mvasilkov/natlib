@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from contextlib import contextmanager, ExitStack
 import json
 from pathlib import Path
 import re
@@ -53,15 +54,53 @@ def clean():
                 path.unlink()
 
     cache = OUR_ROOT / 'tsconfig.tsbuildinfo'
-    if cache.exists():
+    if cache.is_file():
         cache.unlink()
+
+    examples = OUR_ROOT / 'examples'
+    for path in examples.iterdir():
+        if not path.is_dir():
+            continue
+        node_modules = path / 'node_modules'
+        if node_modules.is_dir():
+            rmtree(node_modules)
+
+    for path in examples.glob('**/*.js'):
+        if path.with_suffix('.ts').is_file():
+            path.unlink()
+
+
+@contextmanager
+def create_symlink(path: Path):
+    node_modules = path / 'node_modules'
+    node_modules.mkdir()
+    (node_modules / 'natlib').symlink_to(OUR_ROOT / 'out', target_is_directory=True)
+
+    try:
+        yield
+    finally:
+        rmtree(node_modules)
 
 
 def build():
-    try:
-        check_call(['tsc', '--project', OUR_ROOT], shell=USE_SHELL)
-    except FileNotFoundError:
-        raise RuntimeError('Cannot run tsc')
+    examples = OUR_ROOT / 'examples'
+
+    projects = (
+        ('..', False),
+        ('couch2048', True),
+    )
+
+    for path_str, need_symlink in projects:
+        path = examples / path_str
+
+        with ExitStack() as stack:
+            if need_symlink:
+                stack.enter_context(create_symlink(path))
+
+            try:
+                check_call(['tsc', '--project', path], shell=USE_SHELL)
+            except FileNotFoundError:
+                raise RuntimeError('Cannot run tsc')
 
 
 def package():
