@@ -3,41 +3,17 @@
 from contextlib import contextmanager, ExitStack
 import json
 from pathlib import Path
-import re
 from shutil import copy2, copytree, rmtree
-from subprocess import check_call, check_output
-import sys
+
+from but.external.typescript import typescript_call, typescript_check_available
 
 OUR_ROOT = Path(__file__).resolve().parents[1]
-
-USE_SHELL = sys.platform == 'win32'
 
 JSON_OPTIONS = {
     'ensure_ascii': False,
     'allow_nan': False,
     'indent': 2,
 }
-
-
-def tsc_check_available():
-    try:
-        result = check_output(
-            ['tsc', '--version'],
-            shell=USE_SHELL,
-            encoding='utf-8',
-        )
-    except FileNotFoundError:
-        raise RuntimeError('Cannot run tsc')
-
-    version = re.match(r'Version (.+?)$', result, re.MULTILINE)
-    if version is None:
-        raise RuntimeError(f'Cannot understand tsc, got {result!r}')
-
-    version_tuple = tuple(version.group(1).split('.'))
-    if version_tuple[0] != '4':
-        raise RuntimeError(f'Expected tsc version 4, got {version.group(1)!r}')
-
-    return version_tuple
 
 
 def clean():
@@ -88,6 +64,7 @@ def build():
     projects = (
         ('..', False),
         ('couch2048', True),
+        # ('notfound', True),
     )
 
     for path_str, need_symlink in projects:
@@ -97,10 +74,7 @@ def build():
             if need_symlink:
                 stack.enter_context(create_symlink(path))
 
-            try:
-                check_call(['tsc', '--project', path], shell=USE_SHELL)
-            except FileNotFoundError:
-                raise RuntimeError('Cannot run tsc')
+            typescript_call(['--project', path])
 
 
 def package():
@@ -131,7 +105,7 @@ def package():
 
 
 def run():
-    tsc_check_available()
+    typescript_check_available()
 
     print('natlib: clean()')
     clean()
