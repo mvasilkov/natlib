@@ -6,6 +6,7 @@
 
 type Proc = () => void
 
+/** Invoke `proc()` once per burst of calls to the decorated function. */
 export function debounce(proc: Proc, wait: number): Proc {
     let triggering = false
     let before: number

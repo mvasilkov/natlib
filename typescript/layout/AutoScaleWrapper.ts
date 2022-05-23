@@ -4,6 +4,7 @@
  */
 'use strict'
 
+/** Wrapper class that fills the viewport by scaling its contents. */
 export class AutoScaleWrapper {
     readonly wrapper: HTMLElement
     readonly width: number
@@ -17,6 +18,7 @@ export class AutoScaleWrapper {
         this.scale = 1
     }
 
+    /** Update wrapper to fill the viewport. */
     updateWrapper = () => {
         const viewportWidth = visualViewport.width
         const viewportHeight = visualViewport.height

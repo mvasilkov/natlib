@@ -6,6 +6,7 @@
 
 import { AutoScaleWrapper } from './AutoScaleWrapper.js'
 
+/** Wrapper class that fills the viewport by scaling and rotating its contents. */
 export class AutoRotateWrapper extends AutoScaleWrapper {
     rotate: number
 
@@ -15,6 +16,7 @@ export class AutoRotateWrapper extends AutoScaleWrapper {
         this.rotate = 0
     }
 
+    /** Update wrapper to fill the viewport. */
     override updateWrapper = () => {
         const viewportWidth = visualViewport.width
         const viewportHeight = visualViewport.height
