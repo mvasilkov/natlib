@@ -45,17 +45,17 @@ export class PerlinNoise implements INoise3 {
 
     /** 3D Perlin noise */
     noise3(x: number, y: number, z: number): number {
-        let x0 = Math.floor(x)
-        let y0 = Math.floor(y)
-        let z0 = Math.floor(z)
+        let X = Math.floor(x)
+        let Y = Math.floor(y)
+        let Z = Math.floor(z)
 
-        x -= x0
-        y -= y0
-        z -= z0
+        x -= X
+        y -= Y
+        z -= Z
 
-        x0 &= 255
-        y0 &= 255
-        z0 &= 255
+        X &= 255
+        Y &= 255
+        Z &= 255
 
         const u = smootherstep(x)
         const v = smootherstep(y)
@@ -63,12 +63,12 @@ export class PerlinNoise implements INoise3 {
 
         const p = this.p
 
-        const a = p[x0]! + y0
-        const aa = p[a]! + z0
-        const ab = p[a + 1]! + z0
-        const b = p[x0 + 1]! + y0
-        const ba = p[b]! + z0
-        const bb = p[b + 1]! + z0
+        const a = p[X]! + Y
+        const aa = p[a]! + Z
+        const ab = p[a + 1]! + Z
+        const b = p[X + 1]! + Y
+        const ba = p[b]! + Z
+        const bb = p[b + 1]! + Z
 
         return lerp(
             lerp(
