@@ -1,0 +1,26 @@
+{
+  "name": "natlib",
+  "version": "0.1.0",
+  "description": "natlib is a highly composable library for small games.",
+  "exports": {
+    ".": "./natlib.js",
+    "./*": "./*"
+  },
+  "type": "module",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "prepublishOnly": "exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mvasilkov/natlib.git"
+  },
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mvasilkov/natlib/issues"
+  },
+  "homepage": "https://github.com/mvasilkov/natlib#readme"
+}
