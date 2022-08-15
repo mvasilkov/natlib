@@ -30,7 +30,7 @@ export class Pointer implements IVec2 {
     }
 
     /** Initialize the event handlers. */
-    addEventListeners(target: HTMLElement) {
+    addEventListeners(target: GlobalEventHandlers) {
         // Mouse events
         target.addEventListener('mousedown', event => {
             event.preventDefault()
