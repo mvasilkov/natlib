@@ -14,7 +14,7 @@ export class CanvasHandle {
     readonly height: number
     readonly width: number
 
-    constructor(canvas: HTMLCanvasElement | null, width: number, height: number, ini?: RenderingFunction) {
+    constructor(canvas: HTMLCanvasElement | null, width: number, height: number, supersampling = 2, ini?: RenderingFunction) {
         if (!canvas) {
             canvas = document.createElement('canvas')
         }
@@ -24,17 +24,10 @@ export class CanvasHandle {
         this.height = height
         this.width = width
 
-        if (devicePixelRatio > 1) {
-            // High DPI
-            canvas.height = 2 * height
-            canvas.width = 2 * width
+        canvas.height = supersampling * height
+        canvas.width = supersampling * width
 
-            this.con.scale(2, 2)
-        }
-        else {
-            canvas.height = height
-            canvas.width = width
-        }
+        this.con.scale(supersampling, supersampling)
 
         if (ini) ini(this.con, width, height)
     }
