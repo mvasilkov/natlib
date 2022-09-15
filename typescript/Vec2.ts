@@ -71,7 +71,7 @@ export class Vec2 implements IVec2 {
 
     /** Get the length of this vector. */
     length(): number {
-        return (this.x ** 2 + this.y ** 2) ** 0.5
+        return Math.hypot(this.x, this.y)
     }
 
     /** Convert this vector to a unit vector. */
