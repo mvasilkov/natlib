@@ -5,7 +5,7 @@
 'use strict'
 
 /** Rendering function type */
-type RenderingFunction = (con: CanvasRenderingContext2D, width: number, height: number) => void
+export type RenderingFunction = (con: CanvasRenderingContext2D, width: number, height: number) => void
 
 /** Canvas handle class */
 export class CanvasHandle {

@@ -1,5 +1,10 @@
 # Changelog
 
+## natlib 0.1.2 (?)
+
+* `CanvasHandle` accepts supersampling factor (previously it depended on `devicePixelRatio`)
+* Use `Math.hypot()` for vector length
+
 ## natlib 0.1.1 (2022-09-10)
 
 * Allow passing `document` to `Pointer.addEventListeners()`
