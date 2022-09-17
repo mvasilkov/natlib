@@ -9,7 +9,7 @@ export type CompareFunction<T> = (a: Readonly<T>, b: Readonly<T>) => number
 
 /** Queue class that retrieves values in priority order (lowest first). */
 export class PriorityQueue<T> {
-    private values: (T | undefined)[]
+    private values: (T | null)[]
     length: number
     readonly compareFn: CompareFunction<T>
 
@@ -35,9 +35,9 @@ export class PriorityQueue<T> {
     get(): T | undefined {
         if (this.length === 0) return
 
-        const head = this.values[0]
-        this.values[0] = this.values[--this.length]
-        this.values[this.length] = undefined
+        const head = this.values[0]!
+        this.values[0] = this.values[--this.length]!
+        this.values[this.length] = null
 
         if (this.length > 1) this.bubbleDown()
 
@@ -45,6 +45,17 @@ export class PriorityQueue<T> {
     }
 
     private bubbleUp() {
+        let index = this.length - 1
+
+        while (index !== 0) {
+            const parent = index - 1 >>> 1
+
+            if (this.compareFn(this.values[index]!, this.values[parent]!) < 0) {
+                const t = this.values[index]!
+                this.values[index] = this.values[parent]!
+                this.values[index = parent] = t
+            }
+        }
     }
 
     private bubbleDown() {

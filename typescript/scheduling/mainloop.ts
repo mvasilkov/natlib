@@ -5,7 +5,7 @@
 'use strict'
 
 /** Callback function type */
-type LoopCallback = (t: number) => void
+export type LoopCallback = (t: number) => void
 
 /** Main loop using a fixed step of `T` milliseconds.
  * `render()` receives `t` in the range (0, 1] for interpolation. */
