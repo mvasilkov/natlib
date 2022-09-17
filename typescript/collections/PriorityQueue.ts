@@ -55,9 +55,38 @@ export class PriorityQueue<T> {
                 this.values[index] = this.values[parent]!
                 this.values[index = parent] = t
             }
+            else break
         }
     }
 
     private bubbleDown() {
+        let index = 0
+
+        while (true) {
+            let target = index
+            // Left child
+            let child = 2 * index + 1
+            if (child < this.length && this.compareFn(this.values[target]!, this.values[child]!) > 0) {
+                target = child
+            }
+            // Right child
+            ++child
+            if (child < this.length && this.compareFn(this.values[target]!, this.values[child]!) > 0) {
+                target = child
+            }
+
+            if (target !== index) {
+                const t = this.values[index]!
+                this.values[index] = this.values[target]!
+                this.values[index = target] = t
+            }
+            else break
+        }
     }
+}
+
+/** Return a new array containing values in ascending order. */
+export function heapsort<T>(compareFn: CompareFunction<T>, values: readonly T[]): T[] {
+    const queue = new PriorityQueue(compareFn, values)
+    return Array.from(values, () => queue.get()!)
 }
