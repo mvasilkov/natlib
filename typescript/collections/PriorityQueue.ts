@@ -19,9 +19,7 @@ export class PriorityQueue<T> {
         this.compareFn = compareFn
 
         if (initialValues) {
-            for (const value of initialValues) {
-                this.put(value)
-            }
+            initialValues.forEach(value => this.put(value))
         }
     }
 

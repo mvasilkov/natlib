@@ -1,7 +1,8 @@
 # Changelog
 
-## natlib 0.1.2 (?)
+## natlib 0.1.2 (2022-09-17)
 
+* Priority queue class
 * `CanvasHandle` accepts supersampling factor (previously it depended on `devicePixelRatio`)
 * Use `Math.hypot()` for vector length
 
