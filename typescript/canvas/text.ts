@@ -4,10 +4,12 @@
  */
 'use strict'
 
+/** Set the canvas text style and size, e.g. 'bold 48'. */
 export function setTextStyle(con: CanvasRenderingContext2D, style: string) {
     con.font = style + `px -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif`
 }
 
+/** Return a text capsule path. */
 export function textCapsule(con: CanvasRenderingContext2D, x: number, y: number, style: string, text: string, padding: number, borderRadius: number) {
     setTextStyle(con, style)
 

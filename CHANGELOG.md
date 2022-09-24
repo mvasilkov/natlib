@@ -1,5 +1,9 @@
 # Changelog
 
+## natlib 0.1.3 (?)
+
+* Canvas text functions: `setTextStyle()` and `textCapsule()`
+
 ## natlib 0.1.2 (2022-09-17)
 
 * Priority queue class
