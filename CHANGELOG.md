@@ -1,12 +1,13 @@
 # Changelog
 
-## natlib 0.1.3 (?)
+## natlib 0.1.3 (2022-09-26)
 
-* Canvas text functions: `setTextStyle()` and `textCapsule()`
+* ➕ Canvas text functions: `setTextStyle()` and `textCapsule()`
+* ➕ Digital differential analyzer (DDA) function
 
 ## natlib 0.1.2 (2022-09-17)
 
-* Priority queue class
+* ➕ Priority queue class
 * `CanvasHandle` accepts supersampling factor (previously it depended on `devicePixelRatio`)
 * Use `Math.hypot()` for vector length
 
