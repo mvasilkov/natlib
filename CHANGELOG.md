@@ -1,9 +1,13 @@
 # Changelog
 
+## natlib 0.1.4 (?)
+
+* Allow passing `number` to `setTextStyle()`
+
 ## natlib 0.1.3 (2022-09-26)
 
 * ➕ Canvas text functions: `setTextStyle()` and `textCapsule()`
-* ➕ Digital differential analyzer (DDA) function
+* ➕ Digital differential analyzer (DDA)
 
 ## natlib 0.1.2 (2022-09-17)
 
