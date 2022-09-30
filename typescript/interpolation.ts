@@ -18,3 +18,17 @@ export function smoothstep(t: number): number {
 export function smootherstep(t: number): number {
     return t ** 3 * (t * (6 * t - 15) + 10)
 }
+
+//#region Easing functions
+
+export type EasingFunction = (t: number) => number
+
+export function easeOut(fn: EasingFunction): EasingFunction {
+    return t => 1 - fn(1 - t)
+}
+
+export function easeInOut(fn: EasingFunction): EasingFunction {
+    return t => t < 0.5 ? fn(2 * t) / 2 : 1 - fn(2 - 2 * t) / 2
+}
+
+//#endregion
