@@ -2,6 +2,7 @@
 
 ## natlib 0.1.4 (?)
 
+* ➕ Easing functions
 * Allow passing `number` to `setTextStyle()`
 
 ## natlib 0.1.3 (2022-09-26)

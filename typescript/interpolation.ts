@@ -21,12 +21,17 @@ export function smootherstep(t: number): number {
 
 //#region Easing functions
 
+/** Easing function type */
 export type EasingFunction = (t: number) => number
 
+/** Convert an ease-in (accelerate) function to an ease-out
+ * (decelerate) function. */
 export function easeOut(fn: EasingFunction): EasingFunction {
     return t => 1 - fn(1 - t)
 }
 
+/** Convert an ease-in (accelerate) function to an ease-in-out
+ * (accelerate then decelerate) function. */
 export function easeInOut(fn: EasingFunction): EasingFunction {
     return t => t < 0.5 ? fn(2 * t) / 2 : 1 - fn(2 - 2 * t) / 2
 }
