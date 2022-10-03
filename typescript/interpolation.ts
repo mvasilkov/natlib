@@ -62,4 +62,16 @@ export function easeInOutCubic(t: number): number {
     return t < 0.5 ? 4 * t * t * t : 4 * (t - 1) ** 3 + 1
 }
 
+export function easeInSine(t: number): number {
+    return 1 - Math.cos(0.5 * Math.PI * t)
+}
+
+export function easeOutSine(t: number): number {
+    return Math.sin(0.5 * Math.PI * t)
+}
+
+export function easeInOutSine(t: number): number {
+    return 0.5 * (1 - Math.cos(Math.PI * t))
+}
+
 //#endregion
