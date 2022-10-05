@@ -1,6 +1,6 @@
 # Changelog
 
-## natlib 0.1.4 (?)
+## natlib 0.1.4 (2022-10-05)
 
 * ➕ Easing functions
 * Allow passing `number` to `setTextStyle()`
