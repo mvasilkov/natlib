@@ -10,16 +10,46 @@ type Hashed<T extends string> =
     T extends `${infer Chr0}${infer _Chr1}${infer _Chr2}${infer Chr3}${infer _Chr4}${infer Chr5}${infer _Rest}` ? `${Chr0}${Chr3}${Chr5}` :
     T extends `${infer Chr0}${infer _Chr1}${infer _Chr2}${infer Chr3}${infer _Rest}` ? `${Chr0}${Chr3}` : never
 
-export const enum Action { LEFT, UP, RIGHT, DOWN, LEFT_A, UP_W, RIGHT_D, DOWN_S, SPACE }
+export const enum Input { LEFT, UP, RIGHT, DOWN, LEFT_A, UP_W, RIGHT_D, DOWN_S, SPACE }
 
-const actions: { [HashedCode in Hashed<Code>]: Action } = {
-    AoL: Action.LEFT,
-    AoU: Action.UP,
-    AoR: Action.RIGHT,
-    AoD: Action.DOWN,
-    KA: Action.LEFT_A,
-    KW: Action.UP_W,
-    KD: Action.RIGHT_D,
-    KS: Action.DOWN_S,
-    Sc: Action.SPACE,
+const indices: { [HashedCode in Hashed<Code>]: Input } & { [a: string]: Input | undefined } = {
+    AoL: Input.LEFT,
+    AoU: Input.UP,
+    AoR: Input.RIGHT,
+    AoD: Input.DOWN,
+    KA: Input.LEFT_A,
+    KW: Input.UP_W,
+    KD: Input.RIGHT_D,
+    KS: Input.DOWN_S,
+    Sc: Input.SPACE,
+}
+
+function hash(code: string): string {
+    return (code[0] ?? '') + (code[3] ?? '') + (code[5] ?? '')
+}
+
+/** Keyboard controls class */
+export class Keyboard {
+    readonly state: boolean[]
+
+    constructor() {
+        this.state = []
+    }
+
+    setState(event: KeyboardEvent, pressed: boolean) {
+        if (pressed && (event.altKey || event.ctrlKey || event.metaKey)) {
+            return
+        }
+        const a = indices[hash(event.code)]
+        if (a !== undefined) {
+            if (!event.repeat) this.state[a] = pressed
+            event.preventDefault()
+        }
+    }
+
+    /** Initialize the event handlers. */
+    addEventListeners(target: GlobalEventHandlers) {
+        target.addEventListener('keydown', event => this.setState(event, true))
+        target.addEventListener('keyup', event => this.setState(event, false))
+    }
 }
