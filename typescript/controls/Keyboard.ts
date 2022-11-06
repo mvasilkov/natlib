@@ -10,6 +10,7 @@ type Hashed<T extends string> =
     T extends `${infer Chr0}${infer _Chr1}${infer _Chr2}${infer Chr3}${infer _Chr4}${infer Chr5}${infer _Rest}` ? `${Chr0}${Chr3}${Chr5}` :
     T extends `${infer Chr0}${infer _Chr1}${infer _Chr2}${infer Chr3}${infer _Rest}` ? `${Chr0}${Chr3}` : never
 
+/** Supported keyboard inputs */
 export const enum Input { LEFT, UP, RIGHT, DOWN, LEFT_A, UP_W, RIGHT_D, DOWN_S, SPACE }
 
 const indices: { [HashedCode in Hashed<Code>]: Input } & { [a: string]: Input | undefined } = {
@@ -24,6 +25,8 @@ const indices: { [HashedCode in Hashed<Code>]: Input } & { [a: string]: Input | 
     Sc: Input.SPACE,
 }
 
+function hash(code: Code): Hashed<Code>
+
 function hash(code: string): string {
     return (code[0] ?? '') + (code[3] ?? '') + (code[5] ?? '')
 }
@@ -36,11 +39,12 @@ export class Keyboard {
         this.state = []
     }
 
+    /** Update the keyboard state. */
     setState(event: KeyboardEvent, pressed: boolean) {
         if (pressed && (event.altKey || event.ctrlKey || event.metaKey)) {
             return
         }
-        const a = indices[hash(event.code)]
+        const a = indices[hash(<Code>event.code)]
         if (a !== undefined) {
             if (!event.repeat) this.state[a] = pressed
             event.preventDefault()

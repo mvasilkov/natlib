@@ -1,6 +1,6 @@
 {
   "name": "natlib",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "natlib is a highly composable library for small games.",
   "exports": {
     ".": "./natlib.js",

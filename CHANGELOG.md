@@ -1,5 +1,10 @@
 # Changelog
 
+## natlib 0.1.5 (2022-11-06)
+
+* ➕ Keyboard controls class
+* ➕ 32-bit PRNG: SplitMix32
+
 ## natlib 0.1.4 (2022-10-05)
 
 * ➕ Easing functions
