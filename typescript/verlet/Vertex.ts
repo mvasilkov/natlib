@@ -26,4 +26,29 @@ export class Vertex {
         this.gravity = gravity
         this.viscosity = viscosity
     }
+
+    /** Verlet integration */
+    integrate(sceneWidth: number, sceneHeight: number) {
+        const pos = this.position
+        const old = this.oldPosition
+        const x = pos.x
+        const y = pos.y
+
+        pos.x += (x - old.x) * this.viscosity
+        pos.y += (y - old.y) * this.viscosity + this.gravity
+
+        old.set(x, y)
+
+        // Scene bounds
+        if (pos.y < 0) pos.y = 0
+        else if (pos.y >= sceneHeight) {
+            pos.x += (x - pos.x) * this.body.groundFriction
+            pos.y = sceneHeight - 1
+        }
+
+        if (pos.x < 0) pos.x = 0
+        else if (pos.x >= sceneWidth) {
+            pos.x = sceneWidth - 1
+        }
+    }
 }

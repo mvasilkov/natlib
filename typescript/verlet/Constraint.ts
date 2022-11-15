@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import { register0 } from '../runtime.js'
 import type { Vec2 } from '../Vec2'
 import type { Body } from './Body'
 import type { Vertex } from './Vertex'
@@ -34,5 +35,18 @@ export class Constraint {
         this.stiffness = stiffness
 
         if (this.lengthSquared === 0) throw Error('Overlapping vertices')
+    }
+
+    /** Solve the constraint. */
+    solve() {
+        // Algorithm by Thomas Jakobsen (2001)
+        register0.setSubtract(this.p0, this.p1)
+
+        // Approximate the square root function.
+        register0.scale(
+            (this.lengthSquared / (register0.dot(register0) + this.lengthSquared) - 0.5) * this.stiffness)
+
+        this.p0.add(register0)
+        this.p1.subtract(register0)
     }
 }
