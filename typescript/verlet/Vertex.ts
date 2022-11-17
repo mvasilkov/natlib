@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import { lerp } from '../interpolation.js'
 import { Vec2 } from '../Vec2.js'
 import type { Body } from './Body'
 
@@ -16,6 +17,8 @@ export class Vertex {
 
     gravity: number
     viscosity: number
+    sceneHeight: number
+    sceneWidth: number
 
     constructor(body: Body, x: number, y: number, gravity = 0, viscosity = 1) {
         this.body = body
@@ -25,10 +28,16 @@ export class Vertex {
 
         this.gravity = gravity
         this.viscosity = viscosity
+        this.sceneHeight = body.scene.height
+        this.sceneWidth = body.scene.width
+
+        body.vertices.push(this)
+        body.positions.push(this.position)
+        body.scene.vertices.push(this)
     }
 
     /** Verlet integration */
-    integrate(sceneWidth: number, sceneHeight: number) {
+    integrate() {
         const pos = this.position
         const old = this.oldPosition
         const x = pos.x
@@ -41,14 +50,21 @@ export class Vertex {
 
         // Scene bounds
         if (pos.y < 0) pos.y = 0
-        else if (pos.y >= sceneHeight) {
+        else if (pos.y >= this.sceneHeight) {
             pos.x += (x - pos.x) * this.body.groundFriction
-            pos.y = sceneHeight - 1
+            pos.y = this.sceneHeight - 1
         }
 
         if (pos.x < 0) pos.x = 0
-        else if (pos.x >= sceneWidth) {
-            pos.x = sceneWidth - 1
+        else if (pos.x >= this.sceneWidth) {
+            pos.x = this.sceneWidth - 1
         }
+    }
+
+    /** Interpolate the vertex position. */
+    interpolate(t: number) {
+        this.interpolated.set(
+            lerp(this.oldPosition.x, this.position.x, t),
+            lerp(this.oldPosition.y, this.position.y, t))
     }
 }
