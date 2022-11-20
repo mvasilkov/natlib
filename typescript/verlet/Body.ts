@@ -47,4 +47,26 @@ export class Body {
 
         scene.bodies.push(this)
     }
+
+    /** Update the bounding box (AABB). */
+    updateBoundingBox() {
+        let left: number, top: number, right: number, bottom: number
+        let p = this.positions[0]!
+        left = right = p.x
+        top = bottom = p.y
+
+        // Loop over positions, excluding positions[0].
+        for (let n = this.positions.length; --n > 0;) {
+            p = this.positions[n]!
+
+            if (p.x < left) left = p.x
+            else if (p.x > right) right = p.x
+
+            if (p.y < top) top = p.y
+            else if (p.y > bottom) bottom = p.y
+        }
+
+        this.center.set(0.5 * (left + right), 0.5 * (top + bottom))
+        this.halfExtents.set(0.5 * (right - left), 0.5 * (bottom - top))
+    }
 }

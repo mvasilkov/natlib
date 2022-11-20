@@ -17,9 +17,8 @@ export class Scene {
     height: number
     width: number
     iterationCount: number
-    friction: number
 
-    constructor(width: number, height: number, iterationCount = 9, friction = 0) {
+    constructor(width: number, height: number, iterationCount = 9) {
         this.vertices = []
         this.constraints = []
         this.bodies = []
@@ -27,6 +26,16 @@ export class Scene {
         this.height = height
         this.width = width
         this.iterationCount = iterationCount
-        this.friction = friction
+    }
+
+    /** Update the scene. */
+    update() {
+        // Verlet integration
+        this.vertices.forEach(v => v.integrate())
+
+        // Solve constraints
+        for (let n = 0; n < this.iterationCount; ++n) {
+            this.constraints.forEach(c => c.solve())
+        }
     }
 }
