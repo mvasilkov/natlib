@@ -1,5 +1,10 @@
 # Changelog
 
+## natlib 0.1.6 (?)
+
+* ➕ Verlet integration
+* ➕ Compact Boolean type, `ShortBool`
+
 ## natlib 0.1.5 (2022-11-06)
 
 * ➕ Keyboard controls class

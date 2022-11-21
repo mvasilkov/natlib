@@ -10,3 +10,6 @@ export type uint32_t = number
 
 export const UINT8_MAX = 255
 export const UINT32_MAX = 4294967295
+
+// Compact Boolean type
+export type ShortBool = 0 | 1 | undefined
