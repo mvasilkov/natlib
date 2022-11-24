@@ -11,7 +11,7 @@ import { Vertex } from '../Vertex.js'
 
 /** Convex regular n-gon class (Verlet integration) */
 export class Polygon extends Body {
-    constructor(scene: Scene, N: number, x: number, y: number, r: number, rotate = 0, stiffness = 1, mass = 1, groundFriction = 0) {
+    constructor(scene: Scene, N: number, x: number, y: number, r: number, rotate = 0, gravity = 0, viscosity = 1, stiffness = 1, mass = 1, groundFriction = 0) {
         super(scene, mass, groundFriction)
 
         // Create vertices
@@ -19,7 +19,7 @@ export class Polygon extends Body {
 
         for (let n = 0; n < N; ++n) {
             const a = theta * n + rotate
-            new Vertex(this, x + r * Math.cos(a), y + r * Math.sin(a))
+            new Vertex(this, x + r * Math.cos(a), y + r * Math.sin(a), gravity, viscosity)
         }
 
         // Create constraints

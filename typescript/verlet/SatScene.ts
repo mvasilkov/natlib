@@ -10,7 +10,7 @@ import { Scene } from './Scene.js'
 export class SatScene extends Scene {
     friction: number
 
-    constructor(width: number, height: number, iterationCount = 9, friction = 0) {
+    constructor(width: number, height: number, iterationCount: number, friction = 0) {
         super(width, height, iterationCount)
 
         this.friction = friction
