@@ -1,6 +1,6 @@
 # Changelog
 
-## natlib 0.1.6 (?)
+## natlib 0.1.6 (2022-11-26)
 
 * ➕ Verlet integration
 * ➕ Compact Boolean type, `ShortBool`
