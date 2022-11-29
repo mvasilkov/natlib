@@ -55,6 +55,13 @@ export class Vec2 implements IVec2 {
         return this
     }
 
+    /** Set this vector to a perpendicular to the vector `ab`. */
+    setPerpendicular(a: Readonly<IVec2>, b: Readonly<IVec2>): this {
+        this.x = a.y - b.y
+        this.y = b.x - a.x
+        return this
+    }
+
     /** Multiply this vector by a scalar. */
     scale(n: number): this {
         this.x *= n

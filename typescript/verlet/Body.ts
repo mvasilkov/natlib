@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { Vec2 } from '../Vec2.js'
+import { IVec2, Vec2 } from '../Vec2.js'
 import type { Constraint } from './Constraint'
 import type { Scene } from './Scene'
 import type { Vertex } from './Vertex'
@@ -29,6 +29,8 @@ export class Body {
     // Values set by projectInterval()
     intervalLeft: number
     intervalRight: number
+    leftIndex: number
+    rightIndex: number
 
     constructor(scene: Scene, mass = 1, groundFriction = 0) {
         this.scene = scene
@@ -44,6 +46,7 @@ export class Body {
         this.halfExtents = new Vec2
 
         this.intervalLeft = this.intervalRight = 0
+        this.leftIndex = this.rightIndex = 0
 
         scene.bodies.push(this)
     }
@@ -68,5 +71,29 @@ export class Body {
 
         this.center.set(0.5 * (left + right), 0.5 * (top + bottom))
         this.halfExtents.set(0.5 * (right - left), 0.5 * (bottom - top))
+    }
+
+    /** Project the body onto a unit vector. */
+    projectInterval(direction: Readonly<IVec2>) {
+        let left: number, right: number
+        left = right = this.positions[0]!.dot(direction)
+        this.leftIndex = this.rightIndex = 0
+
+        // Loop over positions, excluding positions[0].
+        for (let n = this.positions.length; --n > 0;) {
+            const distanceInDirection = this.positions[n]!.dot(direction)
+
+            if (distanceInDirection < left) {
+                left = distanceInDirection
+                this.leftIndex = n
+            }
+            else if (distanceInDirection > right) {
+                right = distanceInDirection
+                this.rightIndex = n
+            }
+        }
+
+        this.intervalLeft = left
+        this.intervalRight = right
     }
 }
