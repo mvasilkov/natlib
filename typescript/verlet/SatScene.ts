@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import { findCollision, resolveCollision } from '../collision/sat.js'
 import { Scene } from './Scene.js'
 
 /** Scene class using SAT collision detection (Verlet integration) */
@@ -27,7 +28,17 @@ export class SatScene extends Scene {
 
             this.bodies.forEach(b => b.updateBoundingBox())
 
-            // NotImplemented
+            for (let i = this.bodies.length; --i > 0;) {
+                const b0 = this.bodies[i]!
+
+                for (let j = i; --j >= 0;) {
+                    const b1 = this.bodies[j]!
+
+                    if (findCollision(b0, b1)) {
+                        resolveCollision(b0, b1, /* this.friction */)
+                    }
+                }
+            }
         }
     }
 }

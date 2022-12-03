@@ -37,7 +37,7 @@ let contactDistance: number
 export function findCollision(b0: Body, b1: Body): ShortBool {
     const length0 = b0.edges.length
     const length1 = b1.edges.length
-    if (length0 === 0 || length1 === 0) return
+    if (length0 === 0) return
 
     // AABB overlap test
     if (Math.abs(b1.center.x - b0.center.x) >= b0.halfExtents.x + b1.halfExtents.x ||
