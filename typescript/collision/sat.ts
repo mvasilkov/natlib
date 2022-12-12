@@ -90,8 +90,7 @@ export function resolveCollision(b0: Body, b1: Body) {
     let contactVertex = b0.vertices[contactRightIndex]!
 
     // Make sure that the contact line is pointing from `b0` to `b1`.
-    register0.setSubtract(b1.center, b0.center)
-    if (contactLine.dot(register0) < 0) {
+    if (contactLine.dot(register0.setSubtract(b1.center, b0.center)) < 0) {
         contactLine.scale(-1)
         contactVertex = b0.vertices[contactLeftIndex]!
     }

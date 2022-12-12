@@ -44,10 +44,8 @@ export class Constraint {
     /** Solve the constraint. */
     solve() {
         // Algorithm by Thomas Jakobsen (2001)
-        register0.setSubtract(this.p0, this.p1)
-
-        // Approximate the square root function.
-        register0.scale(
+        register0.setSubtract(this.p0, this.p1).scale(
+            // Approximate the square root function.
             (this.lengthSquared / (register0.dot(register0) + this.lengthSquared) - 0.5) * this.stiffness)
 
         this.p0.add(register0)

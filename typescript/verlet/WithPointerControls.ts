@@ -36,11 +36,11 @@ export function WithPointerControls<T extends MetaScene>(Parent: T, pointer: Poi
                 this.controlledVertex = undefined
             }
 
+            super.update()
+
             // Set the controlled vertex position.
             this.controlledVertex?.position.add(
                 register0.setSubtract(pointer, this.controlledVertex.position).scale(stiffness))
-
-            super.update()
         }
     }
 }

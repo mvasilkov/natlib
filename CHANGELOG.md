@@ -1,5 +1,11 @@
 # Changelog
 
+## natlib 0.1.7 (2022-12-12)
+
+* ➕ SAT collision detection and resolution
+* ➕ Scene pointer controls (Verlet integration)
+* ➕ 3D Perlin noise
+
 ## natlib 0.1.6 (2022-11-26)
 
 * ➕ Verlet integration
