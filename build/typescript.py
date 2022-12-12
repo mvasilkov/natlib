@@ -1,3 +1,4 @@
+from pathlib import Path
 import platform
 import re
 from subprocess import check_call, check_output
@@ -5,9 +6,9 @@ from subprocess import check_call, check_output
 REQUIRE_SHELL = platform.system() == 'Windows'
 
 
-def typescript_check_available():
+def typescript_check_available(binary: str | Path = 'tsc'):
     try:
-        result = check_output(['tsc', '--version'], encoding='utf-8', shell=REQUIRE_SHELL)
+        result = check_output([binary, '--version'], encoding='utf-8', shell=REQUIRE_SHELL)
     except FileNotFoundError:
         raise RuntimeError('Cannot run `tsc` (FileNotFoundError)')
 
@@ -22,8 +23,8 @@ def typescript_check_available():
     return version_tuple
 
 
-def typescript_call(args: list):
+def typescript_call(args: list, binary: str | Path = 'tsc'):
     try:
-        check_call(['tsc'] + args, shell=REQUIRE_SHELL)
+        check_call([binary] + args, shell=REQUIRE_SHELL)
     except FileNotFoundError:
         raise RuntimeError('Cannot run `tsc` (FileNotFoundError)')

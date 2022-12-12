@@ -6,6 +6,7 @@ from shutil import copy2, copytree, rmtree
 import sys
 
 OUR_ROOT = Path(__file__).resolve().parents[1]
+TSC_BINARY = OUR_ROOT / 'node_modules' / '.bin' / 'tsc'
 
 # Make relative imports great again
 if __name__ == '__main__' and not __package__:
@@ -26,7 +27,7 @@ def natlib_clean():
 
 
 def natlib_build():
-    typescript_call(['--project', OUR_ROOT])
+    typescript_call(['--project', OUR_ROOT], binary=TSC_BINARY)
 
 
 def natlib_package():
@@ -61,6 +62,7 @@ def copy_package_json():
     }
     content = json.loads(infile.read_text(encoding='utf-8'))
     del content['scripts']['prepublishOnly']
+    del content['devDependencies']
     content_str = json.dumps(content, **options)
     if not content_str.endswith('\n'):
         content_str += '\n'
@@ -68,7 +70,7 @@ def copy_package_json():
 
 
 if __name__ == '__main__':
-    typescript_check_available()
+    typescript_check_available(binary=TSC_BINARY)
 
     print('natlib: clean')
     natlib_clean()
