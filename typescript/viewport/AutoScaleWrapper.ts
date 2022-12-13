@@ -22,13 +22,13 @@ export class AutoScaleWrapper {
 
     /** Update wrapper to fill the viewport. */
     updateWrapper = () => {
-        const viewportWidth = visualViewport.width
-        const viewportHeight = visualViewport.height
+        const viewportWidth = visualViewport!.width
+        const viewportHeight = visualViewport!.height
         const viewportAspectRatio = viewportWidth / viewportHeight
         const wrapperAspectRatio = this.width / this.height
 
-        let left = visualViewport.offsetLeft
-        let top = visualViewport.offsetTop
+        let left = visualViewport!.offsetLeft
+        let top = visualViewport!.offsetTop
 
         if (wrapperAspectRatio < viewportAspectRatio) {
             // Fit height
@@ -46,6 +46,16 @@ export class AutoScaleWrapper {
 
     /** Initialize the event handlers. */
     addEventListeners() {
+        // Sadly, visualViewport is nullable:
+        // > If the associated document is fully active, return the VisualViewport object
+        // > associated with the window. Otherwise, return null.
+        // > https://wicg.github.io/visual-viewport/#dom-window-visualviewport
+        // The WA is to retry after a short delay.
+        if (!visualViewport) {
+            setTimeout(() => this.addEventListeners(), 999)
+            return
+        }
+
         addEventListener('resize', this.updateWrapper)
 
         visualViewport.addEventListener('resize', this.updateWrapper)

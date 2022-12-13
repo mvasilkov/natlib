@@ -1,5 +1,9 @@
 # Changelog
 
+## natlib 0.1.8 (?)
+
+* Account for `visualViewport` returning `null` if the document is not fully active.
+
 ## natlib 0.1.7 (2022-12-12)
 
 * ➕ SAT collision detection and resolution

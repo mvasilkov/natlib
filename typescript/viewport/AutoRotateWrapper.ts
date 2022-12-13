@@ -19,8 +19,8 @@ export class AutoRotateWrapper extends AutoScaleWrapper {
 
     /** Update wrapper to fill the viewport. */
     override updateWrapper = () => {
-        const viewportWidth = visualViewport.width
-        const viewportHeight = visualViewport.height
+        const viewportWidth = visualViewport!.width
+        const viewportHeight = visualViewport!.height
         const viewportAspectRatio = viewportWidth / viewportHeight
         const wrapperAspectRatio = this.width / this.height
 
@@ -65,8 +65,8 @@ export class AutoRotateWrapper extends AutoScaleWrapper {
             top = viewportHeight - top
         }
 
-        left += visualViewport.offsetLeft
-        top += visualViewport.offsetTop
+        left += visualViewport!.offsetLeft
+        top += visualViewport!.offsetTop
 
         this.wrapper.style.transform = `translate(${left}px, ${top}px) rotate(${this.rotate}00grad) scale(${this.scale})`
     }
