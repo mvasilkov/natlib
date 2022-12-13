@@ -50,7 +50,7 @@ export class AutoScaleWrapper {
         // > If the associated document is fully active, return the VisualViewport object
         // > associated with the window. Otherwise, return null.
         // > https://wicg.github.io/visual-viewport/#dom-window-visualviewport
-        // The WA is to retry after a short delay.
+        // The workaround is to retry after a short delay.
         if (!visualViewport) {
             setTimeout(() => this.addEventListeners(), 999)
             return

@@ -29,6 +29,6 @@ export class CanvasHandle {
 
         this.con.scale(supersampling, supersampling)
 
-        if (ini) ini(this.con, width, height)
+        ini?.(this.con, width, height)
     }
 }

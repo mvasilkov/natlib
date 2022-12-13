@@ -9,7 +9,7 @@ import { AutoScaleWrapper } from './AutoScaleWrapper.js'
 
 /** Wrapper class that fills the viewport by scaling and rotating its contents. */
 export class AutoRotateWrapper extends AutoScaleWrapper {
-    rotate: number
+    rotate: -1 | 0 | 1
 
     constructor(wrapper: HTMLElement, width: number, height: number) {
         super(wrapper, width, height)
