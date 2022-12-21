@@ -10,15 +10,13 @@ import type { Body } from './Body'
 
 /** Vertex class (Verlet integration) */
 export class Vertex {
-    body: Body
-    position: Vec2
-    oldPosition: Vec2
-    interpolated: Vec2
+    readonly body: Body
+    readonly position: Vec2
+    readonly oldPosition: Vec2
+    readonly interpolated: Vec2
 
     gravity: number
     viscosity: number
-    sceneHeight: number
-    sceneWidth: number
 
     constructor(body: Body, x: number, y: number, gravity = 0, viscosity = 1) {
         this.body = body
@@ -28,8 +26,6 @@ export class Vertex {
 
         this.gravity = gravity
         this.viscosity = viscosity
-        this.sceneHeight = body.scene.height
-        this.sceneWidth = body.scene.width
 
         body.vertices.push(this)
         body.positions.push(this.position)
@@ -49,15 +45,17 @@ export class Vertex {
         old.set(x, y)
 
         // Scene bounds
+        const { height: sceneHeight, width: sceneWidth } = this.body.scene
+
         if (pos.y < 0) pos.y = 0
-        else if (pos.y >= this.sceneHeight) {
+        else if (pos.y >= sceneHeight) {
             pos.x += (x - pos.x) * this.body.groundFriction
-            pos.y = this.sceneHeight - 1
+            pos.y = sceneHeight - 1
         }
 
         if (pos.x < 0) pos.x = 0
-        else if (pos.x >= this.sceneWidth) {
-            pos.x = this.sceneWidth - 1
+        else if (pos.x >= sceneWidth) {
+            pos.x = sceneWidth - 1
         }
     }
 

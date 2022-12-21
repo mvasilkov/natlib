@@ -11,20 +11,20 @@ import type { Vertex } from './Vertex'
 
 /** Physical body class (Verlet integration) */
 export class Body {
-    scene: Scene
-    vertices: Vertex[]
-    constraints: Constraint[]
+    readonly scene: Scene
+    readonly vertices: Vertex[]
+    readonly constraints: Constraint[]
     /** Positions of vertices */
-    positions: Vec2[]
+    readonly positions: Vec2[]
     /** Edges are constraints that define the object's boundary. */
-    edges: Constraint[]
+    readonly edges: Constraint[]
 
     mass: number
     groundFriction: number
 
     // Values set by updateBoundingBox()
-    center: Vec2
-    halfExtents: Vec2
+    readonly center: Vec2
+    readonly halfExtents: Vec2
 
     // Values set by projectInterval()
     intervalLeft: number

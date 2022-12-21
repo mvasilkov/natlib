@@ -10,9 +10,9 @@ import type { Vertex } from './Vertex'
 
 /** Scene class (Verlet integration) */
 export class Scene {
-    vertices: Vertex[]
-    constraints: Constraint[]
-    bodies: Body[]
+    readonly vertices: Vertex[]
+    readonly constraints: Constraint[]
+    readonly bodies: Body[]
 
     height: number
     width: number

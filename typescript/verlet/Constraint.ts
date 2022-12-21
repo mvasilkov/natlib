@@ -11,13 +11,13 @@ import type { Vertex } from './Vertex'
 
 /** Constraint class (Verlet integration) */
 export class Constraint {
-    body: Body
-    v0: Vertex
-    v1: Vertex
+    readonly body: Body
+    readonly v0: Vertex
+    readonly v1: Vertex
     /** Position of v0 */
-    p0: Vec2
+    readonly p0: Vec2
     /** Position of v1 */
-    p1: Vec2
+    readonly p1: Vec2
 
     lengthSquared: number
     edge: boolean
