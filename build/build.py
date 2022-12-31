@@ -4,16 +4,24 @@ import json
 from pathlib import Path
 from shutil import copy2, copytree, rmtree
 import sys
+from typing import Literal
 
 OUR_ROOT = Path(__file__).resolve().parents[1]
-TSC_BINARY = OUR_ROOT / 'node_modules' / '.bin' / 'tsc'
 
 # Make relative imports great again
 if __name__ == '__main__' and not __package__:
     sys.path.insert(0, str(OUR_ROOT))
     __package__ = 'build'
 
+from .michikoid import michikoid_call
 from .typescript import typescript_call, typescript_check_available
+
+
+def node_modules(binary: Literal['michikoid', 'tsc']) -> Path:
+    '''
+    Return the path to a binary in the node_modules directory.
+    '''
+    return OUR_ROOT / 'node_modules' / '.bin' / binary
 
 
 def natlib_clean():
@@ -27,7 +35,10 @@ def natlib_clean():
 
 
 def natlib_build():
-    typescript_call(['--project', OUR_ROOT], binary=TSC_BINARY)
+    typescript_call(['--project', OUR_ROOT], binary=node_modules('tsc'))
+
+    files = list(OUR_ROOT.glob('out/**/*.js'))
+    michikoid_call(files, binary=node_modules('michikoid'))
 
 
 def natlib_package():
@@ -70,7 +81,7 @@ def copy_package_json():
 
 
 if __name__ == '__main__':
-    typescript_check_available(binary=TSC_BINARY)
+    typescript_check_available(binary=node_modules('tsc'))
 
     print('natlib: clean')
     natlib_clean()

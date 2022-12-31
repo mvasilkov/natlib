@@ -46,13 +46,15 @@ export class AutoScaleWrapper {
 
     /** Initialize the event handlers. */
     addEventListeners() {
-        // Sadly, visualViewport is nullable:
-        // > If the associated document is fully active, return the VisualViewport object
-        // > associated with the window. Otherwise, return null.
-        // > https://wicg.github.io/visual-viewport/#dom-window-visualviewport
-        // The workaround is to retry after a short delay.
+        /*
+        Sadly, visualViewport is nullable:
+        > If the associated document is fully active, return the VisualViewport object
+        > associated with the window. Otherwise, return null.
+        > https://wicg.github.io/visual-viewport/#dom-window-visualviewport
+        The workaround is to retry after an arbitrary short delay.
+        */
         if (!visualViewport) {
-            setTimeout(() => this.addEventListeners(), 999)
+            setTimeout(() => this.addEventListeners(), 440)
             return
         }
 
