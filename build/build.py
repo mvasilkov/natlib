@@ -16,6 +16,14 @@ if __name__ == '__main__' and not __package__:
 from .michikoid import michikoid_call
 from .typescript import typescript_call, typescript_check_available
 
+FILE_LICENSE = '''
+/** This file is part of natlib.
+ * https://github.com/mvasilkov/natlib
+ * @license MIT | Copyright (c) 2022, 2023 Mark Vasilkov
+ */
+'use strict'
+'''.strip()
+
 
 def node_modules(binary: Literal['michikoid', 'tsc']) -> Path:
     '''
@@ -80,6 +88,13 @@ def copy_package_json():
     outfile.write_text(content_str, encoding='utf-8', newline='\n')
 
 
+def natlib_validate():
+    for file in list(OUR_ROOT.glob('out/**/*.js')):
+        content = file.read_text(encoding='utf-8')
+        if not content.startswith(FILE_LICENSE):
+            raise RuntimeError(f'Bad file header: {file.relative_to(OUR_ROOT)}')
+
+
 if __name__ == '__main__':
     typescript_check_available(binary=node_modules('tsc'))
 
@@ -94,3 +109,6 @@ if __name__ == '__main__':
 
     print('natlib: package')
     natlib_package()
+
+    print('natlib: validate')
+    natlib_validate()
