@@ -1,8 +1,9 @@
 # Changelog
 
-## natlib 0.1.8 (?)
+## natlib 0.1.8 (2023-01-03)
 
 * Account for `visualViewport` returning `null` if the document is not fully active.
+* Better coding: use optional chaining, annotate `new Vec2` with `@__PURE__`
 
 ## natlib 0.1.7 (2022-12-12)
 
