@@ -13,8 +13,7 @@ if __name__ == '__main__' and not __package__:
     sys.path.insert(0, str(OUR_ROOT))
     __package__ = 'build'
 
-from .michikoid import michikoid_call
-from .typescript import typescript_call, typescript_check_available
+from .node_app import node_app
 
 FILE_LICENSE = '''
 /** This file is part of natlib.
@@ -32,6 +31,10 @@ def node_modules(binary: Literal['michikoid', 'tsc']) -> Path:
     return OUR_ROOT / 'node_modules' / '.bin' / binary
 
 
+typescript_check_available, typescript_call = node_app(node_modules('tsc'), ('--version', 'Version (.+?)$', '4'))
+_, michikoid_call = node_app(node_modules('michikoid'))
+
+
 def natlib_clean():
     package_dir = OUR_ROOT / 'out'
     if package_dir.is_dir():
@@ -43,10 +46,10 @@ def natlib_clean():
 
 
 def natlib_build():
-    typescript_call(['--project', OUR_ROOT], binary=node_modules('tsc'))
+    typescript_call(['--project', OUR_ROOT])
 
     files = list(OUR_ROOT.glob('out/**/*.js'))
-    michikoid_call(files, binary=node_modules('michikoid'))
+    michikoid_call(files)
 
 
 def natlib_package():
@@ -96,7 +99,7 @@ def natlib_validate():
 
 
 if __name__ == '__main__':
-    typescript_check_available(binary=node_modules('tsc'))
+    typescript_check_available()
 
     print('natlib: clean')
     natlib_clean()
