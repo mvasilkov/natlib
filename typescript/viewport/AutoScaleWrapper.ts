@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import { ShortBool, TRUE } from '../prelude.js'
 import type { IVec2 } from '../Vec2'
 
 /** Wrapper class that fills the viewport by scaling its contents. */
@@ -44,19 +45,17 @@ export class AutoScaleWrapper {
         this.wrapper.style.transform = `translate(${left}px, ${top}px) scale(${this.scale})`
     }
 
-    /** Initialize the event handlers. */
-    addEventListeners() {
+    /** Initialize the event handlers. Return TRUE on failure. */
+    // @ts-expect-error Not all code paths return a value.
+    addEventListeners(): ShortBool {
         /*
         Sadly, visualViewport is nullable:
         > If the associated document is fully active, return the VisualViewport object
         > associated with the window. Otherwise, return null.
         > https://wicg.github.io/visual-viewport/#dom-window-visualviewport
-        The workaround is to retry after an arbitrary short delay.
+        The workaround (not included) is to retry after an arbitrary short delay.
         */
-        if (!visualViewport) {
-            setTimeout(() => this.addEventListeners(), 440)
-            return
-        }
+        if (!visualViewport) return TRUE
 
         addEventListener('resize', this.updateWrapper)
 

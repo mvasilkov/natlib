@@ -1,5 +1,9 @@
 # Changelog
 
+## natlib 0.1.9 (?)
+
+* Cut the workaround for `visualViewport` theoretically returning `null`
+
 ## natlib 0.1.8 (2023-01-03)
 
 * Account for `visualViewport` returning `null` if the document is not fully active.
