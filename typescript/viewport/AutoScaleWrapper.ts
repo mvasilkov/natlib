@@ -46,7 +46,6 @@ export class AutoScaleWrapper {
     }
 
     /** Initialize the event handlers. Return TRUE on failure. */
-    // @ts-expect-error Not all code paths return a value.
     addEventListeners(): ShortBool {
         /*
         Sadly, visualViewport is nullable:
@@ -63,6 +62,7 @@ export class AutoScaleWrapper {
         visualViewport.addEventListener('scroll', this.updateWrapper)
 
         this.updateWrapper()
+        return // FALSE
     }
 
     /** Translate a point from document coordinates to viewport coordinates. */
