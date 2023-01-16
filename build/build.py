@@ -85,6 +85,7 @@ def copy_package_json():
     content = json.loads(infile.read_text(encoding='utf-8'))
     del content['scripts']['prepublishOnly']
     del content['devDependencies']
+    del content['private']
     content_str = json.dumps(content, **options)
     if not content_str.endswith('\n'):
         content_str += '\n'

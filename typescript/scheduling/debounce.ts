@@ -11,7 +11,7 @@ export type DebouncedFunction<T extends unknown[]> = (...args: T) => void
  * by a given `wait` time in milliseconds. If the function is
  * called again before the timeout expires, the previous call
  * will be aborted. */
-export function debounce<T extends any[]>(defun: DebouncedFunction<T>, wait: number): DebouncedFunction<T> {
+export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait: number): DebouncedFunction<T> {
     let pending = false
     let lastCalled: number
 

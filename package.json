@@ -4,6 +4,7 @@
   "description": "natlib is a highly composable library for small games.",
   "keywords": [
     "dda",
+    "priorityqueue",
     "sat",
     "verlet"
   ],
@@ -31,5 +32,6 @@
   "devDependencies": {
     "michikoid": "*",
     "typescript": "^4.9.4"
-  }
+  },
+  "private": true
 }

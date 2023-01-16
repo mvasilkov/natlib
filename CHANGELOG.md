@@ -3,6 +3,7 @@
 ## natlib 0.1.9 (?)
 
 * ➕ Functions for converting to and from decibels
+* ➕ Debounce function
 * Cut the workaround for `visualViewport` theoretically returning `null`
 
 ## natlib 0.1.8 (2023-01-03)
