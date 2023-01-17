@@ -42,10 +42,13 @@ export class Keyboard {
     /** Update the keyboard state. */
     setState(event: KeyboardEvent, pressed: boolean) {
         if (pressed && (event.altKey || event.ctrlKey || event.metaKey)) {
+            // Don't respond to keyboard shortcuts.
             return
         }
         const a = indices[hash(<Code>event.code)]
         if (a !== undefined) {
+            // Repeating keys don't change the state,
+            // but still prevent the default action.
             if (!event.repeat) this.state[a] = pressed
             event.preventDefault()
         }
