@@ -44,6 +44,8 @@ def natlib_clean():
     if tsc_cache.is_file():
         tsc_cache.unlink()
 
+    assert not package_dir.exists()
+
 
 def natlib_build():
     typescript_call(['--project', OUR_ROOT])

@@ -9,11 +9,10 @@ export type AudioInitializationFunction = (con: AudioContext) => void
 
 /** Audio handle class */
 export class AudioHandle {
-    con: AudioContext | null
+    con?: AudioContext
     initialized: boolean
 
     constructor() {
-        this.con = null
         this.initialized = false
     }
 

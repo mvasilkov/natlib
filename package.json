@@ -1,6 +1,6 @@
 {
   "name": "natlib",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "natlib is a highly composable library for small games.",
   "keywords": [
     "dda",

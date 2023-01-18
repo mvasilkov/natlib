@@ -1,7 +1,8 @@
 # Changelog
 
-## natlib 0.1.9 (?)
+## natlib 0.1.9 (2023-01-18)
 
+* ➕ Audio handle class
 * ➕ Functions for converting to and from decibels
 * ➕ Debounce function
 * Cut the workaround for `visualViewport` theoretically returning `null`
