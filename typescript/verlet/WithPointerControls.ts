@@ -19,7 +19,7 @@ export function WithPointerControls<T extends MetaScene>(Parent: T, pointer: Poi
     const pb = new PointerBody(r)
 
     return class PointerScene extends Parent {
-        controlledVertex?: Vertex
+        controlledVertex?: Vertex | null
 
         /** Update the scene. */
         override update() {
@@ -33,7 +33,7 @@ export function WithPointerControls<T extends MetaScene>(Parent: T, pointer: Poi
                 }
             }
             else {
-                this.controlledVertex = undefined
+                this.controlledVertex = null
             }
 
             super.update()

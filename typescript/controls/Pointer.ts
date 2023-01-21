@@ -4,19 +4,19 @@
  */
 'use strict'
 
+import { FALSE, ShortBool, TRUE } from '../prelude.js'
 import type { IVec2 } from '../Vec2'
 
 /** Pointer controls class */
 export class Pointer implements IVec2 {
     x: number
     y: number
-    held: boolean
+    held: ShortBool
 
     readonly canvas: HTMLCanvasElement
 
     constructor(canvas: HTMLCanvasElement) {
         this.x = this.y = 0
-        this.held = false
 
         this.canvas = canvas
     }
@@ -35,7 +35,7 @@ export class Pointer implements IVec2 {
         target.addEventListener('mousedown', event => {
             event.preventDefault()
 
-            this.held = true
+            this.held = TRUE
             this.setPosition(event)
         })
 
@@ -48,20 +48,20 @@ export class Pointer implements IVec2 {
         target.addEventListener('mouseup', event => {
             event.preventDefault()
 
-            this.held = false
+            this.held = FALSE
         })
 
         target.addEventListener('mouseleave', _event => {
             // Default action is none, so no event.preventDefault()
 
-            this.held = false
+            this.held = FALSE
         })
 
         // Touch events
         target.addEventListener('touchstart', event => {
             event.preventDefault()
 
-            this.held = true
+            this.held = TRUE
             this.setPosition(event.targetTouches[0]!)
         })
 
@@ -74,13 +74,13 @@ export class Pointer implements IVec2 {
         target.addEventListener('touchend', event => {
             event.preventDefault()
 
-            this.held = false
+            this.held = FALSE
         })
 
         target.addEventListener('touchcancel', _event => {
             // Default action is none, so no event.preventDefault()
 
-            this.held = false
+            this.held = FALSE
         })
     }
 }
