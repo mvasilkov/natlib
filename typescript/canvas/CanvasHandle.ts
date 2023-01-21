@@ -15,9 +15,7 @@ export class CanvasHandle {
     readonly width: number
 
     constructor(canvas: HTMLCanvasElement | null, width: number, height: number, supersampling = 2, ini?: RenderingFunction) {
-        if (!canvas) {
-            canvas = document.createElement('canvas')
-        }
+        canvas ??= document.createElement('canvas')
 
         this.canvas = canvas
         this.con = canvas.getContext('2d')!

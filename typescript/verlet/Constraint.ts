@@ -34,7 +34,7 @@ export class Constraint {
         this.edge = edge
         this.stiffness = stiffness
 
-        if (this.lengthSquared === 0) throw Error('Overlapping vertices')
+        if (!this.lengthSquared) throw Error('Overlapping vertices')
 
         body.constraints.push(this)
         if (edge) body.edges.push(this)
