@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import type { ExtendedBool } from '../prelude'
 import { register0 } from '../runtime.js'
 import type { Vec2 } from '../Vec2'
 import type { Body } from './Body'
@@ -20,10 +21,10 @@ export class Constraint {
     readonly p1: Vec2
 
     lengthSquared: number
-    edge: boolean
+    edge: ExtendedBool
     stiffness: number
 
-    constructor(body: Body, v0: Vertex, v1: Vertex, edge: boolean, stiffness = 1) {
+    constructor(body: Body, v0: Vertex, v1: Vertex, edge: ExtendedBool, stiffness = 1) {
         this.body = body
         this.v0 = v0
         this.v1 = v1

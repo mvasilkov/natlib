@@ -16,3 +16,6 @@ export type ShortBool = 0 | 1 | undefined
 
 export const FALSE: ShortBool = 0
 export const TRUE: ShortBool = 1
+
+// Extended Boolean type
+export type ExtendedBool = boolean | ShortBool

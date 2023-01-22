@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import type { ExtendedBool } from './prelude'
 import { register0 } from './runtime.js'
 import type { IVec2, Vec2 } from './Vec2'
 
@@ -18,7 +19,7 @@ export type DdaIntersection = Vec2 & {
 const result: DdaIntersection = register0
 
 /** Return true to end the DDA loop. */
-export type DdaCallback = (x: number, y: number, hitDistance: number) => boolean | void
+export type DdaCallback = (x: number, y: number, hitDistance: number) => ExtendedBool
 
 /** Digital differential analyzer (DDA) */
 export function dda(start: Readonly<IVec2>, direction: Readonly<IVec2>, done: DdaCallback): DdaIntersection {
