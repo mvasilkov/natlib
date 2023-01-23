@@ -12,7 +12,7 @@ import {
     manhattan,
 } from './utils'
 
-import { PriorityQueue } from '../PriorityQueue'
+import { PriorityQueue } from '../../collections/PriorityQueue'
 
 /** `A*` path finding algorithm */
 export const astar = (
