@@ -4,31 +4,30 @@
  */
 'use strict'
 
-import { WalkFunction } from './types'
+import { AStar } from './types'
 import {
     Vec2WithPriority,
     getConnected,
-    isTraversable,
     manhattan,
 } from './utils'
 
 import { PriorityQueue } from '../../collections/PriorityQueue'
 
 /** `A*` path finding algorithm */
-export const astar = (
-    grid: number[][],
-    width: number,
-    height: number,
-    x0: number,
-    y0: number,
-    x1: number,
-    y1: number,
-    walkFunction: WalkFunction,
-    isWalkable: (index: number) => boolean = isTraversable,
-    heuristic: (...args: any[]) => any = manhattan,
-) => {
-    const start = new Vec2WithPriority(x0, y0)
+export const astar = ({
+    grid,
+    x0,
+    y0,
+    x1,
+    y1,
+    walkFunction = () => {},
+    isWalkable = () => true,
+    heuristic = manhattan,
+}: AStar) => {
     // Critical default: start.priority = 0
+    const start = new Vec2WithPriority(x0, y0)
+    const rows = grid.length
+    const cols = grid[0]!.length
 
     const frontier = new PriorityQueue<Vec2WithPriority>(
         (a, b) => a.priority - b.priority, // Sort ascending
@@ -47,10 +46,13 @@ export const astar = (
             break // Found the path
         }
 
-        for (const next of getConnected(width, height, current.x, current.y)) {
-            const nextScore = score[current.hash] + 1
+        for (const next of getConnected(rows, cols, current.x, current.y)) {
+            const nextScore = score[current.hash]! + 1
 
-            if (isWalkable(grid[next.y][next.x]) && (score[next.hash] === undefined || nextScore < score[next.hash])) {
+            if (
+                isWalkable(grid, next.x, next.y) &&
+                (score[next.hash] === undefined || nextScore < score[next.hash]!)
+            ) {
                 previous[next.hash] = current
                 score[next.hash] = nextScore
                 next.priority = nextScore + heuristic(x1, y1, next.x, next.y)
@@ -62,7 +64,7 @@ export const astar = (
     // Walk the path
     let end = new Vec2WithPriority(x1, y1)
     while (previous[end.hash] !== undefined) {
-        walkFunction(end.x, end.y)
-        end = previous[end.hash]
+        walkFunction(grid, end.x, end.y)
+        end = previous[end.hash]!
     }
 }
