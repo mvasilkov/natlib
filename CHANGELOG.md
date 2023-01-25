@@ -1,5 +1,10 @@
 # Changelog
 
+## natlib 0.1.10 (?)
+
+* ➕ `A*` path finding on a square grid
+* Further size optimizations
+
 ## natlib 0.1.9 (2023-01-18)
 
 * ➕ Audio handle class
