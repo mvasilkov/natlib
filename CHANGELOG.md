@@ -3,6 +3,7 @@
 ## natlib 0.1.10 (?)
 
 * ➕ `A*` path finding on a square grid
+* ➕ Sliding window function
 * Further size optimizations
 
 ## natlib 0.1.9 (2023-01-18)
