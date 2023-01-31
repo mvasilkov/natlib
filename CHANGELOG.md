@@ -4,6 +4,7 @@
 
 * ➕ `A*` path finding on a square grid
 * ➕ Sliding window function
+* ➕ Permutations function
 * Further size optimizations
 
 ## natlib 0.1.9 (2023-01-18)
