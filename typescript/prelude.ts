@@ -6,10 +6,15 @@
 
 // Types that are used for documentation.
 export type uint8_t = number
+export type uint16_t = number
 export type uint32_t = number
 
 export const UINT8_MAX = 255
+export const UINT16_MAX = 65535
 export const UINT32_MAX = 4294967295
+
+export type PositiveInteger<T extends number> = `${T}` extends '0' | `-${any}` | `${any}.${any}` ? never : T
+export type NonnegativeInteger<T extends number> = `${T}` extends `-${any}` | `${any}.${any}` ? never : T
 
 // Compact Boolean type
 export type ShortBool = 0 | 1 | undefined
