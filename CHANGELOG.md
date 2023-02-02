@@ -1,10 +1,10 @@
 # Changelog
 
-## natlib 0.1.10 (?)
+## natlib 0.1.10 (2023-02-02)
 
 * ➕ `A*` path finding on a square grid
-* ➕ Sliding window function
-* ➕ Permutations function
+* ➕ Scanline flood fill
+* ➕ Type assertions: `PositiveInteger`, `NonnegativeInteger`
 * Further size optimizations
 
 ## natlib 0.1.9 (2023-01-18)

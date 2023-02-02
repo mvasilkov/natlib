@@ -49,9 +49,11 @@ export class AutoScaleWrapper {
     addEventListeners(): ShortBool {
         /*
         Sadly, visualViewport is nullable:
+
         > If the associated document is fully active, return the VisualViewport object
         > associated with the window. Otherwise, return null.
         > https://wicg.github.io/visual-viewport/#dom-window-visualviewport
+
         The workaround (not included) is to retry after an arbitrary short delay.
         */
         if (!visualViewport) return TRUE

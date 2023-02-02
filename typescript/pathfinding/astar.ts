@@ -37,7 +37,7 @@ export type Coordinates = ConstructorParameters<typeof Location>
 export type GetAdjacent = (x: number, y: number) => Iterable<Coordinates>
 
 /** Return true to end the `A*` loop. */
-export type WalkFunction = (x: number, y: number) => ExtendedBool
+export type WalkFunction = (x: number, y: number) => void | ExtendedBool
 
 /** `A*` path finding on a square grid */
 export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, done: WalkFunction) {

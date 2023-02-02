@@ -4,8 +4,10 @@
  */
 'use strict'
 
+import type { PositiveInteger } from './prelude'
+
 /** Sliding window function */
-export function* slidingWindow<T>(array: T[], size: number) {
+export function* slidingWindow<T, U extends number>(array: T[], size: PositiveInteger<U>) {
     for (let n = 0; n <= array.length - size; ++n) {
         yield array.slice(n, n + size)
     }
