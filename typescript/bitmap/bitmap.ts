@@ -17,3 +17,14 @@ export function readBitmap(lines: number[], width: number, bpp: number, readFunc
         }
     }
 }
+
+/** Read a bitmap stored as a BigInt value. */
+export function readBitmapBigInt(value: bigint, width: number, height: number, cardinality: number | bigint, readFunction: ReadFunction) {
+    cardinality = BigInt(cardinality)
+    for (let y = 0; y < height; ++y) {
+        for (let x = 0; x < width; ++x) {
+            readFunction(x, y, Number(value % cardinality))
+            value /= cardinality
+        }
+    }
+}
