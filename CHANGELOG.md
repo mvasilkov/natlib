@@ -1,5 +1,12 @@
 # Changelog
 
+## natlib 0.1.11 (?)
+
+* ➕ Functions for decoding bitmaps stored as [BigInt values][eebe-bigint] or [arrays of integers][eebe]: `decodeBitmap` and `decodeBitmapBigInt`
+
+[eebe]: https://mvasilkov.animuchan.net/ecmascript-embedded-bitmap-encoding
+[eebe-bigint]: https://mvasilkov.animuchan.net/bigint-embedded-bitmap-encoding
+
 ## natlib 0.1.10 (2023-02-02)
 
 * ➕ `A*` path finding on a square grid

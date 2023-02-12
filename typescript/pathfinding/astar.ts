@@ -5,7 +5,6 @@
 'use strict'
 
 import { PriorityQueue } from '../collections/PriorityQueue.js'
-import type { ExtendedBool } from '../prelude'
 import { Vec2 } from '../Vec2.js'
 
 /** 2D location class internal to astar */
@@ -36,11 +35,11 @@ export type Coordinates = ConstructorParameters<typeof Location>
 /** Return an iterable of adjacent coordinates. */
 export type GetAdjacent = (x: number, y: number) => Iterable<Coordinates>
 
-/** Return true to end the `A*` loop. */
-export type WalkFunction = (x: number, y: number) => void | ExtendedBool
+/** This function is invoked for each step of the path. */
+export type WalkFunction = (x: number, y: number) => void
 
 /** `A*` path finding on a square grid */
-export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, done: WalkFunction) {
+export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, walkFunction: WalkFunction) {
     const start = new Location(x0, y0)
     let end = new Location(x1, y1)
 
@@ -72,7 +71,7 @@ export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacen
 
     // Walk the path
     while (previous[end.key] !== undefined) {
-        if (done(end.x, end.y)) return
+        walkFunction(end.x, end.y)
         end = previous[end.key]!
     }
 }
