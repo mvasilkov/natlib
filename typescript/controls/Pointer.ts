@@ -13,17 +13,17 @@ export class Pointer implements IVec2 {
     y: number
     held: ShortBool
 
-    readonly canvas: HTMLCanvasElement
+    readonly plane: Element
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(plane: Element) {
         this.x = this.y = 0
 
-        this.canvas = canvas
+        this.plane = plane
     }
 
-    /** Set the pointer position relative to the canvas. */
+    /** Set the pointer position relative to the plane. */
     setPosition(event: MouseEvent | Touch) {
-        const r = this.canvas.getBoundingClientRect()
+        const r = this.plane.getBoundingClientRect()
 
         this.x = event.clientX - r.left
         this.y = event.clientY - r.top
