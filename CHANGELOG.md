@@ -1,8 +1,10 @@
 # Changelog
 
-## natlib 0.1.11 (?)
+## natlib 0.1.11 (2023-02-18)
 
 * ➕ Functions for decoding bitmaps stored as [BigInt values][eebe-bigint] or [arrays of integers][eebe]: `decodeBitmap` and `decodeBitmapBigInt`
+* The `A*` loop no longer ends depending on the return value of `WalkFunction`
+* Pointer constructor's argument doesn't have to be `<canvas>`
 
 [eebe]: https://mvasilkov.animuchan.net/ecmascript-embedded-bitmap-encoding
 [eebe-bigint]: https://mvasilkov.animuchan.net/bigint-embedded-bitmap-encoding
