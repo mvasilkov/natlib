@@ -1,5 +1,10 @@
 # Changelog
 
+## natlib 0.1.12 (?)
+
+* ➕ Print function for fixed-width bitmap fonts
+* Change `ShortBool` to an enum of `{ FALSE, TRUE }`. Use `ExtendedBool` as a boolean type.
+
 ## natlib 0.1.11 (2023-02-18)
 
 * ➕ Functions for decoding bitmaps stored as [BigInt values][eebe-bigint] or [arrays of integers][eebe]: `decodeBitmap` and `decodeBitmapBigInt`

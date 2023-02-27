@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ShortBool, TRUE } from '../prelude.js'
+import { ExtendedBool, ShortBool } from '../prelude.js'
 import { register0, register1, register2 } from '../runtime.js'
 import type { Body } from '../verlet/Body'
 import type { Constraint } from '../verlet/Constraint'
@@ -34,7 +34,7 @@ let contactRightIndex: number
 let contactDistance: number
 
 /** Collision detection function using the Separating Axis Theorem (SAT) */
-export function findCollision(b0: Body, b1: Body): ShortBool {
+export function findCollision(b0: Body, b1: Body): ExtendedBool {
     const length0 = b0.edges.length
     const length1 = b1.edges.length // Inline
     if (length0 === 0) return
@@ -75,7 +75,7 @@ export function findCollision(b0: Body, b1: Body): ShortBool {
     }
 
     // If there is no separating axis, then the bodies are colliding.
-    return TRUE
+    return ShortBool.TRUE
 }
 
 /** Resolve the last collision found by `findCollision()`. */

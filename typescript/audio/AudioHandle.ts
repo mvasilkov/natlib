@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ShortBool, TRUE } from '../prelude.js'
+import { ExtendedBool, ShortBool } from '../prelude.js'
 
 /** Audio initialization function type */
 export type AudioInitializationFunction = (con: AudioContext) => void
@@ -12,7 +12,7 @@ export type AudioInitializationFunction = (con: AudioContext) => void
 /** Audio handle class */
 export class AudioHandle {
     con?: AudioContext
-    initialized: ShortBool
+    initialized: ExtendedBool
 
     /** Initialize the audio context */
     async initialize(ini?: AudioInitializationFunction) {
@@ -35,6 +35,6 @@ export class AudioHandle {
 
         ini?.(this.con) // Can't be async
 
-        this.initialized = TRUE
+        this.initialized = ShortBool.TRUE
     }
 }

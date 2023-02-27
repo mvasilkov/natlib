@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ShortBool, TRUE } from '../prelude.js'
+import { ExtendedBool, ShortBool } from '../prelude.js'
 
 type Code = 'ArrowLeft' | 'ArrowUp' | 'ArrowRight' | 'ArrowDown' | 'KeyW' | 'KeyA' | 'KeyS' | 'KeyD' | 'Space'
 
@@ -35,14 +35,14 @@ function hash(code: string): string {
 
 /** Keyboard controls class */
 export class Keyboard {
-    readonly state: ShortBool[]
+    readonly state: ExtendedBool[]
 
     constructor() {
         this.state = []
     }
 
     /** Update the keyboard state. */
-    setState(event: KeyboardEvent, pressed?: ShortBool) {
+    setState(event: KeyboardEvent, pressed?: ExtendedBool) {
         if (pressed && (event.altKey || event.ctrlKey || event.metaKey)) {
             // Don't respond to keyboard shortcuts.
             return
@@ -58,7 +58,7 @@ export class Keyboard {
 
     /** Initialize the event handlers. */
     addEventListeners(target: GlobalEventHandlers) {
-        target.addEventListener('keydown', event => this.setState(event, TRUE))
+        target.addEventListener('keydown', event => this.setState(event, ShortBool.TRUE))
         target.addEventListener('keyup', event => this.setState(event))
     }
 }

@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ShortBool, TRUE } from '../prelude.js'
+import { ExtendedBool, ShortBool } from '../prelude.js'
 import type { IVec2 } from '../Vec2'
 
 /** Wrapper class that fills the viewport by scaling its contents. */
@@ -46,7 +46,7 @@ export class AutoScaleWrapper {
     }
 
     /** Initialize the event handlers. Return TRUE on failure. */
-    addEventListeners(): ShortBool {
+    addEventListeners(): ExtendedBool {
         /*
         Sadly, visualViewport is nullable:
 
@@ -56,7 +56,7 @@ export class AutoScaleWrapper {
 
         The workaround (not included) is to retry after an arbitrary short delay.
         */
-        if (!visualViewport) return TRUE
+        if (!visualViewport) return ShortBool.TRUE
 
         addEventListener('resize', this.updateWrapper)
 
@@ -64,7 +64,7 @@ export class AutoScaleWrapper {
         visualViewport.addEventListener('scroll', this.updateWrapper)
 
         this.updateWrapper()
-        return // FALSE
+        return // ShortBool.FALSE
     }
 
     /** Translate a point from document coordinates to viewport coordinates. */

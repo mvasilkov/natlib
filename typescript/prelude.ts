@@ -17,11 +17,8 @@ export const UINT32_MAX = 4294967295
 export type PositiveInteger<T extends number> = `${T}` extends '0' | `-${any}` | `${any}.${any}` ? never : T
 export type NonnegativeInteger<T extends number> = `${T}` extends `-${any}` | `${any}.${any}` ? never : T
 
-// Compact Boolean type
-export type ShortBool = 0 | 1 | undefined
-
-export const FALSE: ShortBool = 0
-export const TRUE: ShortBool = 1
-
 // Extended Boolean type
-export type ExtendedBool = boolean | ShortBool
+export type ExtendedBool = boolean | 0 | 1 | undefined
+
+// Compact Boolean values
+export const enum ShortBool { FALSE, TRUE }

@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { FALSE, ShortBool, TRUE } from '../prelude.js'
+import { ExtendedBool, ShortBool } from '../prelude.js'
 
 /** Debounced function type */
 export type DebouncedFunction<T extends unknown[]> = (...args: T) => void
@@ -14,14 +14,14 @@ export type DebouncedFunction<T extends unknown[]> = (...args: T) => void
  * called again before the timeout expires, the previous call
  * will be aborted. */
 export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait: number): DebouncedFunction<T> {
-    let pending: ShortBool
+    let pending: ExtendedBool
     let lastCalled: number
 
     return function (...args: T) {
         lastCalled = Date.now()
 
         if (pending) return
-        pending = TRUE
+        pending = ShortBool.TRUE
 
         setTimeout(function wrapped() {
             const pauseDuration = Date.now() - lastCalled
@@ -30,7 +30,7 @@ export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait:
                 setTimeout(wrapped, wait - pauseDuration)
             }
             else {
-                pending = FALSE
+                pending = ShortBool.FALSE
                 defun(...args)
             }
         }, wait)
