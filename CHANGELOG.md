@@ -3,6 +3,7 @@
 ## natlib 0.1.12 (?)
 
 * ➕ Print function for fixed-width bitmap fonts
+* ➕ Phase and TTL functions: `enterPhase()`, `updatePhase()`
 * Change `ShortBool` to an enum of `{ FALSE, TRUE }`. Use `ExtendedBool` as a boolean type.
 
 ## natlib 0.1.11 (2023-02-18)
