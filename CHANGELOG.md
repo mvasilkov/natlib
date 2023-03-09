@@ -1,6 +1,6 @@
 # Changelog
 
-## natlib 0.1.12 (?)
+## natlib 0.1.12 (2023-03-09)
 
 * ➕ Print function for fixed-width bitmap fonts
 * ➕ Phase and TTL functions: `enterPhase()`, `updatePhase()`

@@ -25,8 +25,9 @@ export function enterPhase(state: IState, phase: number, ttl = 0) {
 /** Update the current phase and TTL.
  * If the phase has changed, return the previous phase. */
 export function updatePhase(state: IState, nextPhaseMap: Readonly<NextPhaseMap>): number | undefined {
+    state.oldTtl = state.phaseTtl
     if (state.phaseTtl > 0) {
-        state.oldTtl = state.phaseTtl--
+        --state.phaseTtl
         return
     }
     const n = state.phase << 1

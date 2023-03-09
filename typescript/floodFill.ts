@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ExtendedBool, FALSE, TRUE } from './prelude.js'
+import { ExtendedBool, ShortBool } from './prelude.js'
 
 const enum FillDirection { UP = 1, DOWN, BOTH }
 // Required: FillDirection.BOTH === (FillDirection.UP | FillDirection.DOWN)
@@ -46,19 +46,19 @@ export function floodFill(width: number, height: number, x: number, y: number, s
         }
 
         // Fill the scanline. Reuse the x and x0 variables.
-        let stripe = FALSE
+        let stripe: ExtendedBool
         for (x = u0; x <= u1; ++x) {
             if (shouldUpdate(x, y)) {
                 updateFunction(x, y)
 
                 if (!stripe) {
-                    stripe = TRUE
+                    stripe = ShortBool.TRUE
                     x0 = x
                 }
             }
             else {
                 if (stripe) {
-                    stripe = FALSE
+                    stripe = ShortBool.FALSE
                     push(x0, x - 1, y, direction)
                 }
             }

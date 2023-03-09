@@ -20,7 +20,7 @@ export class AudioHandle {
 
         this.con ??= new AudioContext
 
-        if (this.con.state === 'suspended') {
+        if (this.con.state !== 'running') {
             try {
                 await this.con.resume()
             }
@@ -30,8 +30,6 @@ export class AudioHandle {
             // Multiple initialize() calls can eventually get here.
             if (this.initialized) return
         }
-
-        if (this.con.state === 'suspended') return
 
         ini?.(this.con) // Can't be async
 
