@@ -9,6 +9,12 @@ import type { IPrng32 } from './prng'
 
 /** Return a pseudorandom number in the range [-1, 1]. */
 export function randomClosedUnit1Ball(prng: IPrng32): number {
-    const a = prng.randomUint32()
-    return (2 * a - UINT32_MAX) / UINT32_MAX
+    const n = prng.randomUint32()
+    return (2 * n - UINT32_MAX) / UINT32_MAX
+}
+
+/** Return a pseudorandom number in the range (-1, 1). */
+export function randomOpenUnit1Ball(prng: IPrng32): number {
+    const n = prng.randomUint32()
+    return (2 * n - UINT32_MAX) / (UINT32_MAX + 1)
 }
