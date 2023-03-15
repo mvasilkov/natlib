@@ -121,11 +121,7 @@ export function resolveCollision(b0: Body, b1: Body) {
     const k1 = t * k
 
     // Apply the collision response.
-    pos.x += register0.x * w1
-    pos.y += register0.y * w1
-
-    pos0.x -= register0.x * k0
-    pos0.y -= register0.y * k0
-    pos1.x -= register0.x * k1
-    pos1.y -= register0.y * k1
+    pos.add(register2.setMultiplyScalar(register0, w1))
+    pos0.subtract(register2.setMultiplyScalar(register0, k0))
+    pos1.subtract(register2.setMultiplyScalar(register0, k1))
 }
