@@ -31,11 +31,59 @@ export class Vec3 implements IVec3 {
         return this
     }
 
+    /** Copy the components of a vector to this vector. */
+    copy(other: Readonly<IVec3>): this {
+        this.x = other.x
+        this.y = other.y
+        this.z = other.z
+        return this
+    }
+
+    /** Add a vector to this vector. */
+    add(other: Readonly<IVec3>): this {
+        this.x += other.x
+        this.y += other.y
+        this.z += other.z
+        return this
+    }
+
+    /** Subtract a vector from this vector. */
+    subtract(other: Readonly<IVec3>): this {
+        this.x -= other.x
+        this.y -= other.y
+        this.z -= other.z
+        return this
+    }
+
     /** Multiply this vector by a scalar. */
     scale(n: number): this {
         this.x *= n
         this.y *= n
         this.z *= n
+        return this
+    }
+
+    /** Set this vector to a scalar multiple of a vector. */
+    setMultiplyScalar(other: Readonly<IVec3>, n: number): this {
+        this.x = other.x * n
+        this.y = other.y * n
+        this.z = other.z * n
+        return this
+    }
+
+    /** Get the length of this vector. */
+    length(): number {
+        return Math.hypot(this.x, this.y, this.z)
+    }
+
+    /** Convert this vector to a unit vector. */
+    normalize(): this {
+        const len = this.length()
+        if (len !== 0) {
+            this.x /= len
+            this.y /= len
+            this.z /= len
+        }
         return this
     }
 

@@ -6,7 +6,7 @@
 
 import { UINT32_MAX } from '../prelude.js'
 import { register4 } from '../runtime.js'
-import type { Vec3 } from '../Vec3'
+import type { IVec3, Vec3 } from '../Vec3'
 import type { IPrng32 } from './prng'
 
 /** Return a pseudorandom number in the range [-1, 1]. */
@@ -39,7 +39,7 @@ export function uniformSampleSphere(prng: IPrng32): Vec3 {
 }
 
 /** Get a pseudorandom point on the unit hemisphere. */
-export function uniformSampleHemisphere(prng: IPrng32, normal: Readonly<Vec3>): Vec3 {
+export function uniformSampleHemisphere(prng: IPrng32, normal: Readonly<IVec3>): Vec3 {
     if (uniformSampleSphere(prng).dot(normal) < 0) {
         return register4.scale(-1)
     }
