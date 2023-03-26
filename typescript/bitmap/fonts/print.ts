@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { decodeBitmapBigInt, ReadFunction } from '../bitmap.js'
+import { decodeBitmapBigInt, type ReadFunction } from '../bitmap.js'
 
 /** Print the given text using the fixed-width bitmap font. */
 export function print(text: string, font: bigint, width: number, height: number, cardinality: number | bigint, startCodePoint: number, readFunction: ReadFunction, letterSpacing = 1) {

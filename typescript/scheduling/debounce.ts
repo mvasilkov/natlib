@@ -4,10 +4,10 @@
  */
 'use strict'
 
-import { ExtendedBool, ShortBool } from '../prelude.js'
+import { ShortBool, type ExtendedBool } from '../prelude.js'
 
 /** Debounced function type */
-export type DebouncedFunction<T extends unknown[]> = (...args: T) => void
+export type DebouncedFunction<T extends unknown[]> = (...a: T) => void
 
 /** Create a debounced function that delays the given function
  * by a given `wait` time in milliseconds. If the function is
@@ -17,7 +17,7 @@ export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait:
     let pending: ExtendedBool
     let lastCalled: number
 
-    return function (...args: T) {
+    return function (...a: T) {
         lastCalled = Date.now()
 
         if (pending) return
@@ -31,7 +31,7 @@ export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait:
             }
             else {
                 pending = ShortBool.FALSE
-                defun(...args)
+                defun(...a)
             }
         }, wait)
     }

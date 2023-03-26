@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ExtendedBool, ShortBool } from '../prelude.js'
+import { ShortBool, type ExtendedBool } from '../prelude.js'
 import type { IVec2 } from '../Vec2'
 
 /** Wrapper class that fills the viewport by scaling its contents. */

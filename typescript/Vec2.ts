@@ -4,8 +4,6 @@
  */
 'use strict'
 
-import type { MethodsReturningType } from './prelude'
-
 /** 2D vector data structure */
 export interface IVec2 {
     x: number
@@ -103,8 +101,3 @@ export class Vec2 implements IVec2 {
         return (this.x - other.x) ** 2 + (this.y - other.y) ** 2
     }
 }
-
-type MutatorMethods = MethodsReturningType<Vec2, Vec2>
-
-/** Read-only 2D vector type */
-export type ReadonlyVec2 = Readonly<Omit<Vec2, MutatorMethods>>

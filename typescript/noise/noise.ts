@@ -5,7 +5,7 @@
 'use strict'
 
 import type { uint8_t } from '../prelude'
-import { IPrng32, shuffle } from '../prng/prng.js'
+import { shuffle, type IPrng32 } from '../prng/prng.js'
 
 /** 3D noise interface */
 export interface INoise3 {

@@ -12,7 +12,7 @@ import { PointerBody } from './objects/PointerBody.js'
 import type { Scene } from './Scene'
 import type { Vertex } from './Vertex'
 
-type MetaScene = new (...args: any[]) => Scene
+type MetaScene = new (...a: any) => Scene
 
 /** Enable scene's vertices to be controlled by the pointer. */
 export function WithPointerControls<T extends MetaScene>(Parent: T, pointer: Pointer, r: number, stiffness = 1) {

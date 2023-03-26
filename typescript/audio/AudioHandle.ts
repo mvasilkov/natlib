@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ExtendedBool, ShortBool } from '../prelude.js'
+import { ShortBool, type ExtendedBool } from '../prelude.js'
 
 /** Audio initialization function type */
 export type AudioInitializationFunction = (con: AudioContext) => void

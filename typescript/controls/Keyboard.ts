@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ExtendedBool, ShortBool } from '../prelude.js'
+import { ShortBool, type ExtendedBool } from '../prelude.js'
 
 type Code = 'ArrowLeft' | 'ArrowUp' | 'ArrowRight' | 'ArrowDown' | 'KeyW' | 'KeyA' | 'KeyS' | 'KeyD' | 'Space'
 

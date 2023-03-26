@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { IVec2, Vec2 } from '../Vec2.js'
+import { Vec2, type IVec2 } from '../Vec2.js'
 import type { Constraint } from './Constraint'
 import type { Scene } from './Scene'
 import type { Vertex } from './Vertex'

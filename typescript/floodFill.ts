@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { ExtendedBool, ShortBool } from './prelude.js'
+import { ShortBool, type ExtendedBool } from './prelude.js'
 
 const enum FillDirection { UP = 1, DOWN, BOTH }
 // Required: FillDirection.BOTH === (FillDirection.UP | FillDirection.DOWN)

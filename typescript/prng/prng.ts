@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { UINT32_MAX, uint32_t } from '../prelude.js'
+import { UINT32_MAX, type uint32_t } from '../prelude.js'
 
 /** PRNG (floating point) interface */
 export interface IPrng {

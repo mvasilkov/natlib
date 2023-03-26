@@ -6,7 +6,7 @@
 
 import type { Body } from './Body'
 
-type MetaBody = new (...args: any[]) => Body
+type MetaBody = new (...a: any) => Body
 
 /** Interpolated paint interface */
 export interface IPaint {
