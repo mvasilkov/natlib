@@ -4,6 +4,8 @@
  */
 'use strict'
 
+import type { MethodsReturningType } from './prelude'
+
 /** 3D vector data structure */
 export interface IVec3 {
     x: number
@@ -92,3 +94,8 @@ export class Vec3 implements IVec3 {
         return this.x * other.x + this.y * other.y + this.z * other.z
     }
 }
+
+type MutatorMethods = MethodsReturningType<Vec3, Vec3>
+
+/** Read-only 3D vector type */
+export type ReadonlyVec3 = Readonly<Omit<Vec3, MutatorMethods>>

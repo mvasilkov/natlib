@@ -22,3 +22,8 @@ export type ExtendedBool = boolean | 0 | 1 | undefined
 
 // Compact Boolean values
 export const enum ShortBool { FALSE, TRUE }
+
+// Utility types
+export type MethodsReturningType<T, R> = {
+    [K in keyof T]: T[K] extends (...a: any) => R ? K : never
+}[keyof T]
