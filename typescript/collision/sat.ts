@@ -36,7 +36,7 @@ let contactDistance: number
 /** Collision detection function using the Separating Axis Theorem (SAT) */
 export function findCollision(b0: Body, b1: Body): ExtendedBool {
     const length0 = b0.edges.length
-    const length1 = b1.edges.length // Inline
+    const length1 = b1.edges.length // .Inline
     if (length0 === 0) return
 
     // AABB overlap test

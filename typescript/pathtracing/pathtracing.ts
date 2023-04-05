@@ -19,9 +19,9 @@ export class HitProperties {
     constructor() {
         this.origin = new Vec3
         this.direction = new Vec3
-        // Unreachable code
+        // .DeadCode
         this.t = 0
-        // End unreachable code
+        // .EndDeadCode
         this.point = new Vec3
         this.normal = new Vec3
     }

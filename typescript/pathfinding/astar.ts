@@ -48,7 +48,7 @@ export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacen
         [start],
     )
 
-    const previous: { [n: number]: Location } = {} // Object.create(null)
+    const previous: { [n: number]: Location } = {}
     const score: { [n: number]: number } = { [start.key]: 0 }
 
     while (frontier.length !== 0) {

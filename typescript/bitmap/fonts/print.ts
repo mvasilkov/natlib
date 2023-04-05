@@ -14,7 +14,7 @@ export function print(text: string, font: bigint, width: number, height: number,
     for (let caret = 0, n = 0; n < text.length; ++n) {
         const skip = text.charCodeAt(n) - startCodePoint
         if (skip >= 0) {
-            const glyph = font / stride ** BigInt(skip) // Inline
+            const glyph = font / stride ** BigInt(skip) // .Inline
             decodeBitmapBigInt(glyph, width, height, cardinality, (x, y, value) => readFunction(caret + x, y, value))
         }
         caret += width + letterSpacing
@@ -26,7 +26,7 @@ export function print1bpp(text: string, font: bigint, width: number, height: num
     for (let caret = 0, n = 0; n < text.length; ++n) {
         const skip = text.charCodeAt(n) - startCodePoint
         if (skip >= 0) {
-            const glyph = font >> BigInt(skip * width * height) // Inline
+            const glyph = font >> BigInt(skip * width * height) // .Inline
             decodeBitmapBigInt(glyph, width, height, 2n, (x, y, value) => readFunction(caret + x, y, value))
         }
         caret += width + letterSpacing

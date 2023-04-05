@@ -31,7 +31,7 @@ def node_modules(binary: Literal['michikoid', 'tsc']) -> Path:
     return OUR_ROOT / 'node_modules' / '.bin' / binary
 
 
-typescript_check_available, typescript_call = node_app(node_modules('tsc'), ('--version', 'Version (.+?)$', '4'))
+typescript_check_available, typescript_call = node_app(node_modules('tsc'), ('--version', 'Version (.+?)$', '5'))
 _, michikoid_call = node_app(node_modules('michikoid'))
 
 
@@ -99,6 +99,9 @@ def natlib_validate():
         content = file.read_text(encoding='utf-8')
         if not content.startswith(FILE_LICENSE):
             raise RuntimeError(f'Bad file header: {file.relative_to(OUR_ROOT)}')
+
+        if '// .' in content:
+            raise RuntimeError(f'Leftover Michikoid directive: {file.relative_to(OUR_ROOT)}')
 
 
 if __name__ == '__main__':

@@ -28,8 +28,8 @@ export class Constraint {
         this.body = body
         this.v0 = v0
         this.v1 = v1
-        this.p0 = v0.position // InlineExp
-        this.p1 = v1.position // InlineExp
+        this.p0 = v0.position // .InlineExp
+        this.p1 = v1.position // .InlineExp
 
         this.lengthSquared = this.p0.distanceSquared(this.p1)
         this.edge = edge

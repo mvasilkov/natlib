@@ -29,9 +29,9 @@ function grad(n: uint8_t, x: number, y: number, z: number): number {
         case 13: return -y + z
         case 15: return -y - z
     }
-    // Unreachable code
+    // .DeadCode
     return 0
-    // End unreachable code
+    // .EndDeadCode
 }
 
 /** Perlin noise class */
