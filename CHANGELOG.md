@@ -1,5 +1,9 @@
 # Changelog
 
+## natlib 0.1.13 (?)
+
+* ➕ Path tracing support
+
 ## natlib 0.1.12 (2023-03-09)
 
 * ➕ Print function for fixed-width bitmap fonts
