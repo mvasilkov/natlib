@@ -4,6 +4,8 @@
  */
 'use strict'
 
+import { lerp } from './interpolation.js'
+
 /** Phase and TTL fields */
 export interface IState {
     phase: number
@@ -37,4 +39,9 @@ export function updatePhase(state: IState, nextPhaseMap: Readonly<NextPhaseMap>)
     const oldPhase = state.phase
     enterPhase(state, nextPhase, nextPhaseMap[n | 1])
     return oldPhase
+}
+
+/** Interpolate the current phase progress. */
+export function interpolatePhase(state: Readonly<IState>, ttl: number, t: number): number {
+    return 1 - lerp(state.oldTtl, state.phaseTtl, t) / ttl
 }

@@ -1,8 +1,13 @@
 # Changelog
 
-## natlib 0.1.13 (?)
+## natlib 0.1.14 (?)
 
 * ➕ Path tracing support
+
+## natlib 0.1.13 (2023-06-27)
+
+* ➕ Generate uniformly distributed points on the unit sphere: `uniformSampleSphere()`
+* ➕ Interpolate the current phase progress: `interpolatePhase()`
 
 ## natlib 0.1.12 (2023-03-09)
 

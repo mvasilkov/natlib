@@ -65,7 +65,7 @@ export class AutoScaleWrapper {
 
         this.updateWrapper()
         // .DeadCode
-        return ShortBool.FALSE
+        return
         // .EndDeadCode
     }
 
