@@ -9,7 +9,7 @@ export type CompareFunction<T> = (a: Readonly<T>, b: Readonly<T>) => number
 
 /** Queue class that retrieves values in priority order (lowest first). */
 export class PriorityQueue<T> {
-    private values: (T | null)[]
+    private readonly values: (T | null)[]
     length: number
     readonly compareFn: CompareFunction<T>
 

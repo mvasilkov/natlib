@@ -36,7 +36,7 @@ export function easeInOut(fn: EasingFunction): EasingFunction {
     return t => t < 0.5 ? fn(2 * t) / 2 : 1 - fn(2 - 2 * t) / 2
 }
 
-/** Quadratic ease-in function, position equals the square of `t`. */
+/** Quadratic ease-in function, position equals `t ** 2` */
 export function easeInQuad(t: number): number {
     return t * t
 }
@@ -51,9 +51,9 @@ export function easeInOutQuad(t: number): number {
     return t < 0.5 ? 2 * t * t : 2 * t * (2 - t) - 1
 }
 
-/** Cubic ease-in function, position equals the cube of `t`. */
+/** Cubic ease-in function, position equals `t ** 3` */
 export function easeInCubic(t: number): number {
-    return t * t * t
+    return t ** 3
 }
 
 /** Cubic ease-out function */
@@ -63,7 +63,7 @@ export function easeOutCubic(t: number): number {
 
 /** Cubic ease-in-out function */
 export function easeInOutCubic(t: number): number {
-    return t < 0.5 ? 4 * t * t * t : 4 * (t - 1) ** 3 + 1
+    return t < 0.5 ? 4 * t ** 3 : 4 * (t - 1) ** 3 + 1
 }
 
 /** Sinusoidal ease-in function */
