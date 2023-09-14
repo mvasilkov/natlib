@@ -19,14 +19,14 @@ export interface IState {
 export type NextPhaseMap = { [n: number]: number | undefined }
 
 /** Set the current phase and TTL. */
-export function enterPhase(state: IState, phase: number, ttl = 0) {
+export const enterPhase = (state: IState, phase: number, ttl = 0) => {
     state.phase = phase
-    state.phaseTtl = state.oldTtl = ttl
+    state.phaseTtl = (state.oldTtl = ttl) - 1
 }
 
 /** Update the current phase and TTL.
  * If the phase has changed, return the previous phase. */
-export function updatePhase(state: IState, nextPhaseMap: Readonly<NextPhaseMap>): number | undefined {
+export const updatePhase = (state: IState, nextPhaseMap: Readonly<NextPhaseMap>): number | undefined => {
     state.oldTtl = state.phaseTtl
     if (state.phaseTtl > 0) {
         --state.phaseTtl
@@ -42,6 +42,4 @@ export function updatePhase(state: IState, nextPhaseMap: Readonly<NextPhaseMap>)
 }
 
 /** Interpolate the current phase progress. */
-export function interpolatePhase(state: Readonly<IState>, ttl: number, t: number): number {
-    return 1 - lerp(state.oldTtl, state.phaseTtl, t) / ttl
-}
+export const interpolatePhase = (state: Readonly<IState>, ttl: number, t: number): number => 1 - lerp(state.oldTtl, state.phaseTtl, t) / ttl
