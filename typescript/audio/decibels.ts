@@ -5,31 +5,19 @@
 'use strict'
 
 /** Convert decibels to power ratio. */
-export function convertDecibelsToPowerRatio(decibels: number) {
-    return 10 ** (decibels / 10)
-}
+export const convertDecibelsToPowerRatio = (decibels: number): number => 10 ** (0.1 * decibels)
 
 /** Convert decibels to amplitude ratio. */
-export function convertDecibelsToAmplitudeRatio(decibels: number) {
-    return 10 ** (decibels / 20)
-}
+export const convertDecibelsToAmplitudeRatio = (decibels: number): number => 10 ** (0.05 * decibels)
 
 /** Convert power ratio to decibels. */
-export function convertPowerRatioToDecibels(linear: number) {
-    return 10 * Math.log10(linear)
-}
+export const convertPowerRatioToDecibels = (linear: number): number => 10 * Math.log10(linear)
 
 /** Convert amplitude ratio to decibels. */
-export function convertAmplitudeRatioToDecibels(linear: number) {
-    return 20 * Math.log10(linear)
-}
+export const convertAmplitudeRatioToDecibels = (linear: number): number => 20 * Math.log10(linear)
 
-/** Fast decibels to power ratio. */
-export function convertDecibelsToPowerRatioFast(decibels: number) {
-    return Math.exp(Math.LN10 / 10 * decibels)
-}
+/** Fast, less precise decibels to power ratio function. */
+export const convertDecibelsToPowerRatioFast = (decibels: number): number => Math.exp(Math.LN10 * 0.1 * decibels)
 
-/** Fast decibels to amplitude ratio. */
-export function convertDecibelsToAmplitudeRatioFast(decibels: number) {
-    return Math.exp(Math.LN10 / 20 * decibels)
-}
+/** Fast, less precise decibels to amplitude ratio function. */
+export const convertDecibelsToAmplitudeRatioFast = (decibels: number): number => Math.exp(Math.LN10 * 0.05 * decibels)
