@@ -82,7 +82,7 @@ export class PriorityQueue<T> {
 }
 
 /** Return a new array containing values in ascending order. */
-export function heapsort<T>(compareFn: CompareFunction<T>, values: readonly T[]): T[] {
+export const heapsort = <T>(compareFn: CompareFunction<T>, values: readonly T[]): T[] => {
     const queue = new PriorityQueue(compareFn, values)
     return Array.from(values, () => queue.get()!)
 }

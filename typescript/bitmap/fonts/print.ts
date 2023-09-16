@@ -6,9 +6,9 @@
 
 import { decodeBitmapBigInt, type ReadFunction } from '../bitmap.js'
 
-/** Print the given text using the fixed-width bitmap font. */
-export function print(text: string, font: bigint, width: number, height: number, cardinality: number | bigint, startCodePoint: number, readFunction: ReadFunction, letterSpacing = 1) {
-    cardinality = BigInt(cardinality)
+/** Print the given text in a fixed-width bitmap font. */
+export const print = (text: string, font: bigint, width: number, height: number, cardinality: number | bigint, startCodePoint: number, readFunction: ReadFunction, letterSpacing = 1) => {
+    cardinality = BigInt(cardinality) // .InlineExp
     const stride = cardinality ** BigInt(width * height)
 
     for (let caret = 0, n = 0; n < text.length; ++n) {
@@ -21,8 +21,8 @@ export function print(text: string, font: bigint, width: number, height: number,
     }
 }
 
-/** Print the given text using the fixed-width bitmap font with 1-bit color depth. */
-export function print1bpp(text: string, font: bigint, width: number, height: number, startCodePoint: number, readFunction: ReadFunction, letterSpacing = 1) {
+/** Print the given text in a fixed-width bitmap font (1-bit color depth). */
+export const print1bpp = (text: string, font: bigint, width: number, height: number, startCodePoint: number, readFunction: ReadFunction, letterSpacing = 1) => {
     for (let caret = 0, n = 0; n < text.length; ++n) {
         const skip = text.charCodeAt(n) - startCodePoint
         if (skip >= 0) {
