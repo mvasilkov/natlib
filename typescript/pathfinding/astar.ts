@@ -7,7 +7,7 @@
 import { PriorityQueue } from '../collections/PriorityQueue.js'
 import { Vec2 } from '../Vec2.js'
 
-/** 2D location class internal to astar */
+/** 2D location class internal to `A*` */
 class Location extends Vec2 {
     // Can't change x and y without invalidating the key
     declare readonly x: number
@@ -39,7 +39,7 @@ export type GetAdjacent = (x: number, y: number) => Iterable<Coordinates>
 export type WalkFunction = (x: number, y: number) => void
 
 /** `A*` path finding on a square grid */
-export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, walkFunction: WalkFunction) {
+export const astar = (x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, walkFunction: WalkFunction) => {
     const start = new Location(x0, y0)
     let end = new Location(x1, y1)
 
@@ -69,7 +69,6 @@ export function astar(x0: number, y0: number, x1: number, y1: number, getAdjacen
         }
     }
 
-    // Walk the path
     while (previous[end.key] !== undefined) {
         walkFunction(end.x, end.y)
         end = previous[end.key]!

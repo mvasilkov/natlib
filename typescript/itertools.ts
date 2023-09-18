@@ -6,17 +6,17 @@
 
 import type { PositiveInteger } from './prelude'
 
-/** Sliding window function */
-export function* slidingWindow<T, U extends number>(array: readonly T[], size: PositiveInteger<U>): Generator<T[], void> {
+/** Sliding window generator */
+export function* slidingWindow<T, Value extends number = number>(array: readonly T[], size: PositiveInteger<Value>): Generator<T[], void> {
     for (let n = 0; n <= array.length - size; ++n) {
         yield array.slice(n, n + size)
     }
 }
 
-/** Permutations function */
-export function* permutations<T>(array: T[]): Generator<T[], void> {
+/** Permutations generator */
+export function* permutations<T>(array: readonly T[]): Generator<T[], void> {
     if (array.length < 2) {
-        yield array
+        yield array.slice()
         return
     }
     for (let n = 0; n < array.length; ++n) {

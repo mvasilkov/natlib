@@ -9,21 +9,15 @@ export type LoopCallback = (t: number) => void
 
 /** Main loop using a fixed step of `T` milliseconds.
  * `render()` receives `t` in the range (0, 1] for interpolation. */
-export function startMainloop(update: LoopCallback, render: LoopCallback, T = 20) {
-    let before: number
+export const startMainloop = (update: LoopCallback, render: LoopCallback, T = 20) => {
+    let before: DOMHighResTimeStamp
     let t = 0
 
-    requestAnimationFrame(function (now: number) {
+    const loop: FrameRequestCallback = current => {
         requestAnimationFrame(loop)
 
-        before = now
-    })
-
-    function loop(now: number) {
-        requestAnimationFrame(loop)
-
-        t += now - before
-        before = now
+        t += current - before
+        before = current
 
         // Most updates per render
         let n = 4
@@ -35,4 +29,10 @@ export function startMainloop(update: LoopCallback, render: LoopCallback, T = 20
 
         render(t / T + 1)
     }
+
+    requestAnimationFrame(current => {
+        requestAnimationFrame(loop)
+
+        before = current
+    })
 }

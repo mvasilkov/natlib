@@ -6,8 +6,8 @@
 
 import { ShortBool, type ExtendedBool } from './prelude.js'
 
+// Critical: FillDirection.BOTH === (FillDirection.UP | FillDirection.DOWN)
 const enum FillDirection { UP = 1, DOWN, BOTH }
-// Required: FillDirection.BOTH === (FillDirection.UP | FillDirection.DOWN)
 
 type Scanline = [x0: number, x1: number, y: number, direction: FillDirection]
 
@@ -19,10 +19,21 @@ export type UpdateFunction = (x: number, y: number) => void
 
 /** Scanline flood fill starting at `(x, y)` in a buffer `width` by `height`.
  * Update values using `updateFunction()` if `shouldUpdate()` returns `true`. */
-export function floodFill(width: number, height: number, x: number, y: number, shouldUpdate: ShouldUpdate, updateFunction: UpdateFunction) {
+export const floodFill = (width: number, height: number, x: number, y: number, shouldUpdate: ShouldUpdate, updateFunction: UpdateFunction) => {
     const stack: Scanline[] = [
         [x, x, y, FillDirection.BOTH],
     ]
+
+    /** Push scanlines onto the stack. */
+    const push = (x0: number, x1: number, y: number, direction: FillDirection) => {
+        if ((direction & FillDirection.UP) && (y > 0)) {
+            stack.push([x0, x1, y - 1, FillDirection.UP])
+        }
+
+        if ((direction & FillDirection.DOWN) && (y < height - 1)) {
+            stack.push([x0, x1, y + 1, FillDirection.DOWN])
+        }
+    }
 
     while (stack.length !== 0) {
         let [x0, x1, y, direction] = stack.pop()!
@@ -65,16 +76,5 @@ export function floodFill(width: number, height: number, x: number, y: number, s
         }
 
         if (stripe) push(x0, u1, y, direction)
-    }
-
-    /** Push scanlines onto the stack. */
-    function push(x0: number, x1: number, y: number, direction: FillDirection) {
-        if ((direction & FillDirection.UP) && (y > 0)) {
-            stack.push([x0, x1, y - 1, FillDirection.UP])
-        }
-
-        if ((direction & FillDirection.DOWN) && (y < height - 1)) {
-            stack.push([x0, x1, y + 1, FillDirection.DOWN])
-        }
     }
 }
