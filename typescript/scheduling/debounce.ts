@@ -9,11 +9,10 @@ import { ShortBool, type ExtendedBool } from '../prelude.js'
 /** Debounced function type */
 export type DebouncedFunction<T extends unknown[]> = (...a: T) => void
 
-/** Create a debounced function that delays the given function
- * by a given `wait` time in milliseconds. If the function is
- * called again before the timeout expires, the previous call
- * will be aborted. */
-export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait: number): DebouncedFunction<T> {
+/** Create a function that delays the execution of the given function
+ * by the specified interval in milliseconds. If the function is called
+ * again before the interval ends, the previous call is canceled. */
+export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, delay: number): DebouncedFunction<T> {
     let pending: ExtendedBool
     let lastCalled: number
 
@@ -26,13 +25,13 @@ export function debounce<T extends unknown[]>(defun: DebouncedFunction<T>, wait:
         setTimeout(function wrapped() {
             const pauseDuration = Date.now() - lastCalled
 
-            if (pauseDuration < wait) {
-                setTimeout(wrapped, wait - pauseDuration)
+            if (pauseDuration < delay) {
+                setTimeout(wrapped, delay - pauseDuration)
             }
             else {
                 pending = ShortBool.FALSE
                 defun(...a)
             }
-        }, wait)
+        }, delay)
     }
 }
