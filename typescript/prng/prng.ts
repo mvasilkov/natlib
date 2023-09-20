@@ -17,7 +17,7 @@ export interface IPrng32 {
 }
 
 /** Return a pseudorandom uint32 in the range [0, n). */
-export function randomUint32LessThan(prng: IPrng32, n: uint32_t): uint32_t {
+export const randomUint32LessThan = (prng: IPrng32, n: uint32_t): uint32_t => {
     const discard = UINT32_MAX - (UINT32_MAX % n)
 
     while (true) {
@@ -27,7 +27,7 @@ export function randomUint32LessThan(prng: IPrng32, n: uint32_t): uint32_t {
 }
 
 /** Fisher–Yates shuffle, aka Knuth shuffle. */
-export function shuffle<T>(prng: IPrng32, array: T[]): T[] {
+export const shuffle = <T>(prng: IPrng32, array: T[]): T[] => {
     let n = array.length
 
     while (n) {

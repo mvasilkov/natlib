@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import type { uint32_t } from '../prelude'
+import { UINT32_MAX, type uint32_t } from '../prelude.js'
 import type { IPrng, IPrng32 } from './prng'
 
 /** SplitMix32 PRNG class */
@@ -25,6 +25,6 @@ export class SplitMix32 implements IPrng32, IPrng {
 
     /** Return a pseudorandom number in the range [0, 1). */
     random(): number {
-        return this.randomUint32() / (2 ** 32)
+        return this.randomUint32() / (UINT32_MAX + 1)
     }
 }
