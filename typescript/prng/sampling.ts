@@ -5,8 +5,7 @@
 'use strict'
 
 import { UINT32_MAX } from '../prelude.js'
-import { register4 } from '../runtime.js'
-import type { IVec3, Vec3 } from '../Vec3'
+import { register0, type IVec3, type Vec3 } from '../Vec3.js'
 import type { IPrng32 } from './prng'
 
 /** Return a pseudorandom number in the range [-1, 1]. */
@@ -35,13 +34,13 @@ export function uniformSampleSphere(prng: IPrng32): Vec3 {
 
     const a = 2 * (1 - n) ** 0.5
 
-    return register4.set(a * u, a * v, 1 - 2 * n)
+    return register0.set(a * u, a * v, 1 - 2 * n)
 }
 
 /** Get a pseudorandom point on the unit hemisphere. */
 export function uniformSampleHemisphere(prng: IPrng32, normal: Readonly<IVec3>): Vec3 {
     if (uniformSampleSphere(prng).dot(normal) < 0) {
-        return register4.scale(-1)
+        return register0.scale(-1)
     }
-    return register4
+    return register0
 }
