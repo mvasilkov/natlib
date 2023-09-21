@@ -5,8 +5,7 @@
 'use strict'
 
 import type { ExtendedBool } from './prelude'
-import { register0 } from './runtime.js'
-import type { IVec2, Vec2 } from './Vec2'
+import { register0, type IVec2, type Vec2 } from './Vec2.js'
 
 /** DDA tile intersection type */
 export type DdaIntersection = Vec2 & {

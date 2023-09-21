@@ -5,7 +5,7 @@
 'use strict'
 
 import { ShortBool, type ExtendedBool } from '../prelude.js'
-import { register0, register1, register2 } from '../runtime.js'
+import { register0, register1, register2 } from '../Vec2.js'
 import type { Body } from '../verlet/Body'
 import type { Constraint } from '../verlet/Constraint'
 

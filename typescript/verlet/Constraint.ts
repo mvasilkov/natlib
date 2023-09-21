@@ -5,8 +5,7 @@
 'use strict'
 
 import type { ExtendedBool } from '../prelude'
-import { register0 } from '../runtime.js'
-import type { Vec2 } from '../Vec2'
+import { register0, type Vec2 } from '../Vec2.js'
 import type { Body } from './Body'
 import type { Vertex } from './Vertex'
 

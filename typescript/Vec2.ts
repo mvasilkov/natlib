@@ -101,3 +101,10 @@ export class Vec2 implements IVec2 {
         return (this.x - other.x) ** 2 + (this.y - other.y) ** 2
     }
 }
+
+// These variables are used to avoid garbage collection of
+// short-lived objects at runtime.
+export const register0 = /*@__PURE__*/ new Vec2
+export const register1 = /*@__PURE__*/ new Vec2
+export const register2 = /*@__PURE__*/ new Vec2
+export const register3 = /*@__PURE__*/ new Vec2

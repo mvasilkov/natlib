@@ -6,7 +6,7 @@
 
 import { findCollision } from '../collision/sat.js'
 import type { Pointer } from '../controls/Pointer'
-import { register0 } from '../runtime.js'
+import { register0 } from '../Vec2.js'
 import { getClosestVertex } from './Body.js'
 import { PointerBody } from './objects/PointerBody.js'
 import type { Scene } from './Scene'
