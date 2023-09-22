@@ -15,13 +15,13 @@ export type DdaIntersection = Vec2 & {
     hitVertical?: boolean,
 }
 
-const result: DdaIntersection = register0
+const result: DdaIntersection = register0 // .Inline(6)
 
 /** Return true to end the DDA loop. */
 export type DdaCallback = (x: number, y: number, hitDistance: number) => ExtendedBool
 
 /** Digital differential analyzer (DDA) */
-export function dda(start: Readonly<IVec2>, direction: Readonly<IVec2>, done: DdaCallback): DdaIntersection {
+export const dda = (start: Readonly<IVec2>, direction: Readonly<IVec2>, done: DdaCallback): DdaIntersection => {
     // Scaling factor
     const Δx = Math.abs(1 / direction.x)
     const Δy = Math.abs(1 / direction.y)

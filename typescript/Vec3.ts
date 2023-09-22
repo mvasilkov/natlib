@@ -73,7 +73,7 @@ export class Vec3 implements IVec3 {
 
     /** Get the length of this vector. */
     length(): number {
-        return Math.hypot(this.x, this.y, this.z)
+        return (this.x ** 2 + this.y ** 2 + this.z ** 2) ** 0.5
     }
 
     /** Convert this vector to a unit vector. */
