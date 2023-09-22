@@ -9,7 +9,7 @@ import type { uint8_t } from '../prelude'
 import type { INoise3 } from './noise'
 
 /** Perlin noise gradient function */
-function grad(n: uint8_t, x: number, y: number, z: number): number {
+const grad = (n: uint8_t, x: number, y: number, z: number): number => {
     switch (n & 15) {
         case 0: return x + y
         case 2: return x - y

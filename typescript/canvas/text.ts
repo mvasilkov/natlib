@@ -5,12 +5,12 @@
 'use strict'
 
 /** Set the canvas text style and size, e.g. 'bold 48'. */
-export function setTextStyle(con: CanvasRenderingContext2D, style: string | number) {
+export const setTextStyle = (con: CanvasRenderingContext2D, style: string | number) => {
     con.font = style + `px -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif`
 }
 
 /** Return a path encapsulating the text. */
-export function textCapsule(con: CanvasRenderingContext2D, x: number, y: number, style: string | number, text: string, padding: number, borderRadius: number) {
+export const textCapsule = (con: CanvasRenderingContext2D, x: number, y: number, style: string | number, text: string, padding: number, borderRadius: number) => {
     setTextStyle(con, style)
 
     const textMetrics = con.measureText(text)

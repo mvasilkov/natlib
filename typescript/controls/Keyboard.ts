@@ -47,7 +47,7 @@ export class Keyboard {
             // Don't respond to keyboard shortcuts.
             return
         }
-        const input = indices[hash(<Code>event.code)]
+        const input = indices[/*@__INLINE__*/hash(<Code>event.code)]
         if (input) {
             // Repeating keys don't change the state,
             // but still prevent the default action.

@@ -13,7 +13,7 @@ export interface INoise3 {
 }
 
 /** Build a random permutation table. */
-export function buildPermutationTable(prng: IPrng32): uint8_t[] {
+export const buildPermutationTable = (prng: IPrng32): uint8_t[] => {
     const a = Array.from({ length: 256 }, (_unused, n) => n)
 
     return shuffle(prng, a).concat(a)

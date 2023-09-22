@@ -14,7 +14,8 @@ export class AudioHandle {
     con?: AudioContext
     initialized: ExtendedBool
 
-    /** Initialize the audio context */
+    /** Initialize the audio context.
+     * See https://html.spec.whatwg.org/multipage/interaction.html#activation-triggering-input-event */
     async initialize(ini?: AudioInitializationFunction) {
         if (this.initialized) return
 
