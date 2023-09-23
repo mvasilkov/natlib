@@ -43,4 +43,4 @@ def node_app(binary: str | Path, version: tuple[str, str, str] | None = None):
     return result + (node_app_call,)
 
 
-typescript_check_available, typescript_call = node_app('tsc', ('--version', 'Version (.+?)$', '4'))
+typescript_check_available, typescript_call = node_app('tsc', ('--version', 'Version (.+?)$', '5'))

@@ -98,10 +98,10 @@ def natlib_validate():
     for file in list(OUR_ROOT.glob('out/**/*.js')):
         content = file.read_text(encoding='utf-8')
         if not content.startswith(FILE_LICENSE):
-            raise RuntimeError(f'Bad file header: {file.relative_to(OUR_ROOT)}')
+            raise RuntimeError(f'Invalid file header: {file.relative_to(OUR_ROOT)}')
 
         if '// .' in content:
-            raise RuntimeError(f'Leftover Michikoid directive: {file.relative_to(OUR_ROOT)}')
+            raise RuntimeError(f'Leftover Michikoid syntax: {file.relative_to(OUR_ROOT)}')
 
 
 if __name__ == '__main__':
