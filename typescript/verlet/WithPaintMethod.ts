@@ -14,8 +14,8 @@ export interface IPaint {
 }
 
 /** Make a body paintable on canvas. Used for debugging. */
-export function WithPaintMethod<T extends MetaBody>(Parent: T, color = '#29adff', edgeColor = '#ff004d') {
-    return class PaintBody extends Parent implements IPaint {
+export const WithPaintMethod = <T extends MetaBody>(Parent: T, color = '#29adff', edgeColor = '#ff004d') =>
+    class PaintBody extends Parent implements IPaint {
         /** Paint the body. */
         paint(con: CanvasRenderingContext2D, t: number) {
             this.vertices.forEach(v => v.interpolate(t))
@@ -44,4 +44,3 @@ export function WithPaintMethod<T extends MetaBody>(Parent: T, color = '#29adff'
             con.stroke()
         }
     }
-}

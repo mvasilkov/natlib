@@ -9,10 +9,10 @@ import { register0, register1, register2 } from '../Vec2.js'
 import type { Body } from '../verlet/Body'
 import type { Constraint } from '../verlet/Constraint'
 
-const projectionLine = register0
+const projectionLine = register0 // .Inline(5)
 
 /** Projected distance function */
-function projectedDistance(b0: Body, b1: Body, edge: Constraint): number {
+const projectedDistance = (b0: Body, b1: Body, edge: Constraint): number => {
     // Find a unit vector normal to the edge.
     projectionLine.setPerpendicular(edge.p0, edge.p1).normalize()
 
@@ -27,14 +27,14 @@ function projectedDistance(b0: Body, b1: Body, edge: Constraint): number {
 }
 
 // Contact properties
-const contactLine = register1
+const contactLine = register1 // .Inline(5)
 let contactEdge: Constraint
 let contactLeftIndex: number
 let contactRightIndex: number
 let contactDistance: number
 
 /** Collision detection function using the Separating Axis Theorem (SAT) */
-export function findCollision(b0: Body, b1: Body): ExtendedBool {
+export const findCollision = (b0: Body, b1: Body): ExtendedBool => {
     const length0 = b0.edges.length
     const length1 = b1.edges.length // .Inline
     if (length0 === 0) return
@@ -79,7 +79,7 @@ export function findCollision(b0: Body, b1: Body): ExtendedBool {
 }
 
 /** Resolve the last collision found by `findCollision()`. */
-export function resolveCollision(b0: Body, b1: Body) {
+export const resolveCollision = (b0: Body, b1: Body) => {
     // Put the contact edge in `b1` and the contact vertex in `b0`.
     if (contactEdge.body === b0) {
         const t = b0

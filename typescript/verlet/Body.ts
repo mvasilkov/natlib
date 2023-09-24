@@ -100,7 +100,7 @@ export class Body {
 
 /** Find a vertex closest to the reference point.
  * Standalone function to enable tree shaking. */
-export function getClosestVertex({ positions }: Body, point: Readonly<IVec2>): number {
+export const getClosestVertex = ({ positions }: Body, point: Readonly<IVec2>): number => {
     let closestVertex = 0
     let shortestDistance = positions[0]!.distanceSquared(point)
 

@@ -15,7 +15,7 @@ import type { Vertex } from './Vertex'
 type MetaScene = new (...a: any) => Scene
 
 /** Enable scene's vertices to be controlled by the pointer. */
-export function WithPointerControls<T extends MetaScene>(Parent: T, pointer: Pointer, r: number, stiffness = 1) {
+export const WithPointerControls = <T extends MetaScene>(Parent: T, pointer: Pointer, r: number, stiffness = 1) => {
     const pb = new PointerBody(r)
 
     return class PointerScene extends Parent {
