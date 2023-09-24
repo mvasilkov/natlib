@@ -4,7 +4,7 @@
 
 * ➕ Path tracing support
 
-## natlib 0.1.14 (?)
+## natlib 0.1.14 (2023-09-24)
 
 * Correct the initial `phaseTtl` in `enterPhase()`
 * Better `PositiveInteger` and `NonnegativeInteger` conditional types

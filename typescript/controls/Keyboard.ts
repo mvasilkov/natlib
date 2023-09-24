@@ -6,14 +6,14 @@
 
 import { ShortBool, type ExtendedBool } from '../prelude.js'
 
-type Code = 'ArrowLeft' | 'ArrowUp' | 'ArrowRight' | 'ArrowDown' | 'KeyW' | 'KeyA' | 'KeyS' | 'KeyD' | 'Space'
+type Code = 'ArrowLeft' | 'ArrowUp' | 'ArrowRight' | 'ArrowDown' | 'KeyW' | 'KeyA' | 'KeyS' | 'KeyD' | 'KeyR' | 'Space'
 
 type Hashed<T extends string> =
     T extends `${infer Chr0}${infer _Chr1}${infer _Chr2}${infer Chr3}${infer _Chr4}${infer Chr5}${infer _Rest}` ? `${Chr0}${Chr3}${Chr5}` :
     T extends `${infer Chr0}${infer _Chr1}${infer _Chr2}${infer Chr3}${infer _Rest}` ? `${Chr0}${Chr3}` : never
 
 /** Supported keyboard inputs */
-export const enum Input { LEFT = 1, UP, RIGHT, DOWN, LEFT_A, UP_W, RIGHT_D, DOWN_S, SPACE }
+export const enum Input { LEFT = 1, UP, RIGHT, DOWN, LEFT_A, UP_W, RIGHT_D, DOWN_S, R, SPACE }
 
 const indices: { [HashedCode in Hashed<Code>]: Input } & { [a: string]: Input | undefined } = {
     AoL: Input.LEFT,
@@ -24,6 +24,7 @@ const indices: { [HashedCode in Hashed<Code>]: Input } & { [a: string]: Input | 
     KW: Input.UP_W,
     KD: Input.RIGHT_D,
     KS: Input.DOWN_S,
+    KR: Input.R,
     Sc: Input.SPACE,
 }
 
