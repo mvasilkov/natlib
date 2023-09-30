@@ -8,7 +8,7 @@
 
 * Correct the initial `phaseTtl` in `enterPhase()`
 * Better `PositiveInteger` and `NonnegativeInteger` conditional types
-* Fat arrows to save bytes
+* Change functions to fat arrows to save bytes
 
 ## natlib 0.1.13 (2023-06-27)
 

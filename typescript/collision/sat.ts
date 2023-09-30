@@ -79,7 +79,7 @@ export const findCollision = (b0: Body, b1: Body): ExtendedBool => {
 }
 
 /** Resolve the last collision found by `findCollision()`. */
-export const resolveCollision = (b0: Body, b1: Body) => {
+export const resolveCollision = (b0: Body, b1: Body, friction: number) => {
     // Put the contact edge in `b1` and the contact vertex in `b0`.
     if (contactEdge.body === b0) {
         const t = b0
@@ -124,4 +124,24 @@ export const resolveCollision = (b0: Body, b1: Body) => {
     pos.add(register2.setMultiplyScalar(register0, w1))
     pos0.subtract(register2.setMultiplyScalar(register0, k0))
     pos1.subtract(register2.setMultiplyScalar(register0, k1))
+
+    if (friction === 0) return
+
+    const oldPos = contactVertex.oldPosition
+    const oldPos0 = contactEdge.v0.oldPosition
+    const oldPos1 = contactEdge.v1.oldPosition
+
+    // Find the relative velocity.
+    register2.setSubtract(pos, oldPos)
+        .subtract(register0.setSubtract(pos0, oldPos0).scale(1 - t))
+        .subtract(register0.setSubtract(pos1, oldPos1).scale(t))
+
+    // Project the relative velocity onto the tangent vector.
+    register0.set(-contactLine.y, contactLine.x)
+        .scale(register2.dot(register0) * friction)
+
+    // Apply friction
+    pos.subtract(register2.setMultiplyScalar(register0, w1))
+    pos0.add(register2.setMultiplyScalar(register0, k0))
+    pos1.add(register2.setMultiplyScalar(register0, k1))
 }

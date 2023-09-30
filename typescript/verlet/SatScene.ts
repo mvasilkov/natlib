@@ -35,7 +35,7 @@ export class SatScene extends Scene {
                     const b1 = this.bodies[j]!
 
                     if (findCollision(b0, b1)) {
-                        resolveCollision(b0, b1, /* this.friction */)
+                        resolveCollision(b0, b1, this.friction)
                     }
                 }
             }
