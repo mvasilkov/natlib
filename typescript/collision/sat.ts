@@ -39,7 +39,7 @@ export const findCollision = (b0: Body, b1: Body): ExtendedBool => {
     const length1 = b1.edges.length // .Inline
     if (length0 === 0) return
 
-    // AABB overlap test
+    // Check AABB overlap
     if (Math.abs(b1.center.x - b0.center.x) >= b0.halfExtents.x + b1.halfExtents.x ||
         Math.abs(b1.center.y - b0.center.y) >= b0.halfExtents.y + b1.halfExtents.y)
         // AABBs don't overlap

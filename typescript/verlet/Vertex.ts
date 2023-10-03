@@ -45,17 +45,17 @@ export class Vertex {
         old.set(x, y)
 
         // Scene bounds
-        const { height: sceneHeight, width: sceneWidth } = this.body.scene
+        const { height, width } = this.body.scene
 
         if (pos.y < 0) pos.y = 0
-        else if (pos.y >= sceneHeight) {
+        else if (pos.y >= height) {
             pos.x += (x - pos.x) * this.body.groundFriction
-            pos.y = sceneHeight - 1
+            pos.y = height - 1
         }
 
         if (pos.x < 0) pos.x = 0
-        else if (pos.x >= sceneWidth) {
-            pos.x = sceneWidth - 1
+        else if (pos.x >= width) {
+            pos.x = width - 1
         }
     }
 
