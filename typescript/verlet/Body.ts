@@ -116,3 +116,19 @@ export const getClosestVertex = ({ positions }: Body, point: Readonly<IVec2>): n
 
     return closestVertex
 }
+
+/** Detach the body from its containing scene.
+ * Standalone function to enable tree shaking. */
+export const detach = (body: Body) => {
+    let n: number
+    let list: Vertex[] | Constraint[] | Body[]
+
+    n = (list = body.scene.vertices).findIndex(v => v.body === body)
+    if (n !== -1) list.splice(n, body.vertices.length)
+
+    n = (list = body.scene.constraints).findIndex(c => c.body === body)
+    if (n !== -1) list.splice(n, body.constraints.length)
+
+    n = (list = body.scene.bodies).findIndex(b => b === body)
+    if (n !== -1) list.splice(n, 1)
+}
