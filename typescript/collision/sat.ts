@@ -9,7 +9,7 @@ import { register0, register1, register2 } from '../Vec2.js'
 import type { Body } from '../verlet/Body'
 import type { Constraint } from '../verlet/Constraint'
 
-const projectionLine = register0 // .Inline(5)
+const projectionLine = register0 // .Alias
 
 /** Projected distance function */
 const projectedDistance = (b0: Body, b1: Body, edge: Constraint): number => {
@@ -27,7 +27,7 @@ const projectedDistance = (b0: Body, b1: Body, edge: Constraint): number => {
 }
 
 // Contact properties
-const contactLine = register1 // .Inline(5)
+const contactLine = register1 // .Alias
 let contactEdge: Constraint
 let contactLeftIndex: number
 let contactRightIndex: number
@@ -140,7 +140,7 @@ export const resolveCollision = (b0: Body, b1: Body, friction: number) => {
     register0.set(-contactLine.y, contactLine.x)
         .scale(register2.dot(register0) * friction)
 
-    // Apply friction
+    // Apply the friction response.
     pos.subtract(register2.setMultiplyScalar(register0, w1))
     pos0.add(register2.setMultiplyScalar(register0, k0))
     pos1.add(register2.setMultiplyScalar(register0, k1))

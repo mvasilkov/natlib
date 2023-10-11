@@ -20,7 +20,7 @@ export type DdaCallback = (x: number, y: number, hitDistance: number) => Extende
 
 /** Digital differential analyzer (DDA) */
 export const dda = (start: Readonly<IVec2>, direction: Readonly<IVec2>, done: DdaCallback): DdaIntersection => {
-    const result: DdaIntersection = register0 // .Inline(6)
+    const result: DdaIntersection = register0 // .Alias
 
     // Scaling factor
     const Δx = Math.abs(1 / direction.x)
