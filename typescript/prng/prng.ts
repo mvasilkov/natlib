@@ -4,7 +4,7 @@
  */
 'use strict'
 
-import { UINT32_MAX, type uint32_t } from '../prelude.js'
+import { UINT32_MAX, type uint32_t, type uint64_t } from '../prelude.js'
 
 /** PRNG (floating point) interface */
 export interface IPrng {
@@ -14,6 +14,11 @@ export interface IPrng {
 /** PRNG (32-bit integer) interface */
 export interface IPrng32 {
     randomUint32(): uint32_t
+}
+
+/** PRNG (64-bit integer) interface */
+export interface IPrng64 {
+    randomUint64(): uint64_t
 }
 
 /** Return a pseudorandom uint32 in the range [0, n). */
