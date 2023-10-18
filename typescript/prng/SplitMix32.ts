@@ -9,6 +9,7 @@ import type { IPrng, IPrng32 } from './prng'
 
 /** SplitMix32 PRNG class */
 export class SplitMix32 implements IPrng32, IPrng {
+    /*@__MANGLE_PROP__*/
     state: uint32_t
 
     constructor(seed: uint32_t) {
