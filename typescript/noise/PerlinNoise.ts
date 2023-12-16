@@ -31,7 +31,7 @@ const grad = (n: uint8_t, x: number, y: number, z: number): number => {
     }
     // .DeadCode
     return 0
-    // .EndDeadCode
+    // .End(DeadCode)
 }
 
 /** Perlin noise class */

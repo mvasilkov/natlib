@@ -25,7 +25,7 @@ export class ExactConstraint extends Constraint {
         const len = register0.setSubtract(this.p0, this.p1).length()
         if (len === 0) return
 
-        register0.scale((this.length - len) / len * this.stiffness)
+        register0.scale((this.length / len - 1) * this.stiffness)
 
         this.p0.add(register0)
         this.p1.subtract(register0)

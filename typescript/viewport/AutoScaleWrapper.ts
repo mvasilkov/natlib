@@ -66,7 +66,7 @@ export class AutoScaleWrapper {
         this.updateWrapper()
         // .DeadCode
         return
-        // .EndDeadCode
+        // .End(DeadCode)
     }
 
     /** Translate a point from document coordinates to viewport coordinates. */

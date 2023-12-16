@@ -21,7 +21,7 @@ export class HitProperties {
         this.direction = new Vec3
         // .DeadCode
         this.t = 0
-        // .EndDeadCode
+        // .End(DeadCode)
         this.point = new Vec3
         this.normal = new Vec3
     }
