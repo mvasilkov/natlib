@@ -1,8 +1,15 @@
 # Changelog
 
-## natlib 0.1.15 (?)
+## natlib 0.1.16 (?)
 
 * ➕ Path tracing support
+
+## natlib 0.1.15 (2024-02-08)
+
+* SAT collision solver friction support
+* ➕ Static vertex class (Verlet integration)
+* ➕ Exact constraint class (Verlet integration)
+* ➕ Thrust 63-bit PRNG
 
 ## natlib 0.1.14 (2023-09-24)
 
