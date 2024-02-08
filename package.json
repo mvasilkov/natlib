@@ -1,6 +1,6 @@
 {
   "name": "natlib",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "natlib is a highly composable library for small games.",
   "keywords": [
     "astar",
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/mvasilkov/natlib#readme",
   "devDependencies": {
-    "michikoid": "latest",
+    "michikoid": "^0.2.0",
     "typescript": "^5.3.3"
   },
   "private": true
