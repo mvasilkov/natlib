@@ -27,6 +27,8 @@ export class Pointer implements IVec2 {
 
         this.x = event.clientX - r.left
         this.y = event.clientY - r.top
+
+        focus()
     }
 
     /** Initialize the event handlers. */
