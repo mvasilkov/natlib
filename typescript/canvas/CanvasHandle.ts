@@ -11,22 +11,27 @@ export type RenderingFunction = (con: CanvasRenderingContext2D, width: number, h
 export class CanvasHandle {
     readonly canvas: HTMLCanvasElement
     readonly con: CanvasRenderingContext2D
-    readonly height: number
-    readonly width: number
+    height!: number
+    width!: number
 
     constructor(canvas: HTMLCanvasElement | null, width: number, height: number, supersampling = 2, ini?: RenderingFunction) {
         canvas ??= document.createElement('canvas')
 
         this.canvas = canvas
         this.con = canvas.getContext('2d')!
+
+        this.reset(width, height, supersampling)
+
+        ini?.(this.con, width, height)
+    }
+
+    reset(width: number, height: number, supersampling = 2) {
         this.height = height
         this.width = width
 
-        canvas.height = supersampling * height
-        canvas.width = supersampling * width
+        this.canvas.height = supersampling * height
+        this.canvas.width = supersampling * width
 
         this.con.scale(supersampling, supersampling)
-
-        ini?.(this.con, width, height)
     }
 }
