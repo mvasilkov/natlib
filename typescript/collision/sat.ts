@@ -14,7 +14,8 @@ const projectionLine = register0 // .Alias
 /** Projected distance function */
 const projectedDistance = (b0: Body, b1: Body, edge: Constraint): number => {
     // Find a unit vector normal to the edge.
-    projectionLine.setPerpendicular(edge.p0, edge.p1).normalize()
+    projectionLine.setSubtract(edge.p1, edge.p0)
+        .setPerpendicular(projectionLine).normalize()
 
     // Project the bodies onto the normal.
     b0.projectInterval(projectionLine)

@@ -33,7 +33,7 @@
   "homepage": "https://github.com/mvasilkov/natlib#readme",
   "devDependencies": {
     "michikoid": "^0.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "private": true
 }

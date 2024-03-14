@@ -1,8 +1,12 @@
 # Changelog
 
-## natlib 0.1.16 (?)
+## natlib 0.1.17 (?)
 
 * ➕ Path tracing support
+
+## natlib 0.1.16 (?)
+
+* Change `Vec2.setPerpendicular()` to unary as God intended
 
 ## natlib 0.1.15 (2024-02-08)
 
