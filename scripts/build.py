@@ -3,17 +3,10 @@
 import json
 from pathlib import Path
 from shutil import copy2, copytree, rmtree
-import sys
-from typing import Literal
+
+from but.external import Tools
 
 OUR_ROOT = Path(__file__).resolve().parents[1]
-
-# Make relative imports great again
-if __name__ == '__main__' and not __package__:
-    sys.path.insert(0, str(OUR_ROOT))
-    __package__ = 'build'
-
-from .node_app import node_app
 
 FILE_LICENSE = '''
 /** This file is part of natlib.
@@ -22,17 +15,6 @@ FILE_LICENSE = '''
  */
 'use strict'
 '''.strip()
-
-
-def node_modules(binary: Literal['michikoid', 'tsc']) -> Path:
-    '''
-    Return the path to a binary in the node_modules directory.
-    '''
-    return OUR_ROOT / 'node_modules' / '.bin' / binary
-
-
-typescript_check_available, typescript_call = node_app(node_modules('tsc'), ('--version', 'Version (.+?)$', '5'))
-_, michikoid_call = node_app(node_modules('michikoid'))
 
 
 def natlib_clean():
@@ -48,10 +30,7 @@ def natlib_clean():
 
 
 def natlib_build():
-    typescript_call(['--project', OUR_ROOT])
-
-    files = list(OUR_ROOT.glob('out/**/*.js'))
-    michikoid_call(files)
+    Tools.tsc.run(['--project', OUR_ROOT / 'tsconfig.json'])
 
 
 def natlib_package():
@@ -95,23 +74,17 @@ def copy_package_json():
 
 
 def natlib_validate():
-    for file in list(OUR_ROOT.glob('out/**/*.js')):
+    for file in OUR_ROOT.glob('out/**/*.js'):
         content = file.read_text(encoding='utf-8')
         if not content.startswith(FILE_LICENSE):
             raise RuntimeError(f'Invalid file header: {file.relative_to(OUR_ROOT)}')
 
-        if '// .' in content:
-            raise RuntimeError(f'Leftover Michikoid syntax: {file.relative_to(OUR_ROOT)}')
-
 
 if __name__ == '__main__':
-    typescript_check_available()
+    Tools.tsc.check_available()
 
     print('natlib: clean')
     natlib_clean()
-
-    if sys.argv[1:] == ['clean']:
-        sys.exit()
 
     print('natlib: build')
     natlib_build()
