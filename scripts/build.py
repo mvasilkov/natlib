@@ -30,7 +30,7 @@ def natlib_clean():
 
 
 def natlib_build():
-    Tools.tsc.run(['--project', OUR_ROOT / 'tsconfig.json'])
+    Tools.tsc.run('--project', OUR_ROOT / 'tsconfig.json')
 
 
 def natlib_package():

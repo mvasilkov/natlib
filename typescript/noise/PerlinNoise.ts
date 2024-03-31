@@ -25,13 +25,11 @@ const grad = (n: uint8_t, x: number, y: number, z: number): number => {
         case 5: return -x + z
         case 7: return -x - z
         case 9: return -y + z
-        case 11: return -y - z
+        // (default) case 11: return -y - z
         case 13: return -y + z
-        case 15: return -y - z
+        // (default) case 15: return -y - z
     }
-    // .DeadCode
-    return 0
-    // .End(DeadCode)
+    return -y - z
 }
 
 /** Perlin noise class */

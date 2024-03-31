@@ -138,7 +138,7 @@ export const resolveCollision = (b0: Body, b1: Body, friction: number) => {
         .subtract(register0.setSubtract(pos1, oldPos1).scale(t))
 
     // Project the relative velocity onto the tangent vector.
-    register0.set(-contactLine.y, contactLine.x)
+    register0.setPerpendicular(contactLine)
         .scale(register2.dot(register0) * friction)
 
     // Apply the friction response.

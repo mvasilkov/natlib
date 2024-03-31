@@ -12,16 +12,13 @@ export class HitProperties {
     readonly origin: Vec3
     readonly direction: Vec3
     // Intersection properties
-    t: number
+    t!: number
     readonly point: Vec3
     readonly normal: Vec3
 
     constructor() {
         this.origin = new Vec3
         this.direction = new Vec3
-        // .DeadCode
-        this.t = 0
-        // .End(DeadCode)
         this.point = new Vec3
         this.normal = new Vec3
     }

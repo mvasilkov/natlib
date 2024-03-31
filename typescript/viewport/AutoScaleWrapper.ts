@@ -64,9 +64,7 @@ export class AutoScaleWrapper {
         visualViewport.addEventListener('scroll', this.updateWrapper)
 
         this.updateWrapper()
-        // .DeadCode
-        return
-        // .End(DeadCode)
+        return // .DeadCode
     }
 
     /** Translate a point from document coordinates to viewport coordinates. */
