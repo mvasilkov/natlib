@@ -54,3 +54,5 @@ export const easeOutSine = (t: number): number => Math.sin(0.5 * Math.PI * t)
 export const easeInOutSine = (t: number): number => 0.5 * (1 - Math.cos(Math.PI * t))
 
 //#endregion
+
+export const oscillate = (t: number): number => (t *= 2) < 1 ? t : 2 - t
