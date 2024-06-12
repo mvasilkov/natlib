@@ -14,7 +14,7 @@ FILE_LICENSE = '''
  * @license MIT | Copyright (c) 2022, 2023, 2024 Mark Vasilkov
  */
 'use strict'
-'''.lstrip()
+'''.strip()
 
 
 def natlib_clean():

@@ -7,6 +7,9 @@
 ## natlib 0.1.16 (?)
 
 * Change `Vec2.setPerpendicular()` to unary as God intended
+* Base the build script on [your-bunny-wrought][but]
+
+[but]: https://github.com/mvasilkov/your-bunny-wrought
 
 ## natlib 0.1.15 (2024-02-08)
 
