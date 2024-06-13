@@ -22,7 +22,7 @@ export class PriorityQueue<T> {
     }
 
     /** Put a value into the queue. */
-    put(value: T) {
+    put(value: T): void {
         this.values[this.length++] = value
         this.bubbleUp()
     }

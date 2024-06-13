@@ -19,7 +19,7 @@ export type UpdateFunction = (x: number, y: number) => void
 
 /** Scanline flood fill starting at `(x, y)` in a buffer `width` by `height`.
  * Update values using `updateFunction()` if `shouldUpdate()` returns `true`. */
-export const floodFill = (width: number, height: number, x: number, y: number, shouldUpdate: ShouldUpdate, updateFunction: UpdateFunction) => {
+export const floodFill = (width: number, height: number, x: number, y: number, shouldUpdate: ShouldUpdate, updateFunction: UpdateFunction): void => {
     const stack: Scanline[] = [
         [x, x, y, FillDirection.BOTH],
     ]

@@ -39,7 +39,7 @@ export type GetAdjacent = (x: number, y: number) => Iterable<Coordinates>
 export type WalkFunction = (x: number, y: number) => void
 
 /** `A*` path finding on a square grid */
-export const astar = (x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, walkFunction: WalkFunction) => {
+export const astar = (x0: number, y0: number, x1: number, y1: number, getAdjacent: GetAdjacent, walkFunction: WalkFunction): void => {
     const start = new Location(x0, y0)
     let end = new Location(x1, y1)
 

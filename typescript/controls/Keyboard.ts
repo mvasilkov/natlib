@@ -43,7 +43,7 @@ export class Keyboard {
     }
 
     /** Update the keyboard state. */
-    setState(event: KeyboardEvent, pressed?: ExtendedBool) {
+    setState(event: KeyboardEvent, pressed?: ExtendedBool): void {
         if (pressed && (event.altKey || event.ctrlKey || event.metaKey)) {
             // Don't respond to keyboard shortcuts.
             return
@@ -58,7 +58,7 @@ export class Keyboard {
     }
 
     /** Initialize the event handlers. */
-    addEventListeners(target: GlobalEventHandlers) {
+    addEventListeners(target: GlobalEventHandlers): void {
         target.addEventListener('keydown', event => this.setState(event, ShortBool.TRUE))
         target.addEventListener('keyup', event => this.setState(event))
     }

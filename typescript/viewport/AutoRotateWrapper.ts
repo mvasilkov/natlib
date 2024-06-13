@@ -18,7 +18,7 @@ export class AutoRotateWrapper extends AutoScaleWrapper {
     }
 
     /** Update wrapper to fill the viewport. */
-    override updateWrapper = () => {
+    override updateWrapper = (): void => {
         const viewportWidth = visualViewport!.width
         const viewportHeight = visualViewport!.height
         const viewportAspectRatio = viewportWidth / viewportHeight
@@ -72,7 +72,7 @@ export class AutoRotateWrapper extends AutoScaleWrapper {
     }
 
     /** Translate a point from document coordinates to viewport coordinates. */
-    override documentToViewport(point: IVec2) {
+    override documentToViewport(point: IVec2): void {
         point.x /= this.scale
         point.y /= this.scale
 

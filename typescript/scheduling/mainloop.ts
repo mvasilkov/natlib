@@ -9,7 +9,7 @@ export type LoopCallback = (t: number) => void
 
 /** Main loop using a fixed step of `T` milliseconds.
  * `render()` receives `t` in the range (0, 1] for interpolation. */
-export const startMainloop = (update: LoopCallback, render: LoopCallback, T = 20) => {
+export const startMainloop = (update: LoopCallback, render: LoopCallback, T = 20): void => {
     let before: DOMHighResTimeStamp
     let t = 0
 

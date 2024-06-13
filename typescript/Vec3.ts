@@ -95,7 +95,7 @@ export class Vec3 implements IVec3 {
 
 // These variables are used to avoid garbage collection of
 // short-lived objects at runtime.
-export const register0 = /*@__PURE__*/ new Vec3
-export const register1 = /*@__PURE__*/ new Vec3
-export const register2 = /*@__PURE__*/ new Vec3
-export const register3 = /*@__PURE__*/ new Vec3
+export const register0: Vec3 = /*@__PURE__*/ new Vec3
+export const register1: Vec3 = /*@__PURE__*/ new Vec3
+export const register2: Vec3 = /*@__PURE__*/ new Vec3
+export const register3: Vec3 = /*@__PURE__*/ new Vec3

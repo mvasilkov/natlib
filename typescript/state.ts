@@ -19,7 +19,7 @@ export interface IState {
 export type NextPhaseMap = { [n: number]: number | undefined }
 
 /** Set the current phase and TTL. */
-export const enterPhase = (state: IState, phase: number, ttl = 0) => {
+export const enterPhase = (state: IState, phase: number, ttl = 0): void => {
     state.phase = phase
     state.phaseTtl = (state.oldTtl = ttl) - 1
 }

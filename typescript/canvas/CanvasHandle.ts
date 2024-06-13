@@ -25,7 +25,7 @@ export class CanvasHandle {
         ini?.(this.con, width, height)
     }
 
-    reset(width: number, height: number, supersampling = 2) {
+    reset(width: number, height: number, supersampling = 2): void {
         this.height = height
         this.width = width
 

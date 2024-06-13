@@ -22,7 +22,7 @@ export class Pointer implements IVec2 {
     }
 
     /** Set the pointer position relative to the plane. */
-    setPosition(event: MouseEvent | Touch) {
+    setPosition(event: MouseEvent | Touch): void {
         const r = this.plane.getBoundingClientRect()
 
         this.x = event.clientX - r.left
@@ -32,7 +32,7 @@ export class Pointer implements IVec2 {
     }
 
     /** Initialize the event handlers. */
-    addEventListeners(target: GlobalEventHandlers) {
+    addEventListeners(target: GlobalEventHandlers): void {
         // Mouse events
         target.addEventListener('mousedown', event => {
             event.preventDefault()

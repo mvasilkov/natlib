@@ -22,7 +22,7 @@ export class AutoScaleWrapper {
     }
 
     /** Update wrapper to fill the viewport. */
-    updateWrapper = () => {
+    updateWrapper = (): void => {
         const viewportWidth = visualViewport!.width
         const viewportHeight = visualViewport!.height
         const viewportAspectRatio = viewportWidth / viewportHeight
@@ -68,7 +68,7 @@ export class AutoScaleWrapper {
     }
 
     /** Translate a point from document coordinates to viewport coordinates. */
-    documentToViewport(point: IVec2) {
+    documentToViewport(point: IVec2): void {
         point.x /= this.scale
         point.y /= this.scale
     }
