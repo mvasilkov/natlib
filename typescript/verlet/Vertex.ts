@@ -33,7 +33,7 @@ export class Vertex {
     }
 
     /** Verlet integration */
-    integrate() {
+    integrate(): void {
         const pos = this.position
         const old = this.oldPosition
         const x = pos.x
@@ -60,7 +60,7 @@ export class Vertex {
     }
 
     /** Interpolate the vertex position. */
-    interpolate(t: number) {
+    interpolate(t: number): void {
         this.interpolated.set(
             lerp(this.oldPosition.x, this.position.x, t),
             lerp(this.oldPosition.y, this.position.y, t))

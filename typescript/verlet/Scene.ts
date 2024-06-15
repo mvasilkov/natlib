@@ -29,7 +29,7 @@ export class Scene {
     }
 
     /** Update the scene. */
-    update() {
+    update(): void {
         // Verlet integration
         this.vertices.forEach(v => v.integrate())
 

@@ -20,7 +20,7 @@ export class StaticVertex extends Vertex implements IVec2 {
         this.y = y
     }
 
-    override integrate() {
+    override integrate(): void {
         this.position.set(this.x, this.y)
         this.oldPosition.set(this.x, this.y)
     }

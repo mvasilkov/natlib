@@ -80,7 +80,7 @@ export const findCollision = (b0: Body, b1: Body): ExtendedBool => {
 }
 
 /** Resolve the last collision found by `findCollision()`. */
-export const resolveCollision = (b0: Body, b1: Body, friction: number) => {
+export const resolveCollision = (b0: Body, b1: Body, friction: number): void => {
     // Put the contact edge in `b1` and the contact vertex in `b0`.
     if (contactEdge.body === b0) {
         const t = b0

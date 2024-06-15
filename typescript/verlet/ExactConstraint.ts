@@ -21,7 +21,7 @@ export class ExactConstraint extends Constraint {
     }
 
     /** Solve the constraint. */
-    override solve() {
+    override solve(): void {
         const len = register0.setSubtract(this.p0, this.p1).length()
         if (len === 0) return
 

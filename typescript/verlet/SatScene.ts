@@ -18,7 +18,7 @@ export class SatScene extends Scene {
     }
 
     /** Update the scene. */
-    override update() {
+    override update(): void {
         // Verlet integration
         this.vertices.forEach(v => v.integrate())
 

@@ -52,7 +52,7 @@ export class Body {
     }
 
     /** Update the bounding box (AABB). */
-    updateBoundingBox() {
+    updateBoundingBox(): void {
         let left: number, top: number, right: number, bottom: number
         let p = this.positions[0]!
         left = right = p.x
@@ -74,7 +74,7 @@ export class Body {
     }
 
     /** Project the body onto a unit vector. */
-    projectInterval(direction: Readonly<IVec2>) {
+    projectInterval(direction: Readonly<IVec2>): void {
         let left: number, right: number
         left = right = this.positions[0]!.dot(direction)
         this.leftIndex = this.rightIndex = 0
@@ -119,7 +119,7 @@ export const getClosestVertex = ({ positions }: Body, point: Readonly<IVec2>): n
 
 /** Detach the body from its containing scene.
  * Standalone function to enable tree shaking. */
-export const detach = (body: Body) => {
+export const detach = (body: Body): void => {
     let n: number
     let list: Vertex[] | Constraint[] | Body[]
 
