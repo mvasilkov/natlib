@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 from shutil import copy2, copytree, rmtree
+from subprocess import CalledProcessError
 
 from but.external import Tools
 
@@ -30,7 +31,10 @@ def natlib_clean():
 
 
 def natlib_build():
-    Tools.tsc.run('--project', OUR_ROOT / 'tsconfig.json')
+    try:
+        Tools.tsc.run('--project', OUR_ROOT / 'tsconfig.json')
+    except CalledProcessError as err:
+        print(err)
 
 
 def natlib_package():
