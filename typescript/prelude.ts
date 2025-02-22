@@ -10,8 +10,6 @@ export type uint16_t = number
 export type uint32_t = number
 export type uint64_t = bigint
 
-export const UINT8_MAX = 255
-export const UINT16_MAX = 65535
 export const UINT32_MAX = 4294967295
 export const UINT64_MAX = 18446744073709551615n
 
